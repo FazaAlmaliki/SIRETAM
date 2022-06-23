@@ -43,7 +43,7 @@
                                                                             </td></tr>
                     <tr><th width='130px' scope='row'>Nama Produk</th>  <td><input type='text' class='form-control' name='b' required></td></tr>
                     <tr><th scope='row'>Satuan</th>                     <td><input type='text' class='form-control' name='c'></td></tr>
-                    <tr><th scope='row'>Berat / Gram</th>                      <td><input type='number' class='form-control' name='berat'></td></tr>
+                    <tr><th scope='row'>Berat / Kilogram</th>                      <td><input type='number' class='form-control' name='berat'></td></tr>
                     <tr><th scope='row'>Harga Modal</th>                 <td><input type='number' class='form-control' name='d'></td></tr>
                     <tr><th scope='row'>Harga Reseller</th>             <td><input type='number' class='form-control' name='e'></td></tr>
                     <tr><th scope='row'>Harga Konsumen</th>             <td><input type='number' class='form-control' name='f'></td></tr>

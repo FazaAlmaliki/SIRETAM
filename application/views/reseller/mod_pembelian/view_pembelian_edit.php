@@ -29,7 +29,7 @@
             <th width='80px'>Jumlah</th>
             <th width='80px'>Satuan</th>
             <th>Sub Total</th>
-            <th width='80px'>Action</th>
+            <th width='80px'>Aksi</th>
           </tr>
         </thead>
         <?php 
@@ -43,10 +43,10 @@
                                                           foreach ($barang as $r){
                                                             if ($r['id_produk']==$row['id_produk']){
                                                               echo "<option value='$r[id_produk]' selected>$r[nama_produk]</option>";
-                                                              $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_reseller']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                              $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_suppliers']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                             }else{
                                                               echo "<option value='$r[id_produk]'>$r[nama_produk]</option>";
-                                                              $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_reseller']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                              $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_suppliers']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                             }
                                                           }
                                                        echo "</select></td>

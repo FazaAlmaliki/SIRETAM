@@ -1065,7 +1065,7 @@ TableTools.prototype = {
 
 
 	/**
-	 * Programmatically enable or disable the print view
+	 * ProKilogrammatically enable or disable the print view
 	 *  @param {boolean} [bView=true] Show the print view if true or not given. If false, then
 	 *    terminate the print view and return to normal.
 	 *  @param {object} [oConfig={}] Configuration for the print view
@@ -1309,7 +1309,7 @@ TableTools.prototype = {
 				.on( 'keyup.DTTT', function (e) {
 					// Trigger the click event on return key when focused.
 					// Note that for Flash buttons this has no effect since we
-					// can't programmatically trigger the Flash export
+					// can't proKilogrammatically trigger the Flash export
 					if ( e.keyCode === 13 ) {
 						e.stopPropagation();
 

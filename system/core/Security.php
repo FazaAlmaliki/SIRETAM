@@ -345,7 +345,7 @@ class CI_Security {
 	 * @link	http://ha.ckers.org/xss.html
 	 * 		To help develop this script I used this great list of
 	 *		vulnerabilities along with a few other hacks I've
-	 *		harvested from examining vulnerabilities in other programs.
+	 *		harvested from examining vulnerabilities in other proKilograms.
 	 *
 	 * @param	string|string[]	$str		Input data
 	 * @param 	bool		$is_image	Whether the input is an image

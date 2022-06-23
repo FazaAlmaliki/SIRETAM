@@ -32,7 +32,7 @@
                     <td>$row[nama_produk]</td>
                     <td>".rupiah($row['harga_jual'])."</td>
                     <td>$row[jumlah]</td>
-                    <td>".($row['berat']*$row['jumlah'])." Gram</td>
+                    <td>".($row['berat']*$row['jumlah'])." Kilogram</td>
                     <td>Rp ".rupiah($sub_total)."</td>
                 </tr>";
             $no++;
@@ -47,7 +47,7 @@
 
                 <tr class='success'>
                   <td colspan='5'><b>Total Berat</b></td>
-                  <td><b>$total[total_berat] Gram</b></td>
+                  <td><b>$total[total_berat] Kilogram</b></td>
                   <td></td>
                 </tr>
                 <tr class='warning'><td align=center colspan='5'><b>$proses</b></td></tr>

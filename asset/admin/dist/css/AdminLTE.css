@@ -3613,27 +3613,27 @@ table.text-center th {
   color: #dd4b39;
   background-color: #ffffff;
 }
-.btn-instagram {
+.btn-instaKilogram {
   color: #ffffff;
   background-color: #3f729b;
   border-color: rgba(0, 0, 0, 0.2);
 }
-.btn-instagram:hover,
-.btn-instagram:focus,
-.btn-instagram.focus,
-.btn-instagram:active,
-.btn-instagram.active,
-.open > .dropdown-toggle.btn-instagram {
+.btn-instaKilogram:hover,
+.btn-instaKilogram:focus,
+.btn-instaKilogram.focus,
+.btn-instaKilogram:active,
+.btn-instaKilogram.active,
+.open > .dropdown-toggle.btn-instaKilogram {
   color: #ffffff;
   background-color: #305777;
   border-color: rgba(0, 0, 0, 0.2);
 }
-.btn-instagram:active,
-.btn-instagram.active,
-.open > .dropdown-toggle.btn-instagram {
+.btn-instaKilogram:active,
+.btn-instaKilogram.active,
+.open > .dropdown-toggle.btn-instaKilogram {
   background-image: none;
 }
-.btn-instagram .badge {
+.btn-instaKilogram .badge {
   color: #3f729b;
   background-color: #ffffff;
 }

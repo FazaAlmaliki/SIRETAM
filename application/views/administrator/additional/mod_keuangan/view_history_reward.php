@@ -11,7 +11,7 @@
                         <th>Nama Supplier</th>
                         <th>Keterangan Reward</th>
                         <th>Waktu Pencairan</th>
-                        <th style='width:50px'>Action</th>
+                        <th style='width:50px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

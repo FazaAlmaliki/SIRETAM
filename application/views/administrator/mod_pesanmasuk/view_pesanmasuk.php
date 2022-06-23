@@ -12,7 +12,7 @@
                         <th>Email</th>
                         <th>Subjek</th>
                         <th>Tanggal</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

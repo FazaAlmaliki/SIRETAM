@@ -24,7 +24,7 @@
                         <th style='width:20px'>No</th>
                         <th width='20%'>Penjualan</th>
                         <th>Bonus / Reward</th>
-                        <th style='width:90px'>Action</th>
+                        <th style='width:90px'>Aksi</th>
                       </tr>
                       <tr>
                         <th><input type='hidden' name='idr' value='".$this->uri->segment(3)."'></th>

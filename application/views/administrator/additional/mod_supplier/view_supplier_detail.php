@@ -7,7 +7,11 @@
     <div class='box-body'>
       <table class='table table-condensed table-bordered'>
         <tbody>
-          <tr bgcolor='#f5f5f5'><th rowspan='14' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/reseller.png' class='img-circle img-thumbnail'>"; ?></center></th></tr>
+          <?php 
+          if (trim($rows['foto'])==''){ $foto_user = 'blank.png'; }else{ $foto_user = $rows['foto']; } 
+          $ko = $this->db->query("SELECT * FROM rb_kota where kota_id='$rows[kota_id]'")->row_array();
+          ?>
+          <tr bgcolor='#f5f5f5'><th rowspan='14' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></center></th></tr>
           <tr><th width='130px' scope='row'>Nama Supplier</th> <td><?php echo $rows['nama_supplier']; ?></td></tr>
           <tr><th scope='row'>Alamat Lengkap</th> <td><?php echo $rows['alamat_lengkap']; ?></td></tr>
           <tr><th scope='row'>Alamat Email</th> <td><?php echo $rows['email']; ?></td></tr>

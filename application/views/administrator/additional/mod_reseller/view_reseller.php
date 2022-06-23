@@ -14,7 +14,7 @@
                         <th>No Telpon</th>
                         <th>Referral</th>
                         <th>Waktu Daftar</th>
-                        <th style='width:120px'>Action</th>
+                        <th style='width:120px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

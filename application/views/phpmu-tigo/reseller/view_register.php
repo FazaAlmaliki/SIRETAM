@@ -129,7 +129,7 @@
                             <label for="c_name">Referral<span class="required">*</label>
                             <input type="text" name='i' placeholder="Username Referral.." onkeyup="nospaces(this)" class="required" required/>
                         </p>
-                        <p><input type="submit" name="submit2" class="styled-button" value="Daftar Sebagai Penjual"/></p>
+                        <p><input type="submit" name="submit2" class="styled-button" value="Daftar Sebagai Supplier"/></p>
                     </form>
                 </div>
             </div>

@@ -47,7 +47,7 @@ class Endpoints {
      * Fungsi untuk mendapatkan data ongkos kirim
      * @param integer $origin ID kota asal
      * @param integer $destination ID kota tujuan
-     * @param integer $weight Berat kiriman dalam gram
+     * @param integer $weight Berat kiriman dalam Kilogram
      * @param string $courier Kode kurir
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
@@ -95,7 +95,7 @@ class Endpoints {
      * 
      * @param integer ID kota asal
      * @param ineteger ID negara tujuan
-     * @param integer Berat kiriman dalam gram
+     * @param integer Berat kiriman dalam Kilogram
      * @param string Kode kurir
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */

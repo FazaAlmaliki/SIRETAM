@@ -298,7 +298,7 @@ class CI_Typography {
 		{
 			$table = array(
 							// nested smart quotes, opening and closing
-							// note that rules for grammar (English) allow only for two levels deep
+							// note that rules for Kilogrammar (English) allow only for two levels deep
 							// and that single quotes are _supposed_ to always be on the outside
 							// but we'll accommodate both
 							// Note that in all cases, whitespace is the primary determining factor

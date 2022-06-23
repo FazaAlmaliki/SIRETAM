@@ -19,7 +19,6 @@
                     <tr><th scope='row'>No Telpon</th>                    <td><input type='number' class='form-control' name='f' value='$record[no_telp]'></td></tr>   
                     <tr><th scope='row'>Meta Deskripsi</th>               <td><input type='text' class='form-control' name='g' value='$record[meta_deskripsi]'></td></tr>           
                     <tr><th scope='row'>Meta Keyword</th>                 <td><input type='text' class='form-control' name='h' value='$record[meta_keyword]'></td></tr>
-                    <tr><th scope='row'>Google Maps</th>                  <td><textarea class='form-control' name='i' style='height:80px'>$record[maps]</textarea></td></tr>
                     <tr><th scope='row'>Favicon</th>                      <td><input type='file' class='form-control' name='j' value='$record[favicon]'><hr style='margin:5px'>
                                                                               Favicon Aktif Saat ini : <img style='width:32px; height:32px' src='".base_url()."asset/images/$record[favicon]'></td></tr>
                   </tbody>

@@ -14,7 +14,7 @@
                         <th>No Telpon</th>
                         <th>Jenis Kelamin</th>
                         <th>Waktu Daftar</th>
-                        <th style='width:120px'>Action</th>
+                        <th style='width:120px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

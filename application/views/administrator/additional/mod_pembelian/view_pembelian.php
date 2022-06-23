@@ -13,7 +13,7 @@
                         <th>Nama Supplier</th>
                         <th>Waktu Pembelian</th>
                         <th>Total</th>
-                        <th style='width:120px'>Action</th>
+                        <th style='width:120px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

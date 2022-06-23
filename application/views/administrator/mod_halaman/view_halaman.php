@@ -12,7 +12,7 @@
                         <th>Judul</th>
                         <th>Link</th>
                         <th>Tgl Posting</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

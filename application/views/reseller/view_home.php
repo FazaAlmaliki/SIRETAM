@@ -43,17 +43,6 @@ $set = $this->db->query("SELECT * FROM rb_setting where aktif='Y'")->row_array()
             </div><!-- /.col -->
             </a>
 
-            <a style='color:#000' href='#'>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="glyphicon glyphicon-star"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Produk Pribadi</span>
-                  <span class="info-box-number"><?php echo "Rp ".rupiah($penjualan['total']); ?></span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            </a>
 
             <section class="col-lg-5 connectedSortable">
             

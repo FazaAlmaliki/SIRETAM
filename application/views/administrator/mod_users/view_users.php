@@ -13,9 +13,8 @@
                         <th>Nama Lengkap</th>
                         <th>Email</th>
                         <th>Foto</th>
-                        <th>Blokir</th>
                         <th>Level</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -28,7 +27,6 @@
                               <td>$row[nama_lengkap]</td>
                               <td>$row[email]</td>
                               <td><img style='border:1px solid #cecece' width='40px' class='img-circle' src='".base_url()."asset/foto_user/$foto'></td>
-                              <td>$row[blokir]</td>
                               <td>$row[level]</td>
                               <td><center>
                                 <a class='btn btn-success btn-xs' title='Edit Data' href='".base_url().$this->uri->segment(1)."/edit_manajemenuser/$row[username]'><span class='glyphicon glyphicon-edit'></span></a>

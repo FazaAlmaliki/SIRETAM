@@ -10,7 +10,7 @@
                       <tr>
                         <th style='width:20px'>No</th>
                         <th>Nama Kategori Produk</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -13,7 +13,7 @@
                         <th>Pembuat</th>
                         <th>Directory</th>
                         <th>Aktif</th>
-                        <th style='width:90px'>Action</th>
+                        <th style='width:90px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -83,24 +83,24 @@ freedom to share and change it.  By contrast, the GNU General Public
 License is intended to guarantee your freedom to share and change free
 software-to make sure the software is free for all its users.  This
 General Public License applies to most of the Free Software
-Foundation's software and to any other program whose authors commit to
+Foundation's software and to any other proKilogram whose authors commit to
 using it.  (Some other Free Software Foundation software is covered by
 the GNU Lesser General Public License instead.)  You can apply it to
-your programs, too.
+your proKilograms, too.
 
   When we speak of free software, we are referring to freedom, not
 price.  Our General Public Licenses are designed to make sure that you
 have the freedom to distribute copies of free software (and charge for
 this service if you wish), that you receive source code or can get it
 if you want it, that you can change the software or use pieces of it
-in new free programs; and that you know you can do these things.
+in new free proKilograms; and that you know you can do these things.
 
   To protect your rights, we need to make restrictions that forbid
 anyone to deny you these rights or to ask you to surrender the rights.
 These restrictions translate to certain responsibilities for you if you
 distribute copies of the software, or if you modify it.
 
-  For example, if you distribute copies of such a program, whether
+  For example, if you distribute copies of such a proKilogram, whether
 gratis or for a fee, you must give the recipients all the rights that
 you have.  You must make sure that they, too, receive or can get the
 source code.  And you must show them these terms so they know their
@@ -117,10 +117,10 @@ want its recipients to know that what they have is not the original, so
 that any problems introduced by others will not reflect on the original
 authors' reputations.
 
-  Finally, any free program is threatened constantly by software
+  Finally, any free proKilogram is threatened constantly by software
 patents.  We wish to avoid the danger that redistributors of a free
-program will individually obtain patent licenses, in effect making the
-program proprietary.  To prevent this, we have made it clear that any
+proKilogram will individually obtain patent licenses, in effect making the
+proKilogram proprietary.  To prevent this, we have made it clear that any
 patent must be licensed for everyone's free use or not licensed at all.
 
   The precise terms and conditions for copying, distribution and
@@ -129,36 +129,36 @@ modification follow.
 GNU GENERAL PUBLIC LICENSE
 TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
-  0. This License applies to any program or other work which contains
+  0. This License applies to any proKilogram or other work which contains
 a notice placed by the copyright holder saying it may be distributed
-under the terms of this General Public License.  The "Program", below,
-refers to any such program or work, and a "work based on the Program"
-means either the Program or any derivative work under copyright law:
-that is to say, a work containing the Program or a portion of it,
+under the terms of this General Public License.  The "ProKilogram", below,
+refers to any such proKilogram or work, and a "work based on the ProKilogram"
+means either the ProKilogram or any derivative work under copyright law:
+that is to say, a work containing the ProKilogram or a portion of it,
 either verbatim or with modifications and/or translated into another
 language.  (Hereinafter, translation is included without limitation in
 the term "modification".)  Each licensee is addressed as "you".
 
 Activities other than copying, distribution and modification are not
 covered by this License; they are outside its scope.  The act of
-running the Program is not restricted, and the output from the Program
+running the ProKilogram is not restricted, and the output from the ProKilogram
 is covered only if its contents constitute a work based on the
-Program (independent of having been made by running the Program).
-Whether that is true depends on what the Program does.
+ProKilogram (independent of having been made by running the ProKilogram).
+Whether that is true depends on what the ProKilogram does.
 
-  1. You may copy and distribute verbatim copies of the Program's
+  1. You may copy and distribute verbatim copies of the ProKilogram's
 source code as you receive it, in any medium, provided that you
 conspicuously and appropriately publish on each copy an appropriate
 copyright notice and disclaimer of warranty; keep intact all the
 notices that refer to this License and to the absence of any warranty;
-and give any other recipients of the Program a copy of this License
-along with the Program.
+and give any other recipients of the ProKilogram a copy of this License
+along with the ProKilogram.
 
 You may charge a fee for the physical act of transferring a copy, and
 you may at your option offer warranty protection in exchange for a fee.
 
-  2. You may modify your copy or copies of the Program or any portion
-of it, thus forming a work based on the Program, and copy and
+  2. You may modify your copy or copies of the ProKilogram or any portion
+of it, thus forming a work based on the ProKilogram, and copy and
 distribute such modifications or work under the terms of Section 1
 above, provided that you also meet all of these conditions:
 
@@ -166,42 +166,42 @@ above, provided that you also meet all of these conditions:
     stating that you changed the files and the date of any change.
 
     b) You must cause any work that you distribute or publish, that in
-    whole or in part contains or is derived from the Program or any
+    whole or in part contains or is derived from the ProKilogram or any
     part thereof, to be licensed as a whole at no charge to all third
     parties under the terms of this License.
 
-    c) If the modified program normally reads commands interactively
+    c) If the modified proKilogram normally reads commands interactively
     when run, you must cause it, when started running for such
     interactive use in the most ordinary way, to print or display an
     announcement including an appropriate copyright notice and a
     notice that there is no warranty (or else, saying that you provide
-    a warranty) and that users may redistribute the program under
+    a warranty) and that users may redistribute the proKilogram under
     these conditions, and telling the user how to view a copy of this
-    License.  (Exception: if the Program itself is interactive but
+    License.  (Exception: if the ProKilogram itself is interactive but
     does not normally print such an announcement, your work based on
-    the Program is not required to print an announcement.)
+    the ProKilogram is not required to print an announcement.)
 
 These requirements apply to the modified work as a whole.  If
-identifiable sections of that work are not derived from the Program,
+identifiable sections of that work are not derived from the ProKilogram,
 and can be reasonably considered independent and separate works in
 themselves, then this License, and its terms, do not apply to those
 sections when you distribute them as separate works.  But when you
 distribute the same sections as part of a whole which is a work based
-on the Program, the distribution of the whole must be on the terms of
+on the ProKilogram, the distribution of the whole must be on the terms of
 this License, whose permissions for other licensees extend to the
 entire whole, and thus to each and every part regardless of who wrote it.
 
 Thus, it is not the intent of this section to claim rights or contest
 your rights to work written entirely by you; rather, the intent is to
 exercise the right to control the distribution of derivative or
-collective works based on the Program.
+collective works based on the ProKilogram.
 
-In addition, mere aggregation of another work not based on the Program
-with the Program (or with a work based on the Program) on a volume of
+In addition, mere aggregation of another work not based on the ProKilogram
+with the ProKilogram (or with a work based on the ProKilogram) on a volume of
 a storage or distribution medium does not bring the other work under
 the scope of this License.
 
-  3. You may copy and distribute the Program (or a work based on it,
+  3. You may copy and distribute the ProKilogram (or a work based on it,
 under Section 2) in object code or executable form under the terms of
 Sections 1 and 2 above provided that you also do one of the following:
 
@@ -219,7 +219,7 @@ Sections 1 and 2 above provided that you also do one of the following:
     c) Accompany it with the information you received as to the offer
     to distribute corresponding source code.  (This alternative is
     allowed only for noncommercial distribution and only if you
-    received the program in object code or executable form with such
+    received the proKilogram in object code or executable form with such
     an offer, in accord with Subsection b above.)
 
 The source code for a work means the preferred form of the work for
@@ -239,9 +239,9 @@ access to copy the source code from the same place counts as
 distribution of the source code, even though third parties are not
 compelled to copy the source along with the object code.
 
-  4. You may not copy, modify, sublicense, or distribute the Program
+  4. You may not copy, modify, sublicense, or distribute the ProKilogram
 except as expressly provided under this License.  Any attempt
-otherwise to copy, modify, sublicense or distribute the Program is
+otherwise to copy, modify, sublicense or distribute the ProKilogram is
 void, and will automatically terminate your rights under this License.
 However, parties who have received copies, or rights, from you under
 this License will not have their licenses terminated so long as such
@@ -249,16 +249,16 @@ parties remain in full compliance.
 
   5. You are not required to accept this License, since you have not
 signed it.  However, nothing else grants you permission to modify or
-distribute the Program or its derivative works.  These actions are
+distribute the ProKilogram or its derivative works.  These actions are
 prohibited by law if you do not accept this License.  Therefore, by
-modifying or distributing the Program (or any work based on the
-Program), you indicate your acceptance of this License to do so, and
+modifying or distributing the ProKilogram (or any work based on the
+ProKilogram), you indicate your acceptance of this License to do so, and
 all its terms and conditions for copying, distributing or modifying
-the Program or works based on it.
+the ProKilogram or works based on it.
 
-  6. Each time you redistribute the Program (or any work based on the
-Program), the recipient automatically receives a license from the
-original licensor to copy, distribute or modify the Program subject to
+  6. Each time you redistribute the ProKilogram (or any work based on the
+ProKilogram), the recipient automatically receives a license from the
+original licensor to copy, distribute or modify the ProKilogram subject to
 these terms and conditions.  You may not impose any further
 restrictions on the recipients' exercise of the rights granted herein.
 You are not responsible for enforcing compliance by third parties to
@@ -271,11 +271,11 @@ otherwise) that contradict the conditions of this License, they do not
 excuse you from the conditions of this License.  If you cannot
 distribute so as to satisfy simultaneously your obligations under this
 License and any other pertinent obligations, then as a consequence you
-may not distribute the Program at all.  For example, if a patent
-license would not permit royalty-free redistribution of the Program by
+may not distribute the ProKilogram at all.  For example, if a patent
+license would not permit royalty-free redistribution of the ProKilogram by
 all those who receive copies directly or indirectly through you, then
 the only way you could satisfy both it and this License would be to
-refrain entirely from distribution of the Program.
+refrain entirely from distribution of the ProKilogram.
 
 If any portion of this section is held invalid or unenforceable under
 any particular circumstance, the balance of the section is intended to
@@ -296,9 +296,9 @@ impose that choice.
 This section is intended to make thoroughly clear what is believed to
 be a consequence of the rest of this License.
 
-  8. If the distribution and/or use of the Program is restricted in
+  8. If the distribution and/or use of the ProKilogram is restricted in
 certain countries either by patents or by copyrighted interfaces, the
-original copyright holder who places the Program under this License
+original copyright holder who places the ProKilogram under this License
 may add an explicit geographical distribution limitation excluding
 those countries, so that distribution is permitted only in or among
 countries not thus excluded.  In such case, this License incorporates
@@ -309,16 +309,16 @@ of the General Public License from time to time.  Such new versions will
 be similar in spirit to the present version, but may differ in detail to
 address new problems or concerns.
 
-Each version is given a distinguishing version number.  If the Program
+Each version is given a distinguishing version number.  If the ProKilogram
 specifies a version number of this License which applies to it and "any
 later version", you have the option of following the terms and conditions
 either of that version or of any later version published by the Free
-Software Foundation.  If the Program does not specify a version number of
+Software Foundation.  If the ProKilogram does not specify a version number of
 this License, you may choose any version ever published by the Free Software
 Foundation.
 
-  10. If you wish to incorporate parts of the Program into other free
-programs whose distribution conditions are different, write to the author
+  10. If you wish to incorporate parts of the ProKilogram into other free
+proKilograms whose distribution conditions are different, write to the author
 to ask for permission.  For software which is copyrighted by the Free
 Software Foundation, write to the Free Software Foundation; we sometimes
 make exceptions for this.  Our decision will be guided by the two goals
@@ -327,24 +327,24 @@ of promoting the sharing and reuse of software generally.
 
 NO WARRANTY
 
-  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
+  11. BECAUSE THE PROKilogram IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE PROKilogram, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
 OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+PROVIDE THE PROKilogram "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
 OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
-TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
-PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+TO THE QUALITY AND PERFORMANCE OF THE PROKilogram IS WITH YOU.  SHOULD THE
+PROKilogram PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
 REPAIR OR CORRECTION.
 
   12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
 WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+REDISTRIBUTE THE PROKilogram AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
 INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
-OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
+OUT OF THE USE OR INABILITY TO USE THE PROKilogram (INCLUDING BUT NOT LIMITED
 TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
-YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
-PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+YOU OR THIRD PARTIES OR A FAILURE OF THE PROKilogram TO OPERATE WITH ANY OTHER
+PROKilogramS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.
 
 END OF TERMS AND CONDITIONS
@@ -385,7 +385,7 @@ not price.  Our General Public Licenses are designed to make sure that
 you have the freedom to distribute copies of free software (and charge
 for this service if you wish); that you receive source code or can get
 it if you want it; that you can change the software and use pieces of
-it in new free programs; and that you are informed that you can do
+it in new free proKilograms; and that you are informed that you can do
 these things.
 
   To protect your rights, we need to make restrictions that forbid
@@ -413,8 +413,8 @@ author's reputation will not be affected by problems that might be
 introduced by others.
 
   Finally, software patents pose a constant threat to the existence of
-any free program.  We wish to make sure that a company cannot
-effectively restrict the users of a free program by obtaining a
+any free proKilogram.  We wish to make sure that a company cannot
+effectively restrict the users of a free proKilogram by obtaining a
 restrictive license from a patent holder.  Therefore, we insist that
 any patent license obtained for a version of the library must be
 consistent with the full freedom of use specified in this license.
@@ -424,9 +424,9 @@ ordinary GNU General Public License.  This license, the GNU Lesser
 General Public License, applies to certain designated libraries, and
 is quite different from the ordinary General Public License.  We use
 this license for certain libraries in order to permit linking those
-libraries into non-free programs.
+libraries into non-free proKilograms.
 
-  When a program is linked with a library, whether statically or using
+  When a proKilogram is linked with a library, whether statically or using
 a shared library, the combination of the two is legally speaking a
 combined work, a derivative of the original library.  The ordinary
 General Public License therefore permits such linking only if the
@@ -437,30 +437,30 @@ the library.
   We call this license the "Lesser" General Public License because it
 does Less to protect the user's freedom than the ordinary General
 Public License.  It also provides other free software developers Less
-of an advantage over competing non-free programs.  These disadvantages
+of an advantage over competing non-free proKilograms.  These disadvantages
 are the reason we use the ordinary General Public License for many
 libraries.  However, the Lesser license provides advantages in certain
 special circumstances.
 
   For example, on rare occasions, there may be a special need to
 encourage the widest possible use of a certain library, so that it becomes
-a de-facto standard.  To achieve this, non-free programs must be
+a de-facto standard.  To achieve this, non-free proKilograms must be
 allowed to use the library.  A more frequent case is that a free
 library does the same job as widely used non-free libraries.  In this
 case, there is little to gain by limiting the free library to free
 software only, so we use the Lesser General Public License.
 
   In other cases, permission to use a particular library in non-free
-programs enables a greater number of people to use a large body of
+proKilograms enables a greater number of people to use a large body of
 free software.  For example, permission to use the GNU C Library in
-non-free programs enables many more people to use the whole GNU
+non-free proKilograms enables many more people to use the whole GNU
 operating system, as well as its variant, the GNU/Linux operating
 system.
 
   Although the Lesser General Public License is Less protective of the
-users' freedom, it does ensure that the user of a program that is
+users' freedom, it does ensure that the user of a proKilogram that is
 linked with the Library has the freedom and the wherewithal to run
-that program using a modified version of the Library.
+that proKilogram using a modified version of the Library.
 
   The precise terms and conditions for copying, distribution and
 modification follow.  Pay close attention to the difference between a
@@ -472,13 +472,13 @@ GNU LESSER GENERAL PUBLIC LICENSE
 TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
   0. This License Agreement applies to any software library or other
-program which contains a notice placed by the copyright holder or
+proKilogram which contains a notice placed by the copyright holder or
 other authorized party saying it may be distributed under the terms of
 this Lesser General Public License (also called "this License").
 Each licensee is addressed as "you".
 
   A "library" means a collection of software functions and/or data
-prepared so as to be conveniently linked with application programs
+prepared so as to be conveniently linked with application proKilograms
 (which use some of those functions and data) to form executables.
 
   The "Library", below, refers to any such software library or work
@@ -497,11 +497,11 @@ and installation of the library.
 
   Activities other than copying, distribution and modification are not
 covered by this License; they are outside its scope.  The act of
-running a program using the Library is not restricted, and output from
-such a program is covered only if its contents constitute a work based
+running a proKilogram using the Library is not restricted, and output from
+such a proKilogram is covered only if its contents constitute a work based
 on the Library (independent of the use of the Library in a tool for
 writing it).  Whether that is true depends on what the Library does
-and what the program that uses the Library does.
+and what the proKilogram that uses the Library does.
 
   1. You may copy and distribute verbatim copies of the Library's
 complete source code as you receive it, in any medium, provided that
@@ -529,7 +529,7 @@ above, provided that you also meet all of these conditions:
     charge to all third parties under the terms of this License.
 
     d) If a facility in the modified Library refers to a function or a
-    table of data to be supplied by an application program that uses
+    table of data to be supplied by an application proKilogram that uses
     the facility, other than as an argument passed when the facility
     is invoked, then you must make a good faith effort to ensure that,
     in the event an application does not supply such function or
@@ -578,7 +578,7 @@ that copy, so the ordinary GNU General Public License applies to all
 subsequent copies and derivative works made from that copy.
 
   This option is useful when you wish to copy part of the code of
-the Library into a program that is not a library.
+the Library into a proKilogram that is not a library.
 
   4. You may copy and distribute the Library (or a portion or
 derivative of it, under Section 2) in object code or executable form
@@ -593,7 +593,7 @@ source code from the same place satisfies the requirement to
 distribute the source code, even though third parties are not
 compelled to copy the source along with the object code.
 
-  5. A program that contains no derivative of any portion of the
+  5. A proKilogram that contains no derivative of any portion of the
 Library, but is designed to work with the Library by being compiled or
 linked with it, is called a "work that uses the Library".  Such a
 work, in isolation, is not a derivative work of the Library, and
@@ -672,7 +672,7 @@ of these things:
     materials or that you have already sent this user a copy.
 
   For an executable, the required form of the "work that uses the
-Library" must include any data and utility programs needed for
+Library" must include any data and utility proKilograms needed for
 reproducing the executable from it.  However, as a special exception,
 the materials to be distributed need not include anything that is
 normally distributed (in either source or binary form) with the major
@@ -780,7 +780,7 @@ license version number, you may choose any version ever published by
 the Free Software Foundation.
 
   14. If you wish to incorporate parts of the Library into other free
-programs whose distribution conditions are incompatible with these,
+proKilograms whose distribution conditions are incompatible with these,
 write to the author to ask for permission.  For software which is
 copyrighted by the Free Software Foundation, write to the Free
 Software Foundation; we sometimes make exceptions for this.  Our
@@ -1013,7 +1013,7 @@ Version 1.1
           Code that new knowledge has been obtained.
 
           (b) Contributor APIs.
-          If Contributor's Modifications include an application programming
+          If Contributor's Modifications include an application proKilogramming
           interface and Contributor has knowledge of patent licenses which
           are reasonably necessary to implement that API, Contributor must
           also include this information in the LEGAL file.
@@ -1351,7 +1351,7 @@ or substituting -- in part or in whole -- any of the components of the
 Original Version, by changing formats or by porting the Font Software to a
 new environment.
 
-"Author" refers to any designer, engineer, programmer, technical
+"Author" refers to any designer, engineer, proKilogrammer, technical
 writer or other person who contributed to the Font Software.
 
 PERMISSION & CONDITIONS

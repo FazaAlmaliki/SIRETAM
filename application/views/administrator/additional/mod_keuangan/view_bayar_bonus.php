@@ -18,16 +18,16 @@
                     $id_supplier = $this->uri->segment(3);
                     $pembelian = $this->db->query("SELECT sum((b.jumlah*b.harga_jual)-b.diskon) as total FROM rb_penjualan a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_penjual='admin' AND a.id_pembeli='".$id_supplier."' AND a.proses='1'")->row_array();
                     $penjualan_perusahaan = $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
-                                                                JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1'")->row_array();
+                                                                JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1'")->row_array();
                     $penjualan = $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
-                                                                JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_supplier."' AND c.proses='1'")->row_array();
-                    $modal_perusahaan = $this->db->query("SELECT sum(a.jumlah*b.harga_reseller) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'")->row_array();
-                    $modal_pribadi = $this->db->query("SELECT sum(a.jumlah*b.stok) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan='0'")->row_array();
+                                                                JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_supplier."' AND c.proses='1'")->row_array();
+                    $modal_perusahaan = $this->db->query("SELECT sum(a.jumlah*b.harga_suppliers) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'")->row_array();
+                    $modal_pribadi = $this->db->query("SELECT sum(a.jumlah*b.diskon) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan='0'")->row_array();
                     $set = $this->db->query("SELECT * FROM rb_setting where aktif='Y'")->row_array();
                     $res = $this->db->query("SELECT * FROM rb_supplier where id_supplier='$id_supplier'")->row_array();
 
                     echo "<table class='table table-striped table-condensed'>
-                      <tr><td width='190px'>Nama Toko / Reseller</td>                <td> : <b>$res[nama_supplier]</b></td></tr>
+                      <tr><td width='190px'>Nama Perusahaan</td>                <td> : <b>$res[nama_supplier]</b></td></tr>
                       <tr><td width='190px'>Belanja ke Perusahaan</td>                <td> : Rp ".rupiah($pembelian['total'])."</td></tr>
                       <tr><td>Penjualan Produk Perusahaan</td>                        <td> : Rp ".rupiah($penjualan_perusahaan['total'])." (".rupiah($penjualan_perusahaan['produk'])." Produk)</td></tr>
                       <tr><td>Modal Produk Perusahaan</td>                            <td> : Rp ".rupiah($modal_perusahaan['total'])."</td></tr>
@@ -41,7 +41,7 @@
                     <table class='table table-striped table-condensed table-bordered'>
                       <tr style='background:#f5f5f5'>
                           <th>No </th>
-                          <th>Nama Toko / Reseller</th>
+                          <th>Nama Perusahaan</th>
                           <th>Penjualan Produk Perusahaan</th>
                           <th>Bonus Anda $set[referral]%</th>
                       </tr>";
@@ -50,11 +50,11 @@
                     $total_bonus = 0;
                     $reseller = $this->db->query("SELECT * FROM rb_supplier where referral='".$res['username']."'");
                     if ($reseller->num_rows()<=0){
-                      echo "<tr><td colspan='4'><center style='color:red; padding:40px'><i>Anda Belum Memiliki Toko / Reseller Referral!,.. ^_^</i></center></td></tr>";
+                      echo "<tr><td colspan='4'><center style='color:red; padding:40px'><i>Anda Belum Memiliki Refferal!</i></center></td></tr>";
                     }else{
                       foreach ($reseller->result_array() as $row) {
                         $pp = $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
-                                                                  JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan!='0' AND id_penjual='".$row['id_supplier']."' AND c.proses='1'")->row_array();
+                                                                  JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan!='0' AND id_penjual='".$row['id_supplier']."' AND c.proses='1'")->row_array();
                         $total_jual = $total_jual+$pp['total'];
                         $total_bonus = $total_bonus+($set['referral']/100*$pp['total']);
                         echo "<tr><td width='20px'>$no</td>
@@ -117,7 +117,7 @@
                               for ($i=1; $i <=12 ; $i++) { 
                                 $bulan = $tahun."-".sprintf("%02d", $i);
                                 $ppb = $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
-                                                                JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1' AND substr(c.waktu_transaksi,1,7)='$bulan'")->row_array();
+                                                                JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1' AND substr(c.waktu_transaksi,1,7)='$bulan'")->row_array();
                                 echo "<tr bgcolor='#f5f5f5'>
                                         <td>$i</td>
                                         <td><b>".bulan($i)."</b></td>

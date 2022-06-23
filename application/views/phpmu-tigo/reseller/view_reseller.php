@@ -25,10 +25,10 @@
               <span>$kota</span><br>";
               if($this->session->level=='konsumen'){ $akses = 'members'; }else{ $akses = 'produk'; }
                 if ($this->session->produk == ''){
-                  echo "<a class='btn btn-info btn-xs' title='Detail Data' href='".base_url()."$akses/detail_reseller/$row[id_supplier]'><span class='glyphicon glyphicon-user'></span> Profile</a>
+                  echo "<a class='btn btn-info btn-xs' title='Detail Data' href='".base_url()."$akses/detail_reseller/$row[id_supplier]'><span class='glyphicon glyphicon-user'></span> Profil</a>
                         <a class='btn btn-success btn-xs' title='Lihat Produk' href='".base_url()."$akses/produk_reseller/$row[id_supplier]'><span class='glyphicon glyphicon-folder-open'></span> Produk</a>";
                 }else{
-                  echo "<a style='width:60px' class='btn btn-info btn-xs' title='Detail Data' href='".base_url()."$akses/detail_reseller/$row[id_supplier]'><span class='glyphicon glyphicon-user'></span> Profile</a>
+                  echo "<a style='width:60px' class='btn btn-info btn-xs' title='Detail Data' href='".base_url()."$akses/detail_reseller/$row[id_supplier]'><span class='glyphicon glyphicon-user'></span> Profil</a>
                         <a style='width:60px' class='btn btn-primary btn-xs' title='Detail Data' href='".base_url()."$akses/keranjang/$row[id_supplier]/".$this->session->produk."'><span class='glyphicon glyphicon-ok'></span> Produk</a>";
                 }
               

@@ -21,10 +21,10 @@
                 <a href="#"><i class="fa fa-th-large"></i> <span>Referensi</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <?php 
-                        echo "<li><a href='".base_url().$this->uri->segment(1)."/rekening'><i class='fa fa-circle-o'></i> No Rekening Anda</a></li>";
+                        echo "<li><a href='".base_url().$this->uri->segment(1)."/rekening'><i class='fa fa-circle-o'></i> No. Rekening Perusahaan</a></li>";
                         echo "<li><a href='".base_url().$this->uri->segment(1)."/keterangan'><i class='fa fa-circle-o'></i> Info/Keterangan</a></li>";
-                        echo "<li><a href='".base_url().$this->uri->segment(1)."/produk'><i class='fa fa-circle-o'></i> Data Produk Anda</a></li>";
-                        echo "<li><a href='".base_url().$this->uri->segment(1)."/alamat_cod'><i class='fa fa-circle-o'></i> Alamat COD</a></li>";
+                        echo "<li><a href='".base_url().$this->uri->segment(1)."/produk'><i class='fa fa-circle-o'></i> Data Produk</a></li>";
+                        echo "<li><a href='".base_url().$this->uri->segment(1)."/alamat_cod'><i class='fa fa-circle-o'></i> Alamat Penerimaan</a></li>";
                     ?>
                 </ul>
             </li>
@@ -49,7 +49,7 @@
                 </ul>
             </li>
 
-            <li><a href="<?php echo base_url(); ?>reseller/edit_reseller/<?php echo $this->session->id_supplier; ?>"><i class="fa fa-user"></i> <span>Edit Profile</span></a></li>
+            <li><a href="<?php echo base_url(); ?>reseller/edit_reseller/<?php echo $this->session->id_supplier; ?>"><i class="fa fa-user"></i> <span>Edit Profil</span></a></li>
             <li><a href="<?php echo base_url(); ?>reseller/logout"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
           </ul>
         </section>

@@ -40,15 +40,15 @@ if ($total['proses']=='0'){ $proses = '<i class="text-danger">Pending</i>'; }els
                     <td class='valign'><a href='".base_url()."produk/detail/$row[produk_seo]'>$row[nama_produk]</a></td>
                     <td class='valign'>".rupiah($row['harga_jual']-$row['diskon'])."</td>
                     <td class='valign'>$row[jumlah]</td>
-                    <td class='valign'>".($row['berat']*$row['jumlah'])." Gram</td>
+                    <td class='valign'>".($row['berat']*$row['jumlah'])." Kilogram</td>
                     <td class='valign'>Rp ".rupiah($sub_total)."</td>
                 </tr>";
             $no++;
           }
           
           echo "<tr class='success'>
-                  <td colspan='4'><b>Berat</b> <small><i class='pull-right'>(".terbilang($total['total_berat'])." Gram)</i></small></td>
-                  <td><b>$total[total_berat] Gram</b></td>
+                  <td colspan='4'><b>Berat</b> <small><i class='pull-right'>(".terbilang($total['total_berat'])." Kilogram)</i></small></td>
+                  <td><b>$total[total_berat] Kilogram</b></td>
                 </tr>
 
                 <tr class='success'>

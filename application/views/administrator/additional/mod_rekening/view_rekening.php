@@ -12,7 +12,7 @@
                         <th>Nama Bank</th>
                         <th>No Rekening</th>
                         <th>Atas Nama</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -14,9 +14,9 @@
                         <th>Harga Modal</th>
                         <th>Harga Jual</th>
                         <th>Satuan</th>
-                        <th>Berat (Gram)</th>
+                        <th>Berat (Kilogram)</th>
                         <th>Diskon (Rp)</th>
-                        <th style='width:80px'>Action</th>
+                        <th style='width:80px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@
                       $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$row['id_produk'],'id_supplier'=>$this->session->id_supplier))->row_array();
                       if ($disk['diskon']=='' OR $disk['diskon']=='0'){ $diskon = '0'; $line = ''; $harga = ''; }else{ $diskon = $disk['diskon']; $line = 'line-through'; $harga = "/ <span style='color:red'>".rupiah($row['harga_konsumen']-$disk['diskon'])."</span>";}
                       if ($row['id_produk_perusahaan']!='0'){ $perusahaan = "<small><i style='color:green'>(Perusahaan)</i></small>"; }else{ $perusahaan = ''; }
-                      if ($row['id_produk_perusahaan']=='0'){ $modal = $row['harga_reseller'];} else{ $modal = $row['harga_reseller']; }
+                      if ($row['id_produk_perusahaan']=='0'){ $modal = $row['harga_suppliers'];} else{ $modal = $row['harga_suppliers']; }
                     echo "<tr><td>$no</td>
                               <td>$row[nama_produk] $perusahaan</td>
                               <td>Rp ".rupiah($modal)."</td>

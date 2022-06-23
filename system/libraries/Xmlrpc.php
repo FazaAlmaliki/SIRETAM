@@ -842,7 +842,7 @@ class XML_RPC_Response
 		}
 		elseif ( ! is_object($val))
 		{
-			// programmer error, not an object
+			// proKilogrammer error, not an object
 			error_log("Invalid type '".gettype($val)."' (value: ".$val.') passed to XML_RPC_Response. Defaulting to empty value.');
 			$this->val = new XML_RPC_Values();
 		}

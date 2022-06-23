@@ -13,7 +13,7 @@
                         <th>Link</th>
                         <th>Hits</th>
                         <th>Tanggal</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -15,7 +15,7 @@
                         <th>Stok</th>
                         <th>Satuan</th>
                         <th>Berat</th>
-                        <th style='width:50px'>Action</th>
+                        <th style='width:50px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -30,17 +30,17 @@
                       }else{ 
                         $jual = $this->model_reseller->jual_reseller($row['id_supplier'],$row['id_produk'])->row_array();
                         $beli = $this->model_reseller->beli_reseller($row['id_supplier'],$row['id_produk'])->row_array();
-                        $produk = "<i style='color:green'><a title='$res[nama_supplier] ($res[nama_kota], $res[alamat_lengkap])' style='color:green' href='".base_url()."/administrator/detail_reseller/$row[id_supplier]'>(Toko / Reseller)</a></i>"; 
+                        $produk = "<i style='color:green'><a title='$res[nama_supplier] ($res[nama_kota], $res[alamat_lengkap])' style='color:green' href='".base_url()."/administrator/detail_reseller/$row[id_supplier]'>(Perusahaan)</a></i>"; 
                       }
                     echo "<tr><td>$no</td>
                               <td>$row[nama_produk] 
                                 <small>$produk</small>
                               </td>
-                              <td>".rupiah($row['harga_reseller'])."</td>
+                              <td>".rupiah($row['harga_suppliers'])."</td>
                               <td>".rupiah($row['harga_konsumen'])."</td>
                               <td>".($beli['beli']-$jual['jual'])."</td>
                               <td>$row[satuan]</td>
-                              <td>$row[berat] G</td>
+                              <td>$row[berat] Kg</td>
                               <td><center>
                                 <a class='btn btn-success btn-xs' title='Edit Data' href='".base_url()."administrator/edit_produk/$row[id_produk]'><span class='glyphicon glyphicon-edit'></span></a>
                                 <a class='btn btn-danger btn-xs' title='Delete Data' href='".base_url()."administrator/delete_produk/$row[id_produk]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a>

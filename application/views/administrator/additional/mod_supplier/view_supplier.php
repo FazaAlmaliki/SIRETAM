@@ -12,7 +12,7 @@
                         <th>Nama Supplier</th>
                         <th>No Telpon</th>
                         <th>Alamat Email</th>
-                        <th style='width:120px'>Action</th>
+                        <th style='width:120px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -12,7 +12,7 @@
                     <td width='70px'><img style='border:1px solid #cecece; width:60px' src='".base_url()."asset/foto_produk/$foto_produk'></td>
                     <td><a style='color:#ab0534' href='".base_url()."produk/detail/$row[produk_seo]'><b>$row[nama_produk]</b></a>
                         <br>Qty. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
-                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Gram</b></td>
+                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Kilogram</b></td>
                     <td>Rp ".rupiah($sub_total)."</td>
                 </tr>";
             $no++;
@@ -22,8 +22,8 @@
           if ($rows['proses']=='0'){ $proses = '<i class="text-danger">Pending</i>'; $status = 'Proses'; }elseif($rows['proses']=='1'){ $proses = '<i class="text-success">Proses</i>'; }else{ $proses = '<i class="text-info">Konfirmasi</i>'; }
           echo "
                 <tr class='success'>
-                  <td colspan='3'><b>Berat</b> <small><i class='pull-right'>(".terbilang($total['total_berat'])." Gram)</i></small></td>
-                  <td><b>$total[total_berat] Gram</b></td>
+                  <td colspan='3'><b>Berat</b> <small><i class='pull-right'>(".terbilang($total['total_berat'])." Kilogram)</i></small></td>
+                  <td><b>$total[total_berat] Kilogram</b></td>
                 </tr>
 
                 <tr>

@@ -1,7 +1,7 @@
-      <div class='col-md-12'>
+<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Detail Data Reseller</h3>
+                  <h3 class='box-title'>Detail Data Supplier</h3>
                 </div>
                 <div class='box-body'>
 
@@ -26,7 +26,8 @@
                               <tr bgcolor='#f5f5f5'><th rowspan='13' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></center></th></tr>
                               <tr><th width='130px' scope='row'>Username</th> <td><?php echo $rows['username']?></td></tr>
                               <tr><th scope='row'>Password</th> <td>xxxxxxxxxxxxxxx</td></tr>
-                              <tr><th scope='row'>Nama Supplier</th> <td><?php echo $rows['nama_supplier']?></td></tr>
+                              <tr><th scope='row'>Nama Reseller</th> <td><?php echo $rows['nama_reseller']?></td></tr>
+                              <tr><th scope='row'>Jenis Kelamin</th> <td><?php echo $rows['jenis_kelamin']?></td></tr>
                               <tr><th scope='row'>Kota</th> <td><?php echo $ko['nama_kota']?></td></tr>
                               <tr><th scope='row'>Alamat Lengkap</th> <td><?php echo $rows['alamat_lengkap']?></td></tr>
                               <tr><th scope='row'>No Hp</th> <td><?php echo $rows['no_telpon']?></td></tr>
@@ -65,7 +66,7 @@
                               if ($row['service']==''){ $service = "<i style='color:green'>Pembelian ke Pusat</i>"; }else{ $service = "<i style='color:blue'>$row[service]</i>"; }
                               echo "<tr><td>$no</td>
                                         <td><a href='".base_url()."administrator/detail_penjualan/$row[id_penjualan]'>$row[kode_transaksi]</a></td>
-                                        <td>$row[nama_supplier]</td>
+                                        <td>$row[nama_reseller]</td>
                                         <td>$row[waktu_transaksi]</td>
                                         <td>$proses</td>
                                         <td style='color:red;'>Rp ".rupiah($total['total'])."</td>
@@ -124,8 +125,8 @@
                                                                           JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1'")->row_array();
                               $penjualan = $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
                                                                           JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_supplier."' AND c.proses='1'")->row_array();
-                              $modal_perusahaan = $this->db->query("SELECT sum(a.jumlah*b.harga_reseller) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'")->row_array();
-                              $modal_pribadi = $this->db->query("SELECT sum(a.jumlah*b.stok) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan='0'")->row_array();
+                              $modal_perusahaan = $this->db->query("SELECT sum(a.jumlah*b.harga_suppliers) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'")->row_array();
+                              $modal_pribadi = $this->db->query("SELECT sum(a.jumlah*a.harga_beli) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan='0'")->row_array();
                               $set = $this->db->query("SELECT * FROM rb_setting where aktif='Y'")->row_array();
                               
 
@@ -143,7 +144,7 @@
                               <table class='table table-striped table-condensed table-bordered'>
                                 <tr style='background:#f5f5f5'>
                                     <th>No </th>
-                                    <th>Nama Toko / Reseller</th>
+                                    <th>Nama Perusahaan</th>
                                     <th>Penjualan Produk Perusahaan</th>
                                     <th>Bonus Anda $set[referral]%</th>
                                 </tr>";
@@ -152,7 +153,7 @@
                               $total_bonus = 0;
                               $reseller = $this->db->query("SELECT * FROM rb_supplier where referral='".$res['username']."'");
                               if ($reseller->num_rows()<=0){
-                                echo "<tr><td colspan='4'><center style='color:red; padding:40px'><i>Anda Belum Memiliki Toko / Reseller Referral!,.. ^_^</i></center></td></tr>";
+                                echo "<tr><td colspan='4'><center style='color:red; padding:40px'><i>Anda Belum Memiliki Referral!</i></center></td></tr>";
                               }else{
                                 foreach ($reseller->result_array() as $row) {
                                   $pp = $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
@@ -160,7 +161,7 @@
                                   $total_jual = $total_jual+$pp['total'];
                                   $total_bonus = $total_bonus+($set['referral']/100*$pp['total']);
                                   echo "<tr><td width='20px'>$no</td>
-                                            <td><b>$row[nama_supplier]</b></td>  
+                                            <td><b>$row[nama_reseller]</b></td>  
                                             <td>: Rp ".rupiah($pp['total'])." (".rupiah($pp['produk'])." Produk)</td>
                                             <td>: Rp ".rupiah($set['referral']/100*$pp['total'])."</td>
                                         </tr>";

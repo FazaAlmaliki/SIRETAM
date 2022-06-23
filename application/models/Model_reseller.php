@@ -41,7 +41,7 @@ class Model_reseller extends CI_model{
     }
 
     function jual_reseller($penjual, $produk){
-        return $this->db->query("SELECT sum(jumlah) as jual FROM `rb_penjualan` a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_pembeli='konsumen' AND a.status_penjual='reseller' AND a.id_penjual='$penjual' AND b.id_produk='$produk' AND a.proses='1'");
+        return $this->db->query("SELECT sum(jumlah) as jual FROM `rb_penjualan` a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_pembeli='konsumen' AND a.status_penjual='supplier' AND a.id_penjual='$penjual' AND b.id_produk='$produk' AND a.proses='1'");
     }
 
     function beli_reseller($pembeli, $produk){
@@ -164,16 +164,16 @@ class Model_reseller extends CI_model{
     }
 
     function penjualan_perusahaan($id_supplier){
-        return $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1'");
+        return $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1'");
     }
 
     function penjualan($id_supplier){
         return $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
-                                    JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_supplier."' AND c.proses='1'");
+                                    JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_supplier."' AND c.proses='1'");
     }
 
     function modal_perusahaan($id_supplier){
-        return $this->db->query("SELECT sum(a.jumlah*b.harga_reseller) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'");
+        return $this->db->query("SELECT sum(a.jumlah*b.harga_suppliers) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'");
     }
 
     function modal_pribadi($id_supplier){

@@ -12,7 +12,7 @@
                         <th>Nama Pengguna</th>
                         <th>Username</th>
                         <th>Chat Icon</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

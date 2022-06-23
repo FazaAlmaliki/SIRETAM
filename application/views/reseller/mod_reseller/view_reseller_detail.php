@@ -2,7 +2,7 @@
               <div class='box box-info'>
                 <div class='box-header with-border'>
                   <h3 class='box-title'>Detail Data Profil</h3>
-                  <a class='pull-right btn btn-primary btn-sm' href='<?php echo base_url().$this->uri->segment(1); ?>/edit_reseller/<?php echo $this->session->id_supplier; ?>'>Edit Profile</a>
+                  <a class='pull-right btn btn-primary btn-sm' href='<?php echo base_url().$this->uri->segment(1); ?>/edit_reseller/<?php echo $this->session->id_supplier; ?>'>Edit Profil</a>
                 </div>
                 <div class='box-body'>
                   <table class='table table-condensed table-bordered'>

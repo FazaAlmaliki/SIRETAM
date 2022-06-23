@@ -1,7 +1,7 @@
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Alamat COD (Cash on delivery)</h3>
+                  <h3 class="box-title">Alamat Penerimaan</h3>
                   <a class='pull-right btn btn-primary btn-sm' href='<?php echo base_url().$this->uri->segment(1); ?>/tambah_cod'>Tambahkan Data</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -12,7 +12,7 @@
                         <th style='width:20px'>No</th>
                         <th>Nama Alamat</th>
                         <th>Tarif</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -42,7 +42,7 @@ class Konfirmasi extends CI_Controller {
 				}else{
 					$kode_transaksi = filter($this->input->post('a'));
 				}
-				$row = $this->db->query("SELECT a.id_penjualan, b.id_supplier FROM `rb_penjualan` a jOIN rb_supplier b ON a.id_penjual=b.id_supplier where status_penjual='reseller' AND a.kode_transaksi='$kode_transaksi'")->row_array();
+				$row = $this->db->query("SELECT a.id_penjualan, b.id_supplier FROM `rb_penjualan` a jOIN rb_supplier b ON a.id_penjual=b.id_supplier where status_penjual='supplier' AND a.kode_transaksi='$kode_transaksi'")->row_array();
 				$data['record'] = $this->model_app->view('rb_rekening');
 				$data['total'] = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total, a.id_penjualan FROM `rb_penjualan_detail` a where a.id_penjualan='".$row['id_penjualan']."'")->row_array();
 				$data['rows'] = $this->model_app->view_where('rb_penjualan',array('id_penjualan'=>$row['id_penjualan']))->row_array();

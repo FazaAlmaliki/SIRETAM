@@ -175,7 +175,7 @@ Other Changes:
 		- CKEditor [Language](http://ckeditor.com/addon/language) plugin support.
 		- CKEditor [Placeholder](http://ckeditor.com/addon/placeholder) plugin support.
 		- [Drag&Drop](http://sdk.ckeditor.com/samples/fileupload.html) support.
-		- **Experimental** [GRAYT](http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-grayt_autoStartup) (Grammar As You Type) functionality.
+		- **Experimental** [GRAYT](http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-grayt_autoStartup) (Kilogrammar As You Type) functionality.
 	- Fixed issues:
 		* [#98](https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues/98): SCAYT affects dialog double-click. Fixed in SCAYT core.
 		* [#102](https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues/102): SCAYT core performance enhancements.

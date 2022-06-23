@@ -13,7 +13,7 @@
                         <th>Info</th>
                         <th>Aktif</th>
                         <th>Tanggal Posting</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

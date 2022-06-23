@@ -37,7 +37,7 @@
                         <th width='80px'>Jumlah</th>
                         <th width='80px'>Satuan</th>
                         <th>Sub Total</th>
-                        <th width='70px'>Action</th>
+                        <th width='70px'>Aksi</th>
                       </tr>
                     </thead>
                     <?php 

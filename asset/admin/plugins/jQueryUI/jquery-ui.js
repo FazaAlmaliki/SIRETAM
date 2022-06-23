@@ -12280,7 +12280,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 		this.button.one( "focusin", function() {
 
 			// Delay rendering the menu items until the button receives focus.
-			// The menu may have already been rendered via a programmatic open.
+			// The menu may have already been rendered via a proKilogrammatic open.
 			if ( !that.menuItems ) {
 				that._refreshMenu();
 			}

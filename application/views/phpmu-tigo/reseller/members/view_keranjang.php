@@ -11,7 +11,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
 ?>
 
       <?php 
-        echo "<a class='btn btn-success btn-sm' href='".base_url()."members/produk_reseller/$rows[id_supplier]'>Lanjut Belanja</a>
+        echo "<a class='btn btn-success btn-sm' href='".base_url()."members/produk_reseller/$rows[id_supplier]'>Lanjut Pemesanan</a>
               <a class='btn btn-danger btn-sm' href='".base_url()."members/batalkan_transaksi' onclick=\"return confirm('Apa anda yakin untuk Batalkan Transaksi ini?')\">Batalkan Transaksi</a>"; 
       ?>
       <div style="clear:both"><br></div>
@@ -27,8 +27,8 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
           echo "<tr><td>$no</td>
                     <td width='70px'><img style='border:1px solid #cecece; width:60px' src='".base_url()."asset/foto_produk/$foto_produk'></td>
                     <td><a style='color:#ab0534' href='".base_url()."produk/detail/$row[produk_seo]'><b>$row[nama_produk]</b></a>
-                        <br>Qty. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
-                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Gram</b></td>
+                        <br>Jumlah. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
+                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Kilogram</b></td>
                     <td>Rp ".rupiah($sub_total)."</td>
                     <td width='30px'><a class='btn btn-danger btn-xs' title='Delete' href='".base_url()."members/keranjang_delete/$row[id_penjualan_detail]'><span class='glyphicon glyphicon-remove'></span></a></td>
                 </tr>";
@@ -37,10 +37,10 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
           $total = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total, sum(b.berat*a.jumlah) as total_berat FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk where a.id_penjualan='".$this->session->idp."'")->row_array();
           echo "<tr class='success'>
                   <td colspan='3'><b>Total Berat</b></td>
-                  <td><b>$total[total_berat] Gram</b></td>
+                  <td><b>$total[total_berat] Kilogram</b></td>
                   <td></td>
                 </tr>";
-                echo ($total['total_berat'] > 0 ? '' : '<tr class="danger"><td colspan="5"><i><b>PENTING</b> : Berat 0 Gram, maka akan terhitung minimal ongkir dari jasa Expedisi.</i></td></tr>');
+                echo ($total['total_berat'] > 0 ? '' : '<tr class="danger"><td colspan="5"><i><b>PENTING</b> : Berat 0 Kilogram, maka akan terhitung minimal ongkir dari jasa Expedisi.</i></td></tr>');
 
         echo "</tbody>
       </table>
@@ -72,7 +72,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
             <?php
         }
         ?>
-        <label class="radio-inline"><input type="radio" name="kurir" class="kurir" value="cod"/> COD (Cash on delivery)</label>
+        <label class="radio-inline"><input type="radio" name="kurir" class="kurir" value="cod"/> Penerimaan Langsung</label>
     </div>
 </div>
 <div id="kuririnfo" style="display: none;">

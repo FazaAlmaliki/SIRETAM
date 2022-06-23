@@ -280,7 +280,7 @@ class Produk extends CI_Controller {
 				        		  'id_pembeli'=>$id,
 				        		  'id_penjual'=>$this->session->reseller,
 				        		  'status_pembeli'=>'konsumen',
-				        		  'status_penjual'=>'reseller',
+				        		  'status_penjual'=>'supplier',
 				        		  'waktu_transaksi'=>date('Y-m-d H:i:s'),
 				        		  'proses'=>'0');
 					$this->model_app->insert('rb_penjualan',$data);
@@ -356,7 +356,7 @@ class Produk extends CI_Controller {
 					                    <td>$row[nama_produk]</td>
 					                    <td>".rupiah($row['harga_jual'])."</td>
 					                    <td>$row[jumlah]</td>
-					                    <td>".($row['berat']*$row['jumlah'])." Gram</td>
+					                    <td>".($row['berat']*$row['jumlah'])." Kilogram</td>
 					                    <td>Rp ".rupiah($sub_total)."</td>
 					                </tr>";
 					            $no++;
@@ -369,7 +369,7 @@ class Produk extends CI_Controller {
 
 					                <tr bgcolor='lightblue'>
 					                  <td colspan='5'><b>Total Berat</b></td>
-					                  <td><b>$total[total_berat] Gram</b></td>
+					                  <td><b>$total[total_berat] Kilogram</b></td>
 					                </tr>
 
 					        </tbody>

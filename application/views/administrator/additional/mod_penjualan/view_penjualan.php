@@ -15,7 +15,7 @@
                         <th>Status</th>
                         <th>Total</th>
                         <th>Proses / Keterangan</th>
-                        <th style='width:130px'>Action</th>
+                        <th style='width:130px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

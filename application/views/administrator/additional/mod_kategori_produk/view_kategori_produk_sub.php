@@ -11,7 +11,7 @@
                         <th style='width:30px'>No</th>
                         <th>Nama Kategori</th>
                         <th>Nama Sub Kategori Produk</th>
-                        <th style='width:70px'>Action</th>
+                        <th style='width:70px'>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

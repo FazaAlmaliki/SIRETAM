@@ -76,7 +76,7 @@ echo "<div class='col-md-12'>
                 <tr><td colspan='2' style='color:red;'><del style='color:#8a8a8a'>$harga_asli</del><br>
                 <h1 style='display:inline-block'>$harga_konsumen</h1> / $record[satuan] 
                 </td></tr>
-                <tr><td style='font-weight:bold; width:90px'>Berat</td> <td>$record[berat] Gram</td></tr>
+                <tr><td style='font-weight:bold; width:90px'>Berat</td> <td>$record[berat] Kilogram</td></tr>
                 <tr><td style='font-weight:bold'>Kategori</td> <td><a href='".base_url()."produk/kategori/$kat[kategori_seo]'>$kat[nama_kategori]</a></td></tr>";
                 if (($beli['beli']-$jual['jual'])>=1){
                     echo "<tr><td style='font-weight:bold'>Tersedia</td> <td class='text-success'>".($beli['beli']-$jual['jual'])." stok barang</td></tr>";
@@ -95,7 +95,6 @@ echo "<div class='col-md-12'>
             <div class='panel-body'>
                 <ul class='myTabs nav nav-tabs' role='tablist'>
                   <li role='presentation' class='active'><a href='#deskripsi' id='deskripsi-tab' role='tab' data-toggle='tab' aria-controls='deskripsi' aria-expanded='true'>DESKRIPSI </a></li>
-                  <li role='presentation' class=''><a href='#diskusi' role='tab' id='diskusi-tab' data-toggle='tab' aria-controls='diskusi' aria-expanded='false'>DISKUSI BARANG</a></li>
                 </ul><br>
                 <div id='myTabContent' class='tab-content'>
                     <div role='tabpanel' class='tab-pane fade active in' id='deskripsi' aria-labelledby='deskripsi-tab'>

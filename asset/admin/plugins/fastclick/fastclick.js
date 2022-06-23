@@ -600,7 +600,7 @@
 		}
 
 		// Prevent the actual click from going though - unless the target node is marked as requiring
-		// real clicks or if it is in the whitelist in which case only non-programmatic clicks are permitted.
+		// real clicks or if it is in the whitelist in which case only non-proKilogrammatic clicks are permitted.
 		if (!this.needsClick(targetElement)) {
 			event.preventDefault();
 			this.sendClick(targetElement, event);
@@ -638,7 +638,7 @@
 			return true;
 		}
 
-		// Programmatically generated events targeting a specific element should be permitted
+		// ProKilogrammatically generated events targeting a specific element should be permitted
 		if (!event.cancelable) {
 			return true;
 		}

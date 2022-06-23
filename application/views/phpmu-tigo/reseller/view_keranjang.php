@@ -4,8 +4,8 @@
   echo $this->session->flashdata('message'); 
   $this->session->unset_userdata('message');
   if ($this->session->idp == ''){
-    echo "<center style='padding:15%'><i class='text-danger'>Maaf, Keranjang belanja anda saat ini masih kosong,...</i><br>
-            <a class='btn btn-warning btn-sm' href='".base_url()."produk'>Klik Disini Untuk mulai Belanja!</a></center>";
+    echo "<center style='padding:15%'><i class='text-danger'>Maaf, Anda Belum Melakukan Pemesanan ataupun Penyewaan</i><br>
+            <a class='btn btn-warning btn-sm' href='".base_url()."produk'>Klik Disini Untuk Memulai Pemesanan ataupun Penyewaan!</a></center>";
   }else{
 ?>
 
@@ -20,8 +20,8 @@
           echo "<tr><td>$no</td>
                     <td width='70px'><img style='border:1px solid #cecece; width:60px' src='".base_url()."asset/foto_produk/$foto_produk'></td>
                     <td><a style='color:#ab0534' href='".base_url()."produk/detail/$row[produk_seo]'><b>$row[nama_produk]</b></a>
-                        <br>Qty. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
-                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Gram</b></td>
+                        <br>Jumlah. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
+                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Kilogram</b></td>
                     <td>Rp ".rupiah($sub_total)."</td>
                     <td width='30px'><a class='btn btn-danger btn-xs' title='Delete' href='".base_url()."produk/keranjang_delete/$row[id_penjualan_detail]'><span class='glyphicon glyphicon-remove'></span></a></td>
                 </tr>";
@@ -36,16 +36,15 @@
 
                 <tr>
                   <td colspan='3'><b>Total Berat</b></td>
-                  <td><b>$total[total_berat] Gram</b></td>
+                  <td><b>$total[total_berat] Kilogram</b></td>
                   <td></td>
                 </tr>
 
         </tbody>
       </table>
 
-      <a class='btn btn-success btn-sm' href='".base_url()."produk/produk_reseller/$rows[id_supplier]'>Lanjut Belanja</a>
-      <a class='btn btn-primary btn-sm' href='".base_url()."produk/checkouts'>Selesai Belanja</a>";
-
+      <a class='btn btn-success btn-sm' href='".base_url()."produk/produk_reseller/$rows[id_supplier]'>Lanjut Pemesanan</a>
+      <a class='btn btn-primary btn-sm' href='".base_url()."produk/checkouts'>Selesai Pemesanan</a>";
       $ket = $this->db->query("SELECT * FROM rb_keterangan where id_supplier='".$rows['id_supplier']."'")->row_array();
       echo "<hr><br>$ket[keterangan]";
 }

@@ -43,7 +43,7 @@
                         <th>Jumlah Pesan</th>
                         <th>Satuan</th>
                         <th>Sub Total</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <?php 

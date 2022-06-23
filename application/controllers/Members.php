@@ -135,7 +135,7 @@ class Members extends CI_Controller {
 				        		  'id_pembeli'=>$this->session->id_konsumen,
 				        		  'id_penjual'=>$id_supplier,
 				        		  'status_pembeli'=>'konsumen',
-				        		  'status_penjual'=>'reseller',
+				        		  'status_penjual'=>'supplier',
 				        		  'waktu_transaksi'=>date('Y-m-d H:i:s'),
 				        		  'proses'=>'0');
 					$this->model_app->insert('rb_penjualan',$data);

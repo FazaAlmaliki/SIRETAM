@@ -1,4 +1,4 @@
-<p class='sidebar-title'><span class='glyphicon glyphicon-triangle-right'></span>Detail Data Reseller</p>
+<p class='sidebar-title'><span class='glyphicon glyphicon-triangle-right'></span>Detail Data Supplier</p>
     <div class='panel-body'>
       <ul id='myTabs' class='nav nav-tabs' role='tablist'>
         <li role='presentation' class='active'><a href='#profile' id='profile-tab' role='tab' data-toggle='tab' aria-controls='profile' aria-expanded='true'>Data Reseller </a></li>
