@@ -93,7 +93,7 @@ class Produk extends CI_Controller {
 
 	function reseller(){
 		$jumlah= $this->model_app->view('rb_supplier')->num_rows();
-		$config['base_url'] = base_url().'produk/suppliers';
+		$config['base_url'] = base_url().'produk/reseller';
 		$config['total_rows'] = $jumlah;
 		$config['per_page'] = 18; 	
 		if ($this->uri->segment('3')==''){
@@ -439,7 +439,7 @@ class Produk extends CI_Controller {
 
 	function order(){
 		$this->session->set_userdata(array('produk'=>$this->uri->segment(3)));
-		redirect('produk/suppliers');
+		redirect('produk/reseller');
 	}
 
 	public function detail(){

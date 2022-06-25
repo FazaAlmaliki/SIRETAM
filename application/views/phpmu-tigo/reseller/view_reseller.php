@@ -1,8 +1,8 @@
 <p class='sidebar-title block-title'>Daftar Semua Supplier</p>
   <?php 
     $attributes = array('class'=>'pull-right','role'=>'form','style'=>'width:100%;');
-    echo form_open_multipart('produk/suppliers',$attributes); 
-    echo "<input type='search' name='cari_reseller' class='form-control' style='display:inline-block; width:96%;' placeholder='Cari Supplier Disini...'>
+    echo form_open_multipart('produk/reseller',$attributes); 
+    echo "<input type='search' name='cari_reseller' class='form-control' style='display:inline-block; width:96%;' placeholder='Cari Supplier Yang Anda Inginkan Disini...'>
           <button class='btn btn-primary' type='submit' name='submit' style='margin-top:-4px'><span class='glyphicon glyphicon-search'></span></button>";
     echo form_close();
     if (isset($_POST['submit'])){

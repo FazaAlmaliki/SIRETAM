@@ -1,5 +1,5 @@
 <div class="widget" style='overflow:hidden'>
-<center>Yuk Temukan Supplier Terdekat Agar Transaksi lebih mudah. <a class='btn btn-danger btn-block' href='<?php echo base_url(); ?>produk/suppliers'><span class='glyphicon glyphicon-search'></span> Klik / Cari Disini</a></center>
+<center>Yuk Temukan Supplier Terdekat Agar Transaksi lebih mudah. <a class='btn btn-danger btn-block' href='<?php echo base_url(); ?>produk/reseller'><span class='glyphicon glyphicon-search'></span> Klik / Cari Disini</a></center>
 </div>
 
 <?php 

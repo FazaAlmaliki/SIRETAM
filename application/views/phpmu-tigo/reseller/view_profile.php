@@ -34,7 +34,7 @@ echo "<table id='example11' class='table table-hover table-condensed'>
   <tbody>";
 
       $no = 1;
-      $record = $this->model_reseller->orders_report($this->session->id_konsumen,'reseller');
+      $record = $this->model_reseller->orders_report($this->session->id_konsumen,'supplier');
       foreach ($record->result_array() as $row){
       if ($row['proses']=='0'){ $proses = '<i class="text-danger">Pending</i>'; }elseif($row['proses']=='1'){ $proses = '<i class="text-success">Proses</i>'; }else{ $proses = '<i class="text-info">Konfirmasi</i>'; }
       $total = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total FROM `rb_penjualan_detail` a where a.id_penjualan='$row[id_penjualan]'")->row_array();

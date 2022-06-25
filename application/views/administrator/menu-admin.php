@@ -80,7 +80,7 @@
               </li>
 
               <li class="treeview">
-                <a href="#"><i class="fa fa-circle-o"></i> Report <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <a href="#"><i class="fa fa-circle-o"></i> Laporan <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                 <ul class="treeview-menu">
                   <?php 
                     $cek=$this->model_app->umenu_akses("keuangan",$this->session->id_session);

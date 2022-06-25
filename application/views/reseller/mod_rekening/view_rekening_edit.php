@@ -10,7 +10,7 @@
           echo "<div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
-                    <input type='hidden' name='id' value='$rows[id_rekening_reseller]'>
+                    <input type='hidden' name='id' value='$rows[id_rekening_supplier]'>
                     <tr><th width='120px' scope='row'>Nama Bank</th>    <td><input type='text' class='form-control' name='a' value='$rows[nama_bank]' required></td></tr>
                     <tr><th scope='row'>No Rekening</th>                 <td><input type='number' class='form-control' name='b' value='$rows[no_rekening]'></td></tr>
                     <tr><th scope='row'>Atas Nama</th>                   <td><input type='text' class='form-control' name='c' value='$rows[pemilik_rekening]'></td></tr>

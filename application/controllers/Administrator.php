@@ -1068,6 +1068,15 @@ class Administrator extends CI_Controller {
         }
     }
     
+    //function detail_konsumen(){
+    //    cek_session_akses('konsumen',$this->session->id_session);
+    //    $id = $this->uri->segment(3);
+    //    $record = $this->model_reseller->orders_report($id,'reseller');
+    //    $edit = $this->model_reseller->profile_konsumen($id)->row_array();
+    //    $data = array('rows' => $edit,'record'=>$record);
+    //    $this->template->load('administrator/template','administrator/additional/mod_konsumen/view_konsumen_detail',$data);
+    //}
+
     function detail_konsumen(){
         cek_session_akses('konsumen',$this->session->id_session);
         $id = $this->uri->segment(3);
@@ -1895,7 +1904,6 @@ class Administrator extends CI_Controller {
                                   'nama_produk'=>$p['nama_produk'],
                                   'produk_seo'=>$p['produk_seo'],
                                   'satuan'=>$p['satuan'],
-                                  'stok'=>$p['stok'],
                                   'harga_suppliers'=>$p['harga_suppliers'],
                                   'harga_konsumen'=>$p['harga_konsumen'],
                                   'berat'=>$p['berat'],

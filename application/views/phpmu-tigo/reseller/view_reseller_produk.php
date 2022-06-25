@@ -45,12 +45,12 @@
                     <span style='color:red;'>$harga</span><br>
                     <i>$stok</i><br>";
                     if ($beli['beli']-$jual['jual']<=0){
-                      echo "<a class='btn btn-default btn-block btn-sm' href='#'>Beli Sekarang</a>";
+                      echo "<a class='btn btn-default btn-block btn-sm' href='#'>Beli / Sewa Sekarang</a>";
                     }else{
                       if($this->session->level=='konsumen'){
-                        echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."produk/detail/$row[produk_seo]'>Beli Sekarang</a>";
+                        echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."produk/detail/$row[produk_seo]'>Beli / Sewa Sekarang</a>";
                       }else{
-                        echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."produk/detail/$row[produk_seo]'>Beli Sekarang</a>";
+                        echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."produk/detail/$row[produk_seo]'>Beli / Sewa Sekarang</a>";
                       }
                     }
                     echo "</center>

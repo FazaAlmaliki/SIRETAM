@@ -42,9 +42,9 @@
 
                     <i>$stok</i><br>";
                     if ($beli['beli']-$jual['jual']<=0){
-                      echo "<a class='btn btn-default btn-block btn-sm' href='#'>Beli Sekarang</a>";
+                      echo "<a class='btn btn-default btn-block btn-sm' href='#'>Beli / Sewa Sekarang</a>";
                     }else{
-                      echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."members/keranjang/$rows[id_supplier]/$row[id_produk]'>Beli Sekarang</a>";
+                      echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."members/keranjang/$rows[id_supplier]/$row[id_produk]'>Beli / Sewa Sekarang</a>";
                     }
 
                   echo "</center>

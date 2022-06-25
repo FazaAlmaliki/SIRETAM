@@ -79,12 +79,19 @@ class Members extends CI_Controller {
 
 	}
 
+	// function orders_report(){
+	// 	cek_session_members();
+	// 	$data['title'] = 'Laporan Pesanan Anda';
+	// 	$data['record'] = $this->model_reseller->orders_report($this->session->id_supplier,'reseller');
+	// 	//var_dump($this->session->id_supplier);
+	// 	//die;
+	// 	$this->template->load(template().'/template',template().'/reseller/members/view_orders_report',$data);
+	// }
+
 	function orders_report(){
 		cek_session_members();
 		$data['title'] = 'Laporan Pesanan Anda';
-		$data['record'] = $this->model_reseller->orders_report($this->session->id_reseller,'reseller');
-		// var_dump($data['record']);
-		// die;
+		$data['record'] = $this->model_reseller->orders_report($this->session->id_konsumen,'reseller');
 		$this->template->load(template().'/template',template().'/reseller/members/view_orders_report',$data);
 	}
 
@@ -122,7 +129,7 @@ class Members extends CI_Controller {
         $stok = $b['beli']-$j['jual'];
 
 		if ($id_produk!=''){
-			if ($stok == '0'){
+			if ($stok <= '0'){
 				$produk = $this->model_app->edit('rb_produk',array('id_produk'=>$id_produk))->row_array();
 				$produk_cek = filter($produk['nama_produk']);
 				echo "<script>window.alert('Maaf, Stok untuk Produk $produk_cek pada Supplier ini telah habis!');

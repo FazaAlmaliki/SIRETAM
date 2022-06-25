@@ -3,7 +3,7 @@
         $ci = & get_instance();
         $session = $ci->session->userdata('level');
         if ($session != 'konsumen'){
-          echo "<script>window.alert('Maaf, Halaman ini hanya khusus untuk members!');
+          echo "<script>window.alert('Maaf, Halaman ini hanya khusus untuk pengguna jika sudah melakukan login!');
                                   window.location=('".base_url(produk)."')</script>";
         }
     }
