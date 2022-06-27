@@ -3,7 +3,7 @@
                 if ($this->uri->segment(3)=='success'){
                   echo "<div class='alert alert-success'><b>SUCCESS</b> - Terima kasih telah Melakukan Konfirmasi Pembayaran!</div>";
                 }elseif($this->uri->segment(3)=='orders'){
-                  echo "<div class='alert alert-success'><b>SUCCESS</b> - Orderan anda sukses terkirim, silahkan melakukan pembayaran ke rekening supplier pesanan anda dan selanjutnya lakukan konfirmasi pembayaran!</div>";
+                  echo "<div class='alert alert-success'><b>SUCCESS</b> - Orderan anda sukses terkirim, silahkan melakukan pembayaran ke rekening reseller pesanan anda dan selanjutnya lakukan konfirmasi pembayaran!</div>";
                 }
               ?>
               <table id='example2' style='overflow-x:scroll; width:96%' class="table table-striped table-condensed">
@@ -11,7 +11,7 @@
                   <tr>
                     <th width="20px">No</th>
                     <th>Kode Transaksi</th>
-                    <th>Nama Perusahaan</th>
+                    <th>Nama Lapak</th>
                     <th>Subtotal</th>
                     <th>Ongkir</th>
                     <th>Status</th>
@@ -27,7 +27,7 @@
                     $total = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total FROM `rb_penjualan_detail` a where a.id_penjualan='$row[id_penjualan]'")->row_array();
                     echo "<tr><td>$no</td>
                               <td><span class='text-success'>$row[kode_transaksi]</span></td>
-                              <td><a href='".base_url()."members/detail_reseller/$row[id_supplier]'>$row[nama_supplier]</a></td>
+                              <td><a href='".base_url()."members/detail_reseller/$row[id_reseller]'>$row[nama_reseller]</a></td>
                               <td><span style='color:blue;'>Rp ".rupiah($total['total'])."</span></td>
                               <td><i style='color:green;'><b style='text-transform:uppercase'>$row[kurir]</b> - Rp ".rupiah($row['ongkir'])."</i></td>
                               <td>$proses</td>

@@ -745,7 +745,7 @@ class uploader {
     protected function callBack($url, $message="") {
         $message = text::jsValue($message);
 
-        if ((get_class($this) == "kcfinder\\browser") && ($this->action != "browser"))
+        if ((get_class($this) == "kcfinder\\browser") && ($this->Aksi != "browser"))
             return;
 
         if (isset($this->opener['name'])) {

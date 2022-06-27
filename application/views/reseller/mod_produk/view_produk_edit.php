@@ -28,9 +28,9 @@
               <div class='box-body'>";
               $attributes = array('class'=>'form-horizontal','role'=>'form','name'=>'demo');
               echo form_open_multipart('reseller/edit_produk',$attributes);
-              $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$rows['id_produk'],'id_supplier'=>$this->session->id_supplier))->row_array();
-              $jual = $this->model_reseller->jual_reseller($this->session->id_supplier,$rows['id_produk'])->row_array();
-              $beli = $this->model_reseller->beli_reseller($this->session->id_supplier,$rows['id_produk'])->row_array();
+              $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$rows['id_produk'],'id_reseller'=>$this->session->id_reseller))->row_array();
+              $jual = $this->model_reseller->jual_reseller($this->session->id_reseller,$rows['id_produk'])->row_array();
+              $beli = $this->model_reseller->beli_reseller($this->session->id_reseller,$rows['id_produk'])->row_array();
           echo "<div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
@@ -59,8 +59,8 @@
                     <tr><th width='130px' scope='row'>Nama Produk</th>  <td><input type='text' class='form-control' name='b' value='$rows[nama_produk]' required></td></tr>
                     <tr><th scope='row'>Satuan</th>                     <td><input type='text' class='form-control' name='c' value='$rows[satuan]'></td></tr>
                     <tr><th scope='row'>Berat / Kilogram</th>                      <td><input type='number' class='form-control' name='berat' value='$rows[berat]'></td></tr>
-                    <tr><th scope='row'>Harga Modal</th>                 <td><input type='number' class='form-control' name='d' value='$rows[harga_suppliers]'></td></tr>
-                    <input type='hidden' class='form-control' name='e' value='$rows[harga_suppliers]'>
+                    <tr><th scope='row'>Harga Modal</th>                 <td><input type='number' class='form-control' name='d' value='$rows[harga_beli]'></td></tr>
+                    <input type='hidden' class='form-control' name='e' value='$rows[harga_reseller]'>
                     <tr><th scope='row'>Harga Jual</th>             <td><input type='number' class='form-control' name='f' value='$rows[harga_konsumen]'></td></tr>
                     <tr><th scope='row'>Diskon</th>                 <td><input type='number' class='form-control' name='diskon' value='$disk[diskon]'></td></tr>
                     <tr><th scope='row'>Stok</th>                 <td><input style='display:inline-block; width:80px; color:red' type='number' class='form-control' value='".($beli['beli']-$jual['jual'])."' disabled>
@@ -76,7 +76,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/produk'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div>";

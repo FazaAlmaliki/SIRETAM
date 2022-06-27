@@ -1,6 +1,6 @@
-  <p class='sidebar-title text-danger produk-title'>Halaman Login</p> 
+  <p class='sidebar-title text-danger produk-title'> Login Users</p> 
 
-            <div class='alert alert-info'>Masukkan Username dan Password Pada Form Login Pengguna Berikut Untuk Melakukan Login,...</div>
+            <div class='alert alert-info'>Masukkan username dan password pada form berikut untuk login,...</div>
             <br>
             <?php 
                 echo $this->session->flashdata('message'); 
@@ -19,7 +19,7 @@
                     </div>
 
                     <div align="center">
-                        <input name='login' type="submit" class="btn btn-primary" value="Login"><br><br> Anda Belum Punya akun? <a href="<?php echo base_url(); ?>auth/register" title="Mari gabung bersama Kami" class="link">Daftar Disini.</a>
+                        <input name='login' type="submit" class="btn btn-primary" value="Login"> <br><br> Anda Belum Punya akun? <a href="<?php echo base_url(); ?>auth/register" title="Mari gabung bersama Kami" class="link">Daftar Disini.</a>
                     </div><br>
                     
                     <div align="center">
@@ -28,7 +28,5 @@
                     </div>
                 </form>
             </div>
-
-<div class="modal-dialog">
 </div>
 </div>

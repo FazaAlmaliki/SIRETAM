@@ -1,7 +1,7 @@
-<p class='sidebar-title text-danger produk-title'>Detail Data Supplier</p>
+<p class='sidebar-title text-danger produk-title'>Detail Data Distributor</p>
     <div class='panel-body'>
       <ul id='myTabs' class='nav nav-tabs' role='tablist'>
-        <li role='presentation' class='active'><a href='#profile' id='profile-tab' role='tab' data-toggle='tab' aria-controls='profile' aria-expanded='true'>Data Supplier </a></li>
+        <li role='presentation' class='active'><a href='#profile' id='profile-tab' role='tab' data-toggle='tab' aria-controls='profile' aria-expanded='true'>Data Distributor</a></li>
          <li role='presentation' class=''><a href='#rekening' role='tab' id='rekening-tab' data-toggle='tab' aria-controls='rekening' aria-expanded='false'>No Rekening</a></li>
         <li role='presentation' class=''><a href='#pembelian' role='tab' id='pembelian-tab' data-toggle='tab' aria-controls='pembelian' aria-expanded='false'>History Penjualan</a></li>
       </ul><br>
@@ -19,7 +19,7 @@
                   }
                 ?>
                 <tr class='hidden-xs' bgcolor='#f5f5f5'><td rowspan='12' width='110px'><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></td></tr>
-                <tr><th scope='row' width='140px'>Nama Supplier</th> <td><?php echo $rows['nama_supplier']?></td></tr>
+                <tr><th scope='row' width='140px'>Nama Pelapak</th> <td><?php echo $rows['nama_reseller']?></td></tr>
                 <?php if ($this->sesion->id_konsumen!=''){ ?>
                 <tr><th scope='row'>Alamat</th> <td><?php echo $rows['alamat_lengkap']?></td></tr>
                 <tr><th scope='row'>No Hp</th> <td><?php echo $rows['no_telpon']?></td></tr>

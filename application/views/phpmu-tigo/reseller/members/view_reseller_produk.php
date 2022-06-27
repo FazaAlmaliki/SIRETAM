@@ -1,9 +1,9 @@
-<p class='sidebar-title text-danger produk-title'>Detail Data Produk Supplier</p>
+<p class='sidebar-title text-danger produk-title'>Detail Data Produk Pelapak</p>
   <table class='table table-condensed'>
   <tbody>
     <?php if (trim($rows['foto'])==''){ $foto_user = 'blank.png'; }else{ $foto_user = $rows['foto']; } ?>
     <tr class='hidden-xs' bgcolor=''><td rowspan='12' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></center></td></tr>
-    <tr><th scope='row' width='100px'>Nama</th> <td><?php echo $rows['nama_supplier']?></td></tr>
+    <tr><th scope='row' width='100px'>Nama</th> <td><?php echo $rows['nama_reseller']?></td></tr>
     <tr><th scope='row'>Alamat</th> <td><?php echo "Kota $rows[nama_kota], $rows[alamat_lengkap]"; ?></td></tr>
     <tr><th scope='row'>Kontak</th> <td><?php echo "Hp. <b style='color:green'>$rows[no_telpon]</b>, Email. <i style='text-decoration:underline; color:blue'>$rows[email]</i>"; ?></td></tr>
     <tr><th scope='row'>Keterangan</th> <td><?php echo $rows['keterangan']?></td></tr>
@@ -16,8 +16,8 @@
         foreach ($record->result_array() as $row){
         $jual = $this->model_reseller->jual_reseller($this->uri->segment(3),$row['id_produk'])->row_array();
         $beli = $this->model_reseller->beli_reseller($this->uri->segment(3),$row['id_produk'])->row_array();
-        if ($beli['beli']-$jual['jual']<1){ $stok = '<b style="color:red">Stok Habis</b>'; }else{ $stok = "Stok ".($beli['beli']-$jual['jual'])." $row[satuan]"; }
-        $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$row['id_produk'],'id_supplier'=>$this->uri->segment(3)))->row_array();
+        if ($beli['beli']-$jual['jual']<=0){ $stok = '<b style="color:red">Stok Habis</b>'; }else{ $stok = "Stok ".($beli['beli']-$jual['jual'])." $row[satuan]"; }
+        $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$row['id_produk'],'id_reseller'=>$this->uri->segment(3)))->row_array();
         if ($disk['diskon']==''){ $diskon = '0'; $line = ''; $harga = ''; }else{ $diskon = $disk['diskon']; $line = 'line-through'; $harga = "/ <span style='color:red'>".rupiah($row['harga_konsumen']-$disk['diskon'])."</span>";}
 
         if (trim($row['gambar'])==''){ $foto_produk = 'no-image.png'; }else{ $foto_produk = $row['gambar']; }
@@ -44,7 +44,7 @@
                     if ($beli['beli']-$jual['jual']<=0){
                       echo "<a class='btn btn-default btn-block btn-sm' href='#'>Beli / Sewa Sekarang</a>";
                     }else{
-                      echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."members/keranjang/$rows[id_supplier]/$row[id_produk]'>Beli / Sewa Sekarang</a>";
+                      echo "<a class='btn btn-default btn-block btn-sm' href='".base_url()."members/keranjang/$rows[id_reseller]/$row[id_produk]'>Beli / Sewa Sekarang</a>";
                     }
 
                   echo "</center>

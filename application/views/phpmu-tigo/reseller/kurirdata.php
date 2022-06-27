@@ -36,16 +36,16 @@ if(!empty($data)){
 if($ongkir=='0'){ ?>
 <div class="radio" style='margin: 0px;'>
 	<div style='font-weight:bold; color:blue'>
-		Pilih Alamat Penerimaan dibawah ini.
+		Pilih alamat dibawah ini.
 	</div>
 	<div style="clear:both"></div>
 		<?php 
 			$ress = $this->model_reseller->penjualan_konsumen_detail($this->session->idp)->row_array();
-			$cod = $this->db->query("SELECT * FROM rb_supplier_cod where id_supplier='$ress[id_supplier]'");
+			$cod = $this->db->query("SELECT * FROM rb_reseller_cod where id_reseller='$ress[id_reseller]'");
 			$i = 1;
 			foreach ($cod->result_array() as $ros) {
 				echo "<div class='col-md-4'>
-						<input type='radio' name='service' class='service' data-id='$i' value='Penerimaan Langsung'/> $ros[nama_alamat]<br> Tarif. <b>Rp ".number_format($ros['biaya_cod'],0)."</b>
+						<input type='radio' name='service' class='service' data-id='$i' value='Cash on delivery'/> $ros[nama_alamat]<br> Tarif. <b>Rp ".number_format($ros['biaya_cod'],0)."</b>
 					  	<input type='hidden' name='tarif' id='tarif$i' value='$ros[biaya_cod]'/>
 					  </div>";
 				$i++;

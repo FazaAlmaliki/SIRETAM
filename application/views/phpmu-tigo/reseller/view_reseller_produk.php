@@ -1,9 +1,9 @@
-<p class='sidebar-title text-danger produk-title'>Detail Data Produk Supplier</p>
+<p class='sidebar-title text-danger produk-title'>Detail Data Produk Pelapak</p>
   <table class='table table-condensed'>
   <tbody>
     <?php if (trim($rows['foto'])==''){ $foto_user = 'blank.png'; }else{ $foto_user = $rows['foto']; } ?>
     <tr bgcolor='#f5f5f5'><td rowspan='12' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></center></td></tr>
-    <tr><th scope='row' width='140px'>Nama Supplier</th> <td><?php echo $rows['nama_supplier']?></td></tr>
+    <tr><th scope='row' width='140px'>Nama Pelapak</th> <td><?php echo $rows['nama_reseller']?></td></tr>
     <tr><th scope='row'>Alamat</th> <td><?php echo $rows['alamat_lengkap']?></td></tr>
     <tr><th scope='row'>No Hp</th> <td><?php echo $rows['no_telpon']?></td></tr>
     <tr><th scope='row'>Alamat Email</th> <td><?php echo $rows['email']?></td></tr>
@@ -14,14 +14,14 @@
 
       <?php 
       if ($record->num_rows()<=0){
-          echo "<center style='margin:40px 0px; font-weight:bold; color:#ab0534'>Belum ada Produk pada Supplier ini...</center>";
+          echo "<center style='margin:40px 0px; font-weight:bold; color:#ab0534'>Belum ada Produk pada Pelapak ini...</center>";
       }else{
         $no = 1;
         foreach ($record->result_array() as $row){
         $jual = $this->model_reseller->jual_reseller($this->uri->segment(3),$row['id_produk'])->row_array();
         $beli = $this->model_reseller->beli_reseller($this->uri->segment(3),$row['id_produk'])->row_array();
-        if ($beli['beli']-$jual['jual']<1){ $stok = '<b style="color:red">Stok Habis</b>'; }else{ $stok = "Stok ".($beli['beli']-$jual['jual'])." $row[satuan]"; }
-        $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$row['id_produk'],'id_supplier'=>$this->uri->segment(3)))->row_array();
+        if ($beli['beli']-$jual['jual']<=0){ $stok = '<b style="color:red">Stok Habis</b>'; }else{ $stok = "Stok ".($beli['beli']-$jual['jual'])." $row[satuan]"; }
+        $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$row['id_produk'],'id_reseller'=>$this->uri->segment(3)))->row_array();
         if ($disk['diskon']==''){ $diskon = '0'; $line = ''; $harga = ''; }else{ $diskon = $disk['diskon']; $line = 'line-through'; $harga = "/ <span style='color:red'>".rupiah($row['harga_konsumen']-$disk['diskon'])."</span>";}
 
         $ex = explode(';', $row['gambar']);

@@ -9,7 +9,7 @@
                   <tbody>
                     <?php if ($rows['proses']=='0'){ $proses = '<i class="text-danger">Pending</i>'; }elseif($row['proses']=='1'){ $proses = '<i class="text-success">Proses</i>'; }else{ $proses = '<i class="text-info">Konfirmasi</i>'; } ?>
                     <tr><th width='140px' scope='row'>Kode Pembelian</th>  <td><?php echo "$rows[kode_transaksi]"; ?></td></tr>
-                    <tr><th scope='row'>Nama Supplier</th>                 <td><?php echo "$rows[nama_supplier]"; ?></td></tr>
+                    <tr><th scope='row'>Nama Supplier</th>                 <td><?php echo "$rows[nama_reseller]"; ?></td></tr>
                     <tr><th scope='row'>Waktu Transaksi</th>               <td><?php echo "$rows[waktu_transaksi]"; ?></td></tr>
                     <tr><th scope='row'>Proses</th>                        <td><?php echo "$proses"; ?></td></tr>
                   </tbody>

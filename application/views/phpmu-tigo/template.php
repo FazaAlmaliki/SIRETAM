@@ -15,10 +15,11 @@
 	<meta NAME="Distribution" CONTENT="Global">
 	<meta NAME="Rating" CONTENT="General">
 	<link rel="canonical" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>"/>
-	   		 <meta property="og:title" content="'.$title.'" />
+	   <meta property="og:title" content="'.$title.'" />
 			 <meta property="og:type" content="article" />
 			 <meta property="og:url" content="'.base_url().''.$this->uri->segment(3).'" />
-			 <meta property="og:description" content="'.$description.'"/>
+			 <meta property="og:image" content="'.base_url().'asset/foto_berita/'.$rows['gambar'].'" />
+			 <meta property="og:description" content="'.$description.'"/> 
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>asset/images/<?php echo favicon(); ?>" />
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss.xml" />
 	<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>template/<?php echo template(); ?>/background/<?php echo background(); ?>/reset.css" />
@@ -122,6 +123,7 @@
 						}
 					}
 					echo "</select><br class='visible-xs'>";
+
 					?>
 
 					<div class="main-content">

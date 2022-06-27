@@ -44,14 +44,14 @@
                     <tr><td><b>Kecamatan</b></td>  <td><input type='text' class='required form-control' name='ia' value='$rows[kecamatan]'></td></tr>
                     <tr><th scope='row'>Tanggal Daftar</th>               <td><input class='form-control' type='text' name='r' value='$rows[tanggal_daftar]' disabled></td></tr>
                     <tr><th scope='row'>Ganti Foto</th>                         <td><input type='file' class='form-control' name='gg'>";
-                                                                               if ($rows['foto'] != ''){ echo "<i style='color:red'>Foto Profile saat ini : </i><a target='_BLANK' href='".base_url()."asset/foto_user/$rows[foto]'>$rows[foto]</a>"; } echo "</td></tr>
+                                                                               if ($rows['foto'] != ''){ echo "<i style='color:red'>Foto Profil saat ini : </i><a target='_BLANK' href='".base_url()."asset/foto_user/$rows[foto]'>$rows[foto]</a>"; } echo "</td></tr>
                   </tbody>
                   </table>
                 </div>
               </div>
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div>";

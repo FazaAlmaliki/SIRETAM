@@ -1,21 +1,22 @@
 <?php 
+
 class Model_reseller extends CI_model{
     function top_menu(){
         return $this->db->query("SELECT * FROM menu where position='Top' ORDER BY urutan ASC");
     }
-    
+
     function cari_reseller($kata){
         $pisah_kata = explode(" ",$kata);
         $jml_katakan = (integer)count($pisah_kata);
         $jml_kata = $jml_katakan-1;
-        $cari = "SELECT * FROM rb_supplier a LEFT JOIN rb_kota b ON a.kota_id=b.kota_id WHERE";
+        $cari = "SELECT * FROM rb_reseller a LEFT JOIN rb_kota b ON a.kota_id=b.kota_id WHERE";
             for ($i=0; $i<=$jml_kata; $i++){
-              $cari .= " a.nama_supplier LIKE '%".$pisah_kata[$i]."%' OR b.nama_kota LIKE '%".$pisah_kata[$i]."%' ";
+              $cari .= " a.nama_reseller LIKE '%".$pisah_kata[$i]."%' OR b.nama_kota LIKE '%".$pisah_kata[$i]."%' ";
                 if ($i < $jml_kata ){
                     $cari .= " OR "; 
                 } 
             }
-        $cari .= " ORDER BY a.id_supplier DESC LIMIT 36";
+        $cari .= " ORDER BY a.id_reseller DESC LIMIT 36";
         return $this->db->query($cari);
     }
 
@@ -41,15 +42,15 @@ class Model_reseller extends CI_model{
     }
 
     function jual_reseller($penjual, $produk){
-        return $this->db->query("SELECT sum(jumlah) as jual FROM `rb_penjualan` a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_pembeli='konsumen' AND a.status_penjual='supplier' AND a.id_penjual='$penjual' AND b.id_produk='$produk' AND a.proses='1'");
+        return $this->db->query("SELECT sum(jumlah) as jual FROM `rb_penjualan` a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_pembeli='konsumen' AND a.status_penjual='reseller' AND a.id_penjual='$penjual' AND b.id_produk='$produk' AND a.proses='1'");
     }
 
     function beli_reseller($pembeli, $produk){
-        return $this->db->query("SELECT sum(jumlah) as beli FROM `rb_penjualan` a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_pembeli='supplier' AND a.status_penjual='admin' AND a.id_pembeli='$pembeli' AND b.id_produk='$produk' AND a.proses='1'");
+        return $this->db->query("SELECT sum(jumlah) as beli FROM `rb_penjualan` a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_pembeli='reseller' AND a.status_penjual='admin' AND a.id_pembeli='$pembeli' AND b.id_produk='$produk' AND a.proses='1'");
     }
 
     function penjualan_konsumen_detail($id){
-        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_supplier b ON a.id_penjual=b.id_supplier JOIN rb_kota c ON b.kota_id=c.kota_id where a.id_penjualan='$id'");
+        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_reseller b ON a.id_penjual=b.id_reseller JOIN rb_kota c ON b.kota_id=c.kota_id where a.id_penjualan='$id'");
     }
 
     function profile_konsumen($id){
@@ -57,8 +58,9 @@ class Model_reseller extends CI_model{
     }
 
     function orders_report($id,$level){
-        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_supplier b ON a.id_penjual=b.id_supplier where a.status_penjual='$level' AND a.id_pembeli='$id' ORDER BY a.id_penjualan DESC");
+        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_reseller b ON a.id_penjual=b.id_reseller where a.status_penjual='$level' AND a.id_pembeli='$id' ORDER BY a.id_penjualan DESC");
     }
+
 
     public function view_join_where_one($table1,$table2,$field,$where){
         $this->db->select('*');
@@ -106,8 +108,8 @@ class Model_reseller extends CI_model{
         $this->image_lib->crop();
 
         $datadb = array('foto'=>$hasil['file_name']);
-        $this->db->where('id_supplier',$this->session->id_supplier);
-        $this->db->update('rb_supplier',$datadb);
+        $this->db->where('id_reseller',$this->session->id_reseller);
+        $this->db->update('rb_reseller',$datadb);
     }
 
     function profile_update($id){
@@ -144,11 +146,11 @@ class Model_reseller extends CI_model{
     }
 
     function reseller_pembelian($id,$level){
-        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_supplier b ON a.id_pembeli=b.id_supplier where a.status_penjual='$level' AND a.id_pembeli='$id' ORDER BY a.id_penjualan DESC");
+        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_reseller b ON a.id_pembeli=b.id_reseller where a.status_penjual='$level' AND a.id_pembeli='$id' ORDER BY a.id_penjualan DESC");
     }
 
     function penjualan_detail($id){
-        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_supplier b ON a.id_pembeli=b.id_supplier where a.id_penjualan='$id'");
+        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_reseller b ON a.id_pembeli=b.id_reseller where a.id_penjualan='$id'");
     }
 
     function penjualan_konsumen_detail_reseller($id){
@@ -156,33 +158,33 @@ class Model_reseller extends CI_model{
     }
 
     function penjualan_list($id,$level){
-        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_supplier b ON a.id_pembeli=b.id_supplier where a.status_penjual='$level' AND a.id_penjual='$id' ORDER BY a.id_penjualan DESC");
+        return $this->db->query("SELECT * FROM `rb_penjualan` a JOIN rb_reseller b ON a.id_pembeli=b.id_reseller where a.status_penjual='$level' AND a.id_penjual='$id' ORDER BY a.id_penjualan DESC");
     }
 
-    function pembelian($id_supplier){
-        return $this->db->query("SELECT sum((b.jumlah*b.harga_jual)-b.diskon) as total FROM rb_penjualan a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_penjual='admin' AND a.id_pembeli='".$id_supplier."' AND a.proses='1'");
+    function pembelian($id_reseller){
+        return $this->db->query("SELECT sum((b.jumlah*b.harga_jual)-b.diskon) as total FROM rb_penjualan a JOIN rb_penjualan_detail b ON a.id_penjualan=b.id_penjualan where a.status_penjual='admin' AND a.id_pembeli='".$id_reseller."' AND a.proses='1'");
     }
 
-    function penjualan_perusahaan($id_supplier){
-        return $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_supplier."' AND c.proses='1'");
+    function penjualan_perusahaan($id_reseller){
+        return $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan!='0' AND id_penjual='".$id_reseller."' AND c.proses='1'");
     }
 
-    function penjualan($id_supplier){
+    function penjualan($id_reseller){
         return $this->db->query("SELECT sum((a.jumlah*a.harga_jual)-a.diskon) as total, sum(a.jumlah) as produk FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk
-                                    JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='supplier' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_supplier."' AND c.proses='1'");
+                                    JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_penjual='reseller' AND b.id_produk_perusahaan='0' AND id_penjual='".$id_reseller."' AND c.proses='1'");
     }
 
-    function modal_perusahaan($id_supplier){
-        return $this->db->query("SELECT sum(a.jumlah*b.harga_suppliers) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan!='0'");
+    function modal_perusahaan($id_reseller){
+        return $this->db->query("SELECT sum(a.jumlah*b.harga_reseller) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_reseller."' AND b.id_produk_perusahaan!='0'");
     }
 
-    function modal_pribadi($id_supplier){
-        return $this->db->query("SELECT sum(a.jumlah*b.nama_produk) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_supplier."' AND b.id_produk_perusahaan='0'");
+    function modal_pribadi($id_reseller){
+        return $this->db->query("SELECT sum(a.jumlah*b.harga_beli) as total FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where c.status_pembeli='konsumen' AND c.proses='1' AND c.id_penjual='".$id_reseller."' AND b.id_produk_perusahaan='0'");
     }
 
-    function produk_perkategori($id_supplier,$id_produk_perusahaan,$id_kategori_produk,$limit){
-        return $this->db->query("SELECT a.*, b.nama_supplier, c.nama_kota FROM rb_produk a LEFT JOIN rb_supplier b ON a.id_supplier=b.id_supplier
-                                    LEFT JOIN rb_kota c ON b.kota_id=c.kota_id where a.id_supplier!='$id_supplier' AND a.id_produk_perusahaan='$id_produk_perusahaan' AND a.id_kategori_produk='$id_kategori_produk' ORDER BY a.id_produk DESC LIMIT $limit");
+    function produk_perkategori($id_reseller,$id_produk_perusahaan,$id_kategori_produk,$limit){
+        return $this->db->query("SELECT a.*, b.nama_reseller, c.nama_kota FROM rb_produk a LEFT JOIN rb_reseller b ON a.id_reseller=b.id_reseller
+                                    LEFT JOIN rb_kota c ON b.kota_id=c.kota_id where a.id_reseller!='$id_reseller' AND a.id_produk_perusahaan='$id_produk_perusahaan' AND a.id_kategori_produk='$id_kategori_produk' ORDER BY a.id_produk DESC LIMIT $limit");
     }
 
 }

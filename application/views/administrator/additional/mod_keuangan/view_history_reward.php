@@ -19,7 +19,7 @@
                     $no = 1;
                     foreach ($record->result_array() as $row){
                     echo "<tr><td>$no</td>
-                              <td>$row[nama_supplier]</td>
+                              <td>$row[nama_reseller]</td>
                               <td>$row[reward]</td>
                               <td>$row[waktu_pencairan]</td>
                               <td><center>

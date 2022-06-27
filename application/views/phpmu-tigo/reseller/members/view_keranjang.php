@@ -11,7 +11,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
 ?>
 
       <?php 
-        echo "<a class='btn btn-success btn-sm' href='".base_url()."members/produk_reseller/$rows[id_supplier]'>Lanjut Pemesanan</a>
+        echo "<a class='btn btn-success btn-sm' href='".base_url()."members/produk_reseller/$rows[id_reseller]'>Lanjut Belanja</a>
               <a class='btn btn-danger btn-sm' href='".base_url()."members/batalkan_transaksi' onclick=\"return confirm('Apa anda yakin untuk Batalkan Transaksi ini?')\">Batalkan Transaksi</a>"; 
       ?>
       <div style="clear:both"><br></div>
@@ -27,8 +27,8 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
           echo "<tr><td>$no</td>
                     <td width='70px'><img style='border:1px solid #cecece; width:60px' src='".base_url()."asset/foto_produk/$foto_produk'></td>
                     <td><a style='color:#ab0534' href='".base_url()."produk/detail/$row[produk_seo]'><b>$row[nama_produk]</b></a>
-                        <br>Jumlah. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
-                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." Kilogram</b></td>
+                        <br>Qty. <b>$row[jumlah]</b>, Harga. Rp ".rupiah($row['harga_jual']-$row['diskon'])." / $row[satuan], 
+                        <br>Berat. <b>".($row['berat']*$row['jumlah'])." KiloKilogram</b></td>
                     <td>Rp ".rupiah($sub_total)."</td>
                     <td width='30px'><a class='btn btn-danger btn-xs' title='Delete' href='".base_url()."members/keranjang_delete/$row[id_penjualan_detail]'><span class='glyphicon glyphicon-remove'></span></a></td>
                 </tr>";
@@ -37,7 +37,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
           $total = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total, sum(b.berat*a.jumlah) as total_berat FROM `rb_penjualan_detail` a JOIN rb_produk b ON a.id_produk=b.id_produk where a.id_penjualan='".$this->session->idp."'")->row_array();
           echo "<tr class='success'>
                   <td colspan='3'><b>Total Berat</b></td>
-                  <td><b>$total[total_berat] Kilogram</b></td>
+                  <td><b>$total[total_berat] KiloKilogram</b></td>
                   <td></td>
                 </tr>";
                 echo ($total['total_berat'] > 0 ? '' : '<tr class="danger"><td colspan="5"><i><b>PENTING</b> : Berat 0 Kilogram, maka akan terhitung minimal ongkir dari jasa Expedisi.</i></td></tr>');
@@ -51,7 +51,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
         </center>
       </div>";
 
-      $ket = $this->db->query("SELECT * FROM rb_keterangan where id_supplier='".$rows['id_supplier']."'")->row_array();
+      $ket = $this->db->query("SELECT * FROM rb_keterangan where id_reseller='".$rows['id_reseller']."'")->row_array();
       $diskon_total = '0';
 ?>
 
@@ -63,7 +63,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
     <label class="col-sm-2 control-label" for="">Pilih Perusahaan Pengirim</label>
     <div class="col-md-10">
         <?php       
-        $kurir=array('PT. Hilalindo Utama Perkasa','PT. Bososi Pratama');
+        $kurir=array('PT. ','pos','tiki');
         foreach($kurir as $rkurir){
             ?>          
                 <label class="radio-inline">
@@ -72,7 +72,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
             <?php
         }
         ?>
-        <label class="radio-inline"><input type="radio" name="kurir" class="kurir" value="cod"/> Penerimaan Langsung</label>
+        <label class="radio-inline"><input type="radio" name="kurir" class="kurir" value="cod"/> COD (Cash on delivery)</label>
     </div>
 </div>
 <div id="kuririnfo" style="display: none;">
@@ -140,12 +140,12 @@ echo "<div style='clear:both'></div><hr><br>$ket[keterangan]";
 ?>
 </div>
 <div class="col-sm-4 colom4">
-  <?php $res = $this->db->query("SELECT a.*, b.nama_kota, c.nama_provinsi FROM rb_supplier a JOIN rb_kota b ON a.kota_id=b.kota_id 
+  <?php $res = $this->db->query("SELECT a.*, b.nama_kota, c.nama_provinsi FROM rb_reseller a JOIN rb_kota b ON a.kota_id=b.kota_id 
                 JOIN rb_provinsi c ON b.provinsi_id=c.provinsi_id
-                  where a.id_supplier='$rows[id_supplier]'")->row_array(); ?>
+                  where a.id_reseller='$rows[id_reseller]'")->row_array(); ?>
   <table class='table table-condensed'>
   <tbody>
-    <tr class='alert alert-info'><th scope='row' style='width:90px'>Pengirim</th> <td><?php echo $res['nama_supplier']?></td></tr>
+    <tr class='alert alert-info'><th scope='row' style='width:90px'>Pengirim</th> <td><?php echo $res['nama_reseller']?></td></tr>
     <tr class='alert alert-info'><th scope='row'>Alamat</th> <td><?php echo $res['alamat_lengkap'].', '.$res['nama_kota'].', '.$res['nama_provinsi']; ?></td></tr>
   </tbody>
   </table>

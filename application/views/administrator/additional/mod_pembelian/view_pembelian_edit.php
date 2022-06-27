@@ -11,7 +11,7 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                     <tr><th width='140px' scope='row'>Kode Pembelian</th>  <td><input type='text' class='form-control' value='<?php echo "$rows[kode_pembelian]"; ?>' name='a'></td></tr>
-                    <tr><th scope='row'>Nama Supplier</th>                 <td><select class='form-control' name='b'>
+                    <tr><th scope='row'>Nama Distributor</th>                 <td><select class='form-control' name='b'>
                                                                                 <?php 
                                                                                   foreach ($supplier as $r){
                                                                                     if ($r['id_supplier']==$rows['id_supplier']){
@@ -26,7 +26,7 @@
                   </tbody>
                   </table>
                   <input class='btn btn-primary btn-sm' type="submit" name='submit1' value='Simpan Data'>
-                  <a class='btn btn-default btn-sm' href='<?php echo base_url(); ?>administrator/pembelian'>Selesai / Kembali</a>
+                  <a class='btn btn-default btn-sm' href='<?php echo base_url(); ?>administrator/pembelian'>Selesai </a>
                   <hr>
                   <table class="table table-bordered table-striped">
                     <thead>
@@ -51,10 +51,10 @@
                                                                       foreach ($barang as $r){
                                                                         if ($r['id_produk']==$row['id_produk']){
                                                                           echo "<option value='$r[id_produk]' selected>$r[nama_produk]</option>";
-                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['stok']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_beli']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                                         }else{
                                                                           echo "<option value='$r[id_produk]'>$r[nama_produk]</option>";
-                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['stok']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_beli']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                                         }
                                                                       }
                                                                    echo "</select></td>

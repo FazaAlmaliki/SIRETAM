@@ -38,7 +38,7 @@
               
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                    <a href='".base_url().$this->uri->segment(1)."/manajemenuser'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/manajemenuser'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div></div></div>";

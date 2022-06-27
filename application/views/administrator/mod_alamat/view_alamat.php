@@ -2,7 +2,7 @@
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Tentang</h3>
+                  <h3 class='box-title'>Alamat Kontak</h3>
                 </div>
               <div class='box-body'>";
               $attributes = array('class'=>'form-horizontal','role'=>'form');
@@ -18,7 +18,7 @@
               
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                    <a href='".base_url().$this->uri->segment(1)."/alamat'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/alamat'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div></div></div>";

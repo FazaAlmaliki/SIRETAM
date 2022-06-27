@@ -10,6 +10,7 @@
                       <tr>
                         <th style='width:20px'>No</th>
                         <th>Nama Produk</th>
+                        <th>Modal</th>
                         <th>Supplier</th>
                         <th>Konsumen</th>
                         <th>Stok</th>
@@ -22,21 +23,21 @@
                   <?php 
                     $no = 1;
                     foreach ($record as $row){
-                      $res = $this->db->query("SELECT * FROM rb_supplier a JOIN rb_kota b ON a.kota_id=b.kota_id where a.id_supplier='$row[id_supplier]'")->row_array();
-                      if ($row['id_supplier']=='0'){
+                      $res = $this->db->query("SELECT * FROM rb_reseller a JOIN rb_kota b ON a.kota_id=b.kota_id where a.id_reseller='$row[id_reseller]'")->row_array();
+                      if ($row['id_reseller']=='0'){
                         $jual = $this->model_reseller->jual($row['id_produk'])->row_array();
                         $beli = $this->model_reseller->beli($row['id_produk'])->row_array();
                         $produk = "<i style='color:blue'>(Perusahaan)</i>"; 
                       }else{ 
-                        $jual = $this->model_reseller->jual_reseller($row['id_supplier'],$row['id_produk'])->row_array();
-                        $beli = $this->model_reseller->beli_reseller($row['id_supplier'],$row['id_produk'])->row_array();
-                        $produk = "<i style='color:green'><a title='$res[nama_supplier] ($res[nama_kota], $res[alamat_lengkap])' style='color:green' href='".base_url()."/administrator/detail_reseller/$row[id_supplier]'>(Perusahaan)</a></i>"; 
+                        $jual = $this->model_reseller->jual_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+                        $beli = $this->model_reseller->beli_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+                        $produk = "<i style='color:green'><a title='$res[nama_reseller] ($res[nama_kota], $res[alamat_lengkap])' style='color:green' href='".base_url()."/administrator/detail_reseller/$row[id_reseller]'>(Supplier)</a></i>"; 
                       }
                     echo "<tr><td>$no</td>
                               <td>$row[nama_produk] 
-                                <small>$produk</small>
-                              </td>
-                              <td>".rupiah($row['harga_suppliers'])."</td>
+                                  <small>$produk</small></td>
+                              <td>".rupiah($row['harga_beli'])."</td>
+                              <td>".rupiah($row['harga_reseller'])."</td>
                               <td>".rupiah($row['harga_konsumen'])."</td>
                               <td>".($beli['beli']-$jual['jual'])."</td>
                               <td>$row[satuan]</td>

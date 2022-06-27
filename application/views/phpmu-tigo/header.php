@@ -4,7 +4,7 @@ echo "<div class='wrapper'>
 		  $iden = $this->model_utama->view('identitas')->row_array();
 		  $logo = $this->model_utama->view_ordering_limit('logo','id_logo','DESC',0,1);
 		  foreach ($logo->result_array() as $row) {
-			echo "<a href='".base_url()."'><img style='height:45px' src='".base_url()."asset/logo/$row[gambar]'/></a>";
+			echo "<a href='".base_url()."'><img style='height:50px' src='".base_url()."asset/logo/$row[gambar]'/></a>";
 		  }
 	echo "
 	</div>	
@@ -41,8 +41,7 @@ echo "<div class='wrapper'>
 	</div>
 	
 	<div class='header-addons'>
-		<span class='city'>
-		  <b>Hari ini</b> : ".hari_ini(date('w')).", ".tgl_indo(date('Y-m-d')).", <span id='jam'></span></span><br>";
+		<span class='city'><br>";
 		  if ($this->session->id_konsumen != ''){
 		      $ksm = $this->db->query("SELECT * FROM rb_konsumen where id_konsumen='".$this->session->id_konsumen."'")->row_array();
 		  }
@@ -94,7 +93,7 @@ echo "<div class='wrapper'>
 	        if (isset($menu['parents'][$parent])) {
 	        	if ($parent=='0'){
 		            $html .= "<ul class='the-menu'>
-		            			<li><a href='".base_url()."' style='background: no-repeat center; font-size:0; width:34px;'><br></a></li>";
+		            			<li><a href='".base_url()."' style='background: url(".base_url()."asset/images/home.png) no-repeat center; font-size:0; width:34px;'><br></a></li>";
 		        }else{
 		        	$html .= "<ul>";
 		        }
@@ -128,3 +127,4 @@ echo "<div class='wrapper'>
 	    echo main_menu();
 	echo "</div>
 </div>";
+

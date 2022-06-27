@@ -1,6 +1,6 @@
 <?php 
-  echo "<p class='sidebar-title text-danger produk-title'> Edit Data Profil Anda</p>
-        <p>Berikut Informasi Data Profil anda.<br> 
+  echo "<p class='sidebar-title text-danger produk-title'> Edit DATA PROFIL ANDA</p>
+        <p>Berikut Informasi Data Profil Anda.<br> 
            Pastikan data-data dibawah ini sudah benar, agar tidak terjadi kesalahan saat transaksi.</p>";                
                   $attributes = array('id' => 'formku','class'=>'form-horizontal','role'=>'form');
                   echo form_open_multipart('members/edit_profile',$attributes); 
@@ -12,6 +12,8 @@
                           <tr><td><b>Nama Lengkap</b></td>   <td><input class='required form-control' type='text' name='b' value='$row[nama_lengkap]'></td></tr>
                           <tr><td><b>Email</b></td>          <td><input class='required email form-control' type='email' name='c' value='$row[email]'></td></tr>
                           <tr><td><b>Jenis Kelamin</b></td>  <td>"; if ($row['jenis_kelamin']=='Laki-laki'){ echo "<input type='radio' value='Laki-laki' name='d' checked> Laki-laki <input type='radio' value='Perempuan' name='d'> Perempuan "; }else{ echo "<input type='radio' value='Laki-laki' name='d'> Laki-laki <input type='radio' value='Perempuan' name='d' checked> Perempuan "; } echo "</td></tr>
+                          <tr><td><b>Tanggal Lahir</b></td>  <td><input class='required datepicker form-control' type='text' name='e' value='$row[tanggal_lahir]' data-date-format='yyyy-mm-dd'></td></tr>
+                          <tr><td><b>Tempat Lahir</b></td>   <td><input class='required form-control' type='text' name='f' value='$row[tempat_lahir]'></td></tr>
                           <tr><td><b>Alamat</b></td>         <td><textarea class='required form-control' name='g'>$row[alamat_lengkap]</textarea></td></tr>
                           <tr><th scope='row'>Provinsi</th>                     <td><select class='form-control' name='ewrwe' id='state_reseller' required>
                                                                             <option value=''>- Pilih -</option>";

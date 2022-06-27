@@ -31,10 +31,10 @@
                                                                       foreach ($barang as $r){
                                                                         if ($r['id_produk']==$row['id_produk']){
                                                                           echo "<option value='$r[id_produk]' selected>$r[nama_produk]</option>";
-                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_suppliers']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_reseller']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                                         }else{
                                                                           echo "<option value='$r[id_produk]'>$r[nama_produk]</option>";
-                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_suppliers']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_reseller']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                                         }
                                                                       }
                                                                    echo "</select></td>
@@ -72,7 +72,7 @@
                   ?>
                   </tbody>
                 </table>
-                <a class='btn btn-primary btn-sm' href='<?php echo base_url(); ?>reseller/pembelian'>Selesai / Kembali</a>
+                <a class='btn btn-primary btn-sm' href='<?php echo base_url(); ?>reseller/pembelian'>Selesai </a>
                 </div>
                 </div>
                 </div>

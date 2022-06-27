@@ -10,7 +10,7 @@
                       <tr>
                         <th style='width:40px'>No</th>
                         <th>Kode Pembelian</th>
-                        <th>Nama Supplier</th>
+                        <th>Nama Distributor</th>
                         <th>Waktu Pembelian</th>
                         <th>Total</th>
                         <th style='width:120px'>Aksi</th>

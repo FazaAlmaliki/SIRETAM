@@ -3,8 +3,8 @@
         $ci = & get_instance();
         $session = $ci->session->userdata('level');
         if ($session != 'konsumen'){
-          echo "<script>window.alert('Maaf, Halaman ini hanya khusus untuk pengguna jika sudah melakukan login!');
-                                  window.location=('".base_url(produk)."')</script>";
+          echo "<script>window.alert('Maaf, Halaman ini hanya khusus untuk pengguna yang telah melakukan login!');
+                                  window.location=('".base_url()."')</script>";
         }
     }
 
@@ -51,7 +51,6 @@
     function cetak_meta($str,$mulai,$selesai){
         return strip_tags(html_entity_decode(substr(str_replace('"','',$str),$mulai,$selesai), ENT_COMPAT, 'UTF-8'));
     }
-
 
     function getSearchTermToBold($text, $words){
         preg_match_all('~[A-Za-z0-9_äöüÄÖÜ]+~', $words, $m);

@@ -1,8 +1,8 @@
       <div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Detail Data Profil</h3>
-                  <a class='pull-right btn btn-primary btn-sm' href='<?php echo base_url().$this->uri->segment(1); ?>/edit_reseller/<?php echo $this->session->id_supplier; ?>'>Edit Profil</a>
+                  <h3 class='box-title'>Detail Data Profile</h3>
+                  <a class='pull-right btn btn-primary btn-sm' href='<?php echo base_url().$this->uri->segment(1); ?>/edit_reseller/<?php echo $this->session->id_reseller; ?>'>Edit Profil</a>
                 </div>
                 <div class='box-body'>
                   <table class='table table-condensed table-bordered'>
@@ -14,7 +14,7 @@
                     <tr bgcolor='#f5f5f5'><th rowspan='14' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></center></th></tr>
                     <tr><th width='130px' scope='row'>Username</th> <td><?php echo $rows['username']?></td></tr>
                     <tr><th scope='row'>Password</th> <td>xxxxxxxxxxxxxxx</td></tr>
-                    <tr><th scope='row'>Nama Supplier</th> <td><?php echo $rows['nama_supplier']?></td></tr>
+                    <tr><th scope='row'>Nama Supplier</th> <td><?php echo $rows['nama_reseller']?></td></tr>
                     <tr><th scope='row'>Provinsi</th> <td><?php echo $ko['nama_provinsi']?></td></tr>
                     <tr><th scope='row'>Kota</th> <td><?php echo $ko['nama_kota']?></td></tr>
                     <tr><th scope='row'>Alamat Lengkap</th> <td><?php echo $rows['alamat_lengkap']?></td></tr>

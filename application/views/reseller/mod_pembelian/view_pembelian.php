@@ -15,8 +15,8 @@
                         <th>Waktu Transaksi</th>
                         <th>Status</th>
                         <th>Total Tagihan</th>
-                        <th>Servis</th>
                         <th>Proses</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -35,11 +35,11 @@
                               <td><center>
                                 <a style='margin-right:3px' class='btn btn-info btn-xs' title='Detail Data' href='".base_url().$this->uri->segment(1)."/detail_pembelian/$row[id_penjualan]'><span class='glyphicon glyphicon-search'></span> Detail</a>";
                                 if ($row['proses']=='0'){
-                                  echo "<a class='btn btn-success btn-xs' title='Konfirmasi Pembayaran' href='".base_url().$this->uri->segment(1)."/konfirmasi_pembayaran/$row[id_penjualan]'> Konfirmasi Pembayaran</a>
+                                  echo "<a class='btn btn-success btn-xs' title='Konfirmasi Pemabayaran' href='".base_url().$this->uri->segment(1)."/konfirmasi_pembayaran/$row[id_penjualan]'> Konfirmasi Pembayaran</a>
                                         <a class='btn btn-warning btn-xs' title='Edit Data' href='".base_url().$this->uri->segment(1)."/edit_pembelian/$row[id_penjualan]'><span class='glyphicon glyphicon-edit'></span></a>
                                         <a class='btn btn-danger btn-xs' title='Delete Data' href='".base_url().$this->uri->segment(1)."/delete_pembelian/$row[id_penjualan]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a>";
                                 }else{
-                                  echo "<a class='btn btn-default btn-xs' title='Konfirmasi Pembayaran' href='#' onclick=\"return alert('Maaf, Transaksi ini sudah di konfirmasi untuk pembayarannya!')\"> Konfirmasi Pembayaran</a>
+                                  echo "<a class='btn btn-default btn-xs' title='Konfirmasi Pemabayaran' href='#' onclick=\"return alert('Maaf, Transaksi ini sudah di konfirmasi untuk pembayarannya!')\"> Konfirmasi Pembayaran</a>
                                         <a class='btn btn-default btn-xs' title='Edit Data' href='#' onclick=\"return alert('Maaf, Transaksi ini sudah di proses dan tidak bisa di-edit!')\"><span class='glyphicon glyphicon-edit'></span></a>
                                         <a class='btn btn-default btn-xs' title='Delete Data' href='#' onclick=\"return alert('Maaf, Transaksi ini sudah di proses dan tidak bisa di-hapus!')\"><span class='glyphicon glyphicon-remove'></span></a>"; 
                                 }

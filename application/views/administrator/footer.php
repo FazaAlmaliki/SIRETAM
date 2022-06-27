@@ -1,1 +1,1 @@
-<strong>Copyright &copy;<?php echo date('Y'); ?> <a target='_BLANK' href="#"> SireTam</a>.</strong> All rights reserved.
+<strong>Copyright &copy;<?php echo date('Y'); ?> <a href="#"> SiReTam</a>.</strong> All rights reserved.

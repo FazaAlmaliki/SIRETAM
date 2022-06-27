@@ -365,11 +365,11 @@ a:focus {
 }
 
 .city{
-	color: #fff;
+	color: #ecae00;
 }
 
 .badgee{
-	background:#fff !important; color:#000 !important; padding: 2px 3px !important; margin-bottom:-15px !important; margin-left:-5px !important;
+	background:#ecae00 !important; color:#000 !important; padding: 2px 3px !important; margin-bottom:-15px !important; margin-left:-5px !important;
 }
 
 .header .header-addons .header-weather img {

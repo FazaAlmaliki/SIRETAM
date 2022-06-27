@@ -3,7 +3,7 @@
 		<div class="content-block main left">
 			<div class="block">
 				<div class="block-title" style="background: #bf4b37;">
-					<a href="<?php echo base_url(produk); ?>" class="right">Kembali ke Beranda</a>
+					<a href="<?php echo base_url(); ?>" class="right">Kembali</a>
 					<h2>Semua daftar / List File Download</h2>
 				</div>
 				<div class="block-content">
@@ -36,7 +36,10 @@
 								</div>
 							</div>
 						</div>
-					
+						
+						<div class="article-title">
+						</div>
+
 					</div>
 				</div>
 			</div>

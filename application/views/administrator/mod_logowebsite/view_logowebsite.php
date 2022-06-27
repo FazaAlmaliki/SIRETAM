@@ -18,7 +18,7 @@
                     }
                     echo "<tr><td></td><td><div class='box-footer'>
                             <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                            <a href='".base_url().$this->uri->segment(1)."/logowebsite'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                            <a href='".base_url().$this->uri->segment(1)."/logowebsite'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                           </div></td></tr>";
                     echo form_close();
                   ?>

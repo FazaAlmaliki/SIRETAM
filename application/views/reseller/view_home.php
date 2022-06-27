@@ -1,9 +1,9 @@
 <?php 
-$pembelian = $this->model_reseller->pembelian($this->session->id_supplier)->row_array();
-$penjualan_perusahaan = $this->model_reseller->penjualan_perusahaan($this->session->id_supplier)->row_array();
-$penjualan = $this->model_reseller->penjualan($this->session->id_supplier)->row_array();
-$modal_perusahaan = $this->model_reseller->modal_perusahaan($this->session->id_supplier)->row_array();
-$modal_pribadi = $this->model_reseller->modal_pribadi($this->session->id_supplier)->row_array();
+$pembelian = $this->model_reseller->pembelian($this->session->id_reseller)->row_array();
+$penjualan_perusahaan = $this->model_reseller->penjualan_perusahaan($this->session->id_reseller)->row_array();
+$penjualan = $this->model_reseller->penjualan($this->session->id_reseller)->row_array();
+$modal_perusahaan = $this->model_reseller->modal_perusahaan($this->session->id_reseller)->row_array();
+$modal_pribadi = $this->model_reseller->modal_pribadi($this->session->id_reseller)->row_array();
 $set = $this->db->query("SELECT * FROM rb_setting where aktif='Y'")->row_array();
 ?>
 
@@ -43,37 +43,48 @@ $set = $this->db->query("SELECT * FROM rb_setting where aktif='Y'")->row_array()
             </div><!-- /.col -->
             </a>
 
+            <a style='color:#000' href='#'>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="glyphicon glyphicon-star"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Produk Pribadi</span>
+                  <span class="info-box-number"><?php echo "Rp ".rupiah($penjualan['total']); ?></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+            </a>
 
             <section class="col-lg-5 connectedSortable">
             
               <div class="box box-info">
                 <div class="box-header">
                 <i class="fa fa-th-list"></i>
-                <h3 class="box-title">Selamat datang Supplier !</h3>
+                <h3 class="box-title">Selamat Datang Supplier!</h3>
                     <div class="box-tools pull-right">
                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
                   <div class="box-body">
-                  Silahkan mengelola Semua data melalui menu yang sudah disediakan dibelah kiri anda, berikut data profil anda : <br><br>
+                  Silahkan mengelola Semua data melalui menu yang sudah kita sediakan dibelah kiri anda, berikut data profil anda : <br><br>
                       <?php 
                       $iden = $this->model_app->edit('identitas',array('id_identitas'=>'1'))->row_array();
-                      $rows = $this->model_app->edit('rb_supplier',array('id_supplier'=>$this->session->id_supplier))->row_array();
+                      $rows = $this->model_app->edit('rb_reseller',array('id_reseller'=>$this->session->id_reseller))->row_array();
                       if (trim($rows['foto'])==''){ $foto_user = 'users.gif'; }else{ $foto_user = $rows['foto']; } ?>
                       <dl class="dl-horizontal">
                           <dt>Username</dt>   <dd><?php echo $rows['username']; ?></dd>
                           <dt>Password</dt>   <dd>********************</dd>
-                          <dt>Nama Supplier</dt>   <dd><?php echo $rows['nama_supplier']; ?></dd>
+                          <dt>Nama Supplier</dt>   <dd><?php echo $rows['nama_reseller']; ?></dd>
                           <dt>Alamat</dt>   <dd><?php echo $rows['alamat_lengkap']; ?></dd>
                           <dt>No Telp/Hp</dt>   <dd><?php echo $rows['no_telpon']; ?></dd>
                           <dt>Alamat Email</dt>   <dd><?php echo $rows['email']; ?></dd>
-                          <dt>Kode Pos</dt>   <dd><?php echo $rows['kode_pos']; ?></dd>
+                          <dt>Kode POS</dt>   <dd><?php echo $rows['kode_pos']; ?></dd>
                           <dt>Referral</dt>   <dd><?php echo $rows['referral']; ?></dd>
                       </dl>
                     <hr style='margin:7px'>
-                    <a class='btn btn-default btn-block' href="<?php echo base_url().$this->uri->segment(1); ?>/edit_reseller/<?php echo $this->session->id_supplier; ?>">Edit Profil</a>
-                    <a target='_BLANK' class='btn btn-success btn-block' href="<?php echo base_url(); ?>produk/produk_reseller/<?php echo $this->session->id_supplier; ?>">Lihat Perkembangan Anda!</a>
+                    <a class='btn btn-default btn-block' href="<?php echo base_url().$this->uri->segment(1); ?>/edit_reseller/<?php echo $this->session->id_reseller; ?>">Edit Profil</a>
+                    <a target='_BLANK' class='btn btn-success btn-block' href="<?php echo base_url(); ?>produk/produk_reseller/<?php echo $this->session->id_reseller; ?>">Lihat Data Anda</a>
                     <br><br>
                   </div>
               </div>
@@ -105,7 +116,7 @@ $set = $this->db->query("SELECT * FROM rb_setting where aktif='Y'")->row_array()
                     <tbody>
                   <?php 
                     $no = 1;
-                    $record = $this->model_reseller->penjualan_list_konsumen_top($this->session->id_supplier,'reseller');
+                    $record = $this->model_reseller->penjualan_list_konsumen_top($this->session->id_reseller,'reseller');
                     foreach ($record->result_array() as $row){
                     if ($row['proses']=='0'){ $proses = '<i class="text-danger">Pending</i>'; $status = 'Proses'; $icon = 'star-empty'; $ubah = 1; }elseif($row['proses']=='1'){ $proses = '<i class="text-success">Proses</i>'; $status = 'Pending'; $icon = 'star text-yellow'; $ubah = 0; }else{ $proses = '<i class="text-info">Konfirmasi</i>'; $status = 'Proses'; $icon = 'star'; $ubah = 1; }
                     $total = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total FROM `rb_penjualan_detail` a where a.id_penjualan='$row[id_penjualan]'")->row_array();

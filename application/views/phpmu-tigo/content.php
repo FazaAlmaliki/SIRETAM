@@ -1,6 +1,5 @@
 <?php 
 echo "<div class='paragraph-row'>
-	
 </div>
 <br>
 
@@ -18,17 +17,15 @@ echo "</div><hr>";
 $no = 1;
 foreach ($kategori->result_array() as $kat) {
 	$produk = $this->model_reseller->produk_perkategori(0,0,$kat['id_kategori_produk'],6);
-		
-
 		echo "<p class='sidebar-title text-danger produk-title'><a href='".base_url()."produk/kategori/$kat[kategori_seo]'>$kat[nama_kategori]</a></p>
 			<div class='container'>";
 	    foreach ($produk->result_array() as $row){
 	    $ex = explode(';', $row['gambar']);
 	    if (trim($ex[0])==''){ $foto_produk = 'no-image.png'; }else{ $foto_produk = $ex[0]; }
 	    if (strlen($row['nama_produk']) > 38){ $judul = substr($row['nama_produk'],0,38).',..';  }else{ $judul = $row['nama_produk']; }
-	    $jual = $this->model_reseller->jual_reseller($row['id_supplier'],$row['id_produk'])->row_array();
-	    $beli = $this->model_reseller->beli_reseller($row['id_supplier'],$row['id_produk'])->row_array();
-	    if ($beli['beli']-$jual['jual']<1){ $stok = '<b style="color:#000">Stok Habis</b>'; }else{ $stok = "<span style='color:green'>Stok ".($beli['beli']-$jual['jual'])." $row[satuan]</span>"; }
+	    $jual = $this->model_reseller->jual_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+	    $beli = $this->model_reseller->beli_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+	    if ($beli['beli']-$jual['jual']<=0){ $stok = '<b style="color:#000">Stok Habis</b>'; }else{ $stok = "<span style='color:green'>Stok ".($beli['beli']-$jual['jual'])." $row[satuan]</span>"; }
 
 	    $disk = $this->model_app->view_where("rb_produk_diskon",array('id_produk'=>$row['id_produk']))->row_array();
 	    $diskon = rupiah(($disk['diskon']/$row['harga_konsumen'])*100,0)."%";
@@ -77,4 +74,3 @@ foreach ($kategori->result_array() as $kat) {
 	</ul>
 </div>
 </div>
-

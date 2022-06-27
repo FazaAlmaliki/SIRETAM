@@ -39,7 +39,7 @@
                     $total = $this->db->query("SELECT sum((a.harga_jual*a.jumlah)-a.diskon) as total FROM `rb_penjualan_detail` a where a.id_penjualan='$row[id_penjualan]'")->row_array();
                     echo "<tr><td>$no</td>
                               <td>$row[kode_transaksi]</td>
-                              <td>$row[nama_supplier]</td>
+                              <td>$row[nama_reseller]</td>
                               <td>$row[waktu_transaksi]</td>
                               <td>$proses</td>
                               <td style='color:red;'>Rp ".rupiah($total['total'])."</td>

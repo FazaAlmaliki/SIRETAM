@@ -8,7 +8,7 @@
                   <table class='table table-condensed table-bordered'>
                   <tbody>
                     <tr><th width='140px' scope='row'>Kode Pembelian</th>  <td><?php echo "$rows[kode_transaksi]"; ?></td></tr>
-                    <tr><th scope='row'>Nama Supplier</th>                 <td><?php echo "$rows[nama_supplier]"; ?></td></tr>
+                    <tr><th scope='row'>Nama Supplier</th>                 <td><?php echo "$rows[nama_reseller]"; ?></td></tr>
                     <tr><th scope='row'>Waktu Transaksi</th>               <td><?php echo "$rows[waktu_transaksi]"; ?></td></tr>
                     <tr><th scope='row'>Proses</th>                        <td>
                       <?php

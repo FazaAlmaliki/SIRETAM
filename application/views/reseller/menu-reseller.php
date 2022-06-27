@@ -1,14 +1,14 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <?php
-          $log = $this->model_app->edit('rb_supplier',array('id_supplier'=>$this->session->id_supplier))->row_array(); 
+          $log = $this->model_app->edit('rb_reseller',array('id_reseller'=>$this->session->id_reseller))->row_array(); 
           if ($log['foto']==''){ $foto = 'blank.png'; }else{ $foto = $log['foto']; }
             echo "<div class='user-panel'>
               <div class='pull-left image'>
                 <img src='".base_url()."asset/foto_user/$foto' class='img-circle' alt='User Image'>
               </div>
               <div class='pull-left info'>
-                <p>$log[nama_supplier]</p>
+                <p>$log[nama_reseller]</p>
                 <a href=''><i class='fa fa-circle text-success'></i> Online</a>
               </div>
             </div>";
@@ -21,9 +21,9 @@
                 <a href="#"><i class="fa fa-th-large"></i> <span>Referensi</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <?php 
-                        echo "<li><a href='".base_url().$this->uri->segment(1)."/rekening'><i class='fa fa-circle-o'></i> No. Rekening Perusahaan</a></li>";
+                        echo "<li><a href='".base_url().$this->uri->segment(1)."/rekening'><i class='fa fa-circle-o'></i> No Rekening</a></li>";
                         echo "<li><a href='".base_url().$this->uri->segment(1)."/keterangan'><i class='fa fa-circle-o'></i> Info/Keterangan</a></li>";
-                        echo "<li><a href='".base_url().$this->uri->segment(1)."/produk'><i class='fa fa-circle-o'></i> Data Produk</a></li>";
+                        echo "<li><a href='".base_url().$this->uri->segment(1)."/produk'><i class='fa fa-circle-o'></i> Data Produk </a></li>";
                         echo "<li><a href='".base_url().$this->uri->segment(1)."/alamat_cod'><i class='fa fa-circle-o'></i> Alamat Penerimaan</a></li>";
                     ?>
                 </ul>
@@ -49,7 +49,7 @@
                 </ul>
             </li>
 
-            <li><a href="<?php echo base_url(); ?>reseller/edit_reseller/<?php echo $this->session->id_supplier; ?>"><i class="fa fa-user"></i> <span>Edit Profil</span></a></li>
+            <li><a href="<?php echo base_url(); ?>reseller/edit_reseller/<?php echo $this->session->id_reseller; ?>"><i class="fa fa-user"></i> <span>Edit Profil</span></a></li>
             <li><a href="<?php echo base_url(); ?>reseller/logout"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
           </ul>
         </section>

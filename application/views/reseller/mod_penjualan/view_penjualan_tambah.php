@@ -32,7 +32,7 @@
                   </table>
                   <input class='btn btn-primary btn-sm' type="submit" name='submit1' value='Simpan Data'>
                   <?php if ($this->session->idp !=''){ ?>
-                  <a class='btn btn-default btn-sm' href='<?php echo base_url(); ?>reseller/penjualan'>Selesai / Kembali</a>
+                  <a class='btn btn-default btn-sm' href='<?php echo base_url(); ?>reseller/penjualan'>Selesai </a>
                   <hr>
                   <table class="table table-bordered table-striped">
                     <thead>
@@ -54,7 +54,7 @@
                                                                       <option value='' selected> Cari Barang </option>";
                                                                       $jsArray = "var prdName = new Array();\n";    
                                                                       foreach ($barang as $r){
-                                                                        $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$r['id_produk'],'id_supplier'=>$this->session->id_supplier))->row_array();
+                                                                        $disk = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$r['id_produk'],'id_reseller'=>$this->session->id_reseller))->row_array();
                                                                         if ($r['id_produk']==$row['id_produk']){
                                                                           echo "<option value='$r[id_produk]' selected>$r[nama_produk]</option>";
                                                                           $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_konsumen']-$disk['diskon']) . "',desc:'".addslashes($r['satuan'])."'};\n";

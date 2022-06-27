@@ -3,7 +3,7 @@
   <tbody>
     <?php if (trim($rows['foto'])==''){ $foto_user = 'users.gif'; }else{ $foto_user = $rows['foto']; } ?>
     <tr bgcolor='#f5f5f5'><td rowspan='12' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'>"; ?></center></td></tr>
-    <tr><th scope='row' width='120px'>Nama Supplier</th> <td><?php echo $rows['nama_supplier']?></td></tr>
+    <tr><th scope='row' width='120px'>Nama Distributor</th> <td><?php echo $rows['nama_reseller']?></td></tr>
     <tr><th scope='row'>Alamat</th> <td><?php echo $rows['alamat_lengkap']?></td></tr>
     <tr><th scope='row'>No Hp</th> <td><?php echo $rows['no_telpon']?></td></tr>
     <tr><th scope='row'>Alamat Email</th> <td><?php echo $rows['email']?></td></tr>

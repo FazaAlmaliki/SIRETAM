@@ -25,7 +25,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div>";

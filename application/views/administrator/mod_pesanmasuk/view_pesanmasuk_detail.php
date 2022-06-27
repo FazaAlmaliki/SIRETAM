@@ -11,7 +11,7 @@
                     if (isset($_POST['submit'])){
                        echo "<div class='alert alert-success alert-dismissible fade in' role='alert'> 
                                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                                <span aria-hidden='true'>×</span></button> <strong>Success!</strong> - Email success Terkirim ke $_POST[b].
+                                <span aria-hidden='true'>×</span></button> <strong>Success ! - Pesan Berhasil Dibalas</strong>
                               </div>";
                     }
                   echo "<table class='table table-condensed table-bordered'>
@@ -29,7 +29,7 @@
               
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Kirimkan Balasan</button>
-                    <a href='".base_url().$this->uri->segment(1)."/pesanmasuk'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/pesanmasuk'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div></div></div>";

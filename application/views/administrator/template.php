@@ -8,7 +8,7 @@ if ($this->session->level==''){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Selamat Datang Admin SireTam</title>
+    <title>Selamat Datang Admin SiReTam</title>
     <meta name="author" content="phpmu.com">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>asset/images/<?php echo favicon(); ?>" />
     <!-- Tell the browser to be responsive to screen width -->

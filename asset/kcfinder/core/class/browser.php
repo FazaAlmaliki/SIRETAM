@@ -82,7 +82,7 @@ class browser extends uploader {
         $act = isset($_GET['act']) ? $_GET['act'] : "browser";
         if (!method_exists($this, "act_$act"))
             $act = "browser";
-        $this->action = $act;
+        $this->Aksi = $act;
         $method = "act_$act";
 
         if ($this->config['disabled']) {
@@ -886,7 +886,7 @@ class browser extends uploader {
     protected function output($data=null, $template=null) {
         if (!is_array($data)) $data = array();
         if ($template === null)
-            $template = $this->action;
+            $template = $this->Aksi;
 
         if (file_exists("tpl/tpl_$template.php")) {
             ob_start();
@@ -904,9 +904,9 @@ class browser extends uploader {
     }
 
     protected function errorMsg($message, array $data=null) {
-        if (in_array($this->action, array("thumb", "upload", "download", "downloadDir")))
+        if (in_array($this->Aksi, array("thumb", "upload", "download", "downloadDir")))
             die($this->label($message, $data));
-        if (($this->action === null) || ($this->action == "browser"))
+        if (($this->Aksi === null) || ($this->Aksi == "browser"))
             $this->backMsg($message, $data);
         else {
             $message = $this->label($message, $data);

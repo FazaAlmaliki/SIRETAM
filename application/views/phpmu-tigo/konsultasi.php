@@ -58,15 +58,6 @@
 										if(($no % 2)==0){ $warna="#ffffff;"; }else{ $warna="#f5f5f5"; }
 										$test = md5(strtolower(trim($kka['alamat_email'])));	
 										echo "<div id='reply$kka[id_komentar]' style='background:$warna' class='commment-content'>
-												<div class='user-avatar'>
-													<a href='#' class='hover-effect'>";
-														if ($kka['alamat_email'] == ''){
-															echo "<img class='setborder' src='".base_url()."asset/foto_user/blank.png'/>";
-														}else{
-															echo "<img class='setborder' src='http://www.gravatar.com/avatar/$test.jpg?s=100'/>";
-														}
-													echo "</a>
-												</div>
 												<strong class='user-nick'><a href='#'>$kka[nama_lengkap]</a></strong>
 												<span class='time-stamp'>".tgl_indo($kka['tanggal_komentar'])."</span>
 												<div class='comment-text'>

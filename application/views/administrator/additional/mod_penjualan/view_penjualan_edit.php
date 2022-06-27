@@ -14,10 +14,10 @@
                     <tr><th scope='row'>Nama Supplier</th>                 <td><select class='form-control' name='b'>
                                                                                 <?php 
                                                                                   foreach ($reseller as $r){
-                                                                                    if ($r['id_supplier']==$rows['id_supplier']){
-                                                                                      echo "<option value='$r[id_supplier]' selected>$r[nama_supplier]</option>";
+                                                                                    if ($r['id_reseller']==$rows['id_reseller']){
+                                                                                      echo "<option value='$r[id_reseller]' selected>$r[nama_reseller]</option>";
                                                                                     }else{
-                                                                                      echo "<option value='$r[id_supplier]'>$r[nama_supplier]</option>";
+                                                                                      echo "<option value='$r[id_reseller]'>$r[nama_reseller]</option>";
                                                                                     }
                                                                                   }
                                                                                 ?>
@@ -26,7 +26,7 @@
                   </tbody>
                   </table>
                   <input class='btn btn-primary btn-sm' type="submit" name='submit1' value='Simpan Data'>
-                  <a class='btn btn-default btn-sm' href='<?php echo base_url(); ?>administrator/penjualan'>Selesai / Kembali</a>
+                  <a class='btn btn-default btn-sm' href='<?php echo base_url(); ?>administrator/penjualan'>Selesai </a>
                   <hr>
                   <table class="table table-bordered table-striped">
                     <thead>
@@ -52,10 +52,10 @@
                                                                       foreach ($barang as $r){
                                                                         if ($r['id_produk']==$row['id_produk']){
                                                                           echo "<option value='$r[id_produk]' selected>$r[nama_produk]</option>";
-                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_suppliers']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_reseller']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                                         }else{
                                                                           echo "<option value='$r[id_produk]'>$r[nama_produk]</option>";
-                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_suppliers']) . "',desc:'".addslashes($r['satuan'])."'};\n";
+                                                                          $jsArray .= "prdName['" . $r['id_produk'] . "'] = {name:'" . addslashes($r['harga_reseller']) . "',desc:'".addslashes($r['satuan'])."'};\n";
                                                                         }
                                                                       }
                                                                    echo "</select></td>

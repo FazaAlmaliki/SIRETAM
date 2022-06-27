@@ -54,7 +54,7 @@
 
                         <p class="contact-form-message">
                             <label for="c_message">Alamat<span class="required">*</span></label>
-                            <textarea name='e' placeholder="Alamat Anda..." class="required" required></textarea>
+                            <textarea name='e' placeholder="Alamat Desa, Jalan, dan No Rumah/Kantor anda.." class="required" required></textarea>
                         </p>
 
                         <p class="contact-form-user">
@@ -69,7 +69,7 @@
         </div>
 
         <div role='tabpanel' class='tab-pane fade' id='reseller' aria-labelledby='reseller-tab'>
-        <div class='alert alert-warning'><b>PENTING!</b> Lengkapi Form dibawah ini untuk mendaftarkan diri sebagai <b>Supplier</b>, harap di isi dengan data yang sebenar-benarnya, Terima kasih...</div>
+        <div class='alert alert-warning'><b>PENTING!</b> Lengkapi Form dibawah ini untuk mendaftarkan diri sebagai <b>Pelapak</b>, harap di isi dengan data yang sebenar-benarnya, Terima kasih...</div>
             <div class="block-content">
                 <div id="writecomment">
                     <form action="<?php echo base_url(); ?>auth/register" method="POST" id="form_komentar">
@@ -89,9 +89,16 @@
                         </p>
 
                         <p class="contact-form-user">
+                            <label for="c_name">Jenis Kelamin<span class="required">*</label>
+                            <input type='radio' name='d' value='Laki-laki'> Laki-laki &nbsp;
+                            <input type='radio' name='d' value='Perempuan'> Perempuan
+                        </p>
+
+                        <p class="contact-form-user">
                             <label for="c_name">No Handphone<span class="required">*</label>
                             <input type="number" name='f'placeholder="08**********" class="required" required/>
                         </p>
+
 
                         <p class="contact-form-email">
                             <label for="c_email">E-mail<span class="required">*</span></label>
@@ -117,7 +124,7 @@
 
                         <p class="contact-form-message">
                             <label for="c_message">Alamat<span class="required">*</span></label>
-                            <textarea name='e' placeholder="Alamat Anda. . ." class="required" required></textarea>
+                            <textarea name='e' placeholder="Nama Kecamatan, Desa, Jalan, dan No Rumah anda.." class="required" required></textarea>
                         </p>
                         
                         <p class="contact-form-user">
@@ -129,7 +136,7 @@
                             <label for="c_name">Referral<span class="required">*</label>
                             <input type="text" name='i' placeholder="Username Referral.." onkeyup="nospaces(this)" class="required" required/>
                         </p>
-                        <p><input type="submit" name="submit2" class="styled-button" value="Daftar Sebagai Supplier"/></p>
+                        <p><input type="submit" name="submit2" class="styled-button" value="Daftar Sebagai Penjual"/></p>
                     </form>
                 </div>
             </div>

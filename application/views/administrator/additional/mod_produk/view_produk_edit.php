@@ -57,7 +57,8 @@
                     <tr><th width='130px' scope='row'>Nama Produk</th>  <td><input type='text' class='form-control' name='b' value='$rows[nama_produk]' required></td></tr>
                     <tr><th scope='row'>Satuan</th>                     <td><input type='text' class='form-control' name='c' value='$rows[satuan]'></td></tr>
                     <tr><th scope='row'>Berat / Kilogram</th>                      <td><input type='number' class='form-control' name='berat' value='$rows[berat]'></td></tr>
-                    <tr><th scope='row'>Harga Reseller</th>             <td><input type='number' class='form-control' name='e' value='$rows[harga_suppliers]'></td></tr>
+                    <tr><th scope='row'>Harga Modal</th>                 <td><input type='number' class='form-control' name='d' value='$rows[harga_beli]'></td></tr>
+                    <tr><th scope='row'>Harga Supplier</th>             <td><input type='number' class='form-control' name='e' value='$rows[harga_reseller]'></td></tr>
                     <tr><th scope='row'>Harga Konsumen</th>             <td><input type='number' class='form-control' name='f' value='$rows[harga_konsumen]'></td></tr>
                     <tr><th scope='row'>Diskon</th>                 <td><input type='number' class='form-control' name='diskon' value='$disk[diskon]'></td></tr>
                     <tr><th scope='row'>Keterangan</th>                 <td><textarea  id='editor1' class='form-control' name='ff'>$rows[keterangan]</textarea></td></tr>
@@ -70,7 +71,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/produk'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div>";

@@ -1,6 +1,6 @@
 <?php
-$rows = $this->db->query("SELECT a.*, b.nama_kota, c.nama_provinsi FROM `rb_supplier` a JOIN rb_kota b ON a.kota_id=b.kota_id
-JOIN rb_provinsi c ON b.provinsi_id=c.provinsi_id where a.id_supplier='$record[id_supplier]'")->row_array();
+$rows = $this->db->query("SELECT a.*, b.nama_kota, c.nama_provinsi FROM `rb_reseller` a JOIN rb_kota b ON a.kota_id=b.kota_id
+JOIN rb_provinsi c ON b.provinsi_id=c.provinsi_id where a.id_reseller='$record[id_reseller]'")->row_array();
 echo "<div class='col-md-12'>
     <div class='col-md-9' style='padding:0px'>
         <div class='col-md-3' style='padding:0px'>";
@@ -36,8 +36,8 @@ echo "<div class='col-md-12'>
             echo "<i style='color:red'>Gambar / Foto untuk Produk ini tidak tersedia!</i>";
         }
         $kat = $this->model_app->view_where('rb_kategori_produk',array('id_kategori_produk'=>$record['id_kategori_produk']))->row_array();
-        $jual = $this->model_reseller->jual_reseller($record['id_supplier'],$record['id_produk'])->row_array();
-        $beli = $this->model_reseller->beli_reseller($record['id_supplier'],$record['id_produk'])->row_array();
+        $jual = $this->model_reseller->jual_reseller($record['id_reseller'],$record['id_produk'])->row_array();
+        $beli = $this->model_reseller->beli_reseller($record['id_reseller'],$record['id_produk'])->row_array();
         $disk = $this->db->query("SELECT * FROM rb_produk_diskon where id_produk='$record[id_produk]'")->row_array();
         $diskon = rupiah(($disk['diskon']/$record['harga_konsumen'])*100,0)."%";
         if ($disk['diskon']>0){ $diskon_persen = "<div class='top-right'>$diskon</div>"; }else{ $diskon_persen = ''; }
@@ -55,19 +55,20 @@ echo "<div class='col-md-12'>
         <div class='col-md-9' style='padding:0px'>
             <div style='margin-left:10px'>
             <h1>$record[nama_produk]</h1>"; ?>
+
               <script type='text/javascript' src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f8aab4674f1896a'></script>
 
             <?php 
             if ($this->session->level=='konsumen'){
-                echo "<form action='".base_url()."members/keranjang/$record[id_supplier]/$record[id_produk]' method='POST'>";
+                echo "<form action='".base_url()."members/keranjang/$record[id_reseller]/$record[id_produk]' method='POST'>";
             }else{
-                echo "<form action='".base_url()."produk/keranjang/$record[id_supplier]/$record[id_produk]' method='POST'>";
+                echo "<form action='".base_url()."produk/keranjang/$record[id_reseller]/$record[id_produk]' method='POST'>";
             }
             echo "<table class='table table-condensed' style='margin-bottom:0px'>
                 <tr><td colspan='2' style='color:red;'><del style='color:#8a8a8a'>$harga_asli</del><br>
                 <h1 style='display:inline-block'>$harga_konsumen</h1> / $record[satuan] 
                 </td></tr>
-                <tr><td style='font-weight:bold; width:90px'>Berat</td> <td>$record[berat] Kilogram</td></tr>
+                <tr><td style='font-weight:bold; width:90px'>Berat</td> <td>$record[berat] KiloKilogram</td></tr>
                 <tr><td style='font-weight:bold'>Kategori</td> <td><a href='".base_url()."produk/kategori/$kat[kategori_seo]'>$kat[nama_kategori]</a></td></tr>";
                 if (($beli['beli']-$jual['jual'])>=1){
                     echo "<tr><td style='font-weight:bold'>Tersedia</td> <td class='text-success'>".($beli['beli']-$jual['jual'])." stok barang</td></tr>";
@@ -75,11 +76,12 @@ echo "<div class='col-md-12'>
                     echo "<tr><td style='font-weight:bold'>Stok</td> <td>Tidak Tersedia</td></tr>";
                 }
 
-            echo "<tr><td style='font-weight:bold'>Jumlah Beli</td> <td><input type='number' value='1' name='qty'></td></tr>
-            </table>
+            echo "<tr><td style='font-weight:bold'>Jumlah Beli/Sewa</td> <td><input type='number' value='1' name='qty'></td></tr>
+            </table><br>
 
         <center><button type='submit' class='btn btn-success btn-block btn-lg'>Beli / Sewa Sekarang</a></center>";
-        echo "</form><br>
+
+        echo "
         </div>
         </div>
         <div class='col-md-12' style='padding:0px'>

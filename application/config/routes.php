@@ -58,6 +58,7 @@ $route = array(
     'hubungi' => 'hubungi',
     'kategori' => 'kategori',
     'konsultasi' => 'konsultasi',
+    'testimoni' => 'testimoni',
     'konfirmasi' => 'konfirmasi',
     'produk' => 'produk',
     'auth' => 'auth',

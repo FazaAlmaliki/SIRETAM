@@ -1,4 +1,14 @@
 <?php
+/*
+-- ---------------------------------------------------------------
+-- MARKETPLACE MULTI BUYER MULTI SELLER + SUPPORT RESELLER SYSTEM
+-- CREATED BY : ROBBY PRIHANDAYA
+-- COPYRIGHT  : Copyright (c) 2018 - 2019, PHPMU.COM. (https://phpmu.com/)
+-- LICENSE    : http://opensource.org/licenses/MIT  MIT License
+-- CREATED ON : 2019-03-26
+-- UPDATED ON : 2019-03-27
+-- ---------------------------------------------------------------
+*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Administrator extends CI_Controller {
 	function index(){
@@ -76,6 +86,59 @@ class Administrator extends CI_Controller {
             $this->session->set_userdata(array('id_session'=>$this->uri->segment(3)));
             $data['title'] = 'Reset Password';
             $this->load->view('administrator/view_reset',$data);
+        }
+    }
+
+    function lupapassword(){
+        if (isset($_POST['lupa'])){
+            $email = strip_tags($this->input->post('email'));
+            $cekemail = $this->model_app->edit('users', array('email' => $email))->num_rows();
+            if ($cekemail <= 0){
+                $data['title'] = 'Alamat email tidak ditemukan';
+                $this->load->view('administrator/view_login',$data);
+            }else{
+                $iden = $this->model_app->edit('identitas', array('id_identitas' => 1))->row_array();
+                $usr = $this->model_app->edit('users', array('email' => $email))->row_array();
+                $this->load->library('email');
+
+                $tgl = date("d-m-Y H:i:s");
+                $subject      = 'Lupa Password ...';
+                $message      = "<html><body>
+                                    <table style='margin-left:25px'>
+                                        <tr><td>Halo $usr[nama_lengkap],<br>
+                                        Seseorang baru saja meminta untuk mengatur ulang kata sandi Anda di <span style='color:red'>$iden[url]</span>.<br>
+                                        Klik di sini untuk mengganti kata sandi Anda.<br>
+                                        Atau Anda dapat copas (Copy Paste) url dibawah ini ke address Bar Browser anda :<br>
+                                        <a href='".base_url().$this->uri->segment(1)."/reset_password/$usr[id_session]'>".base_url().$this->uri->segment(1)."/reset_password/$usr[id_session]</a><br><br>
+
+                                        Tidak meminta penggantian ini?<br>
+                                        Jika Anda tidak meminta kata sandi baru, segera beri tahu kami.<br>
+                                        Email. $iden[email], No Telp. $iden[no_telp]</td></tr>
+                                    </table>
+                                </body></html> \n";
+                
+                $this->email->from($iden['email'], $iden['nama_website']);
+                $this->email->to($usr['email']);
+                $this->email->cc('');
+                $this->email->bcc('');
+
+                $this->email->subject($subject);
+                $this->email->message($message);
+                $this->email->set_mailtype("html");
+                $this->email->send();
+                
+                $config['protocol'] = 'sendmail';
+                $config['mailpath'] = '/usr/sbin/sendmail';
+                $config['charset'] = 'utf-8';
+                $config['wordwrap'] = TRUE;
+                $config['mailtype'] = 'html';
+                $this->email->initialize($config);
+
+                $data['title'] = 'Password terkirim ke '.$usr['email'];
+                $this->load->view('administrator/view_login',$data);
+            }
+        }else{
+            redirect($this->uri->segment(1));
         }
     }
 
@@ -490,181 +553,49 @@ class Administrator extends CI_Controller {
 		redirect($this->uri->segment(1).'/download');
 	}
 
-    // Controller Modul Sekilas Info
+	// Controller Modul YM
 
-    function sekilasinfo(){
-        cek_session_akses('sekilasinfo',$this->session->id_session);
-        $data['record'] = $this->model_app->view_ordering('sekilasinfo','id_sekilas','DESC');
-        $this->template->load('administrator/template','administrator/mod_sekilasinfo/view_sekilasinfo',$data);
-    }
-
-    function tambah_sekilasinfo(){
-        cek_session_akses('sekilasinfo',$this->session->id_session);
-        if (isset($_POST['submit'])){
-            $config['upload_path'] = 'asset/foto_info/';
-            $config['allowed_types'] = 'gif|jpg|png|JPG|JPEG';
-            $config['max_size'] = '2500'; // kb
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('b');
-            $hasil=$this->upload->data();
-            if ($hasil['file_name']==''){
-                $data = array('info'=>$this->input->post('a'),
-                              'tgl_posting'=>date('Y-m-d'),
-                              'aktif'=>'Y');
-            }else{
-                $data = array('info'=>$this->input->post('a'),
-                              'tgl_posting'=>date('Y-m-d'),
-                              'gambar'=>$hasil['file_name'],
-                              'aktif'=>'Y');
-            }
-            $this->model_app->insert('sekilasinfo',$data);
-            redirect($this->uri->segment(1).'/sekilasinfo');
-        }else{
-            $this->template->load('administrator/template','administrator/mod_sekilasinfo/view_sekilasinfo_tambah');
-        }
-    }
-
-    function edit_sekilasinfo(){
-        cek_session_akses('sekilasinfo',$this->session->id_session);
-        $id = $this->uri->segment(3);
-        if (isset($_POST['submit'])){
-            $config['upload_path'] = 'asset/foto_info/';
-            $config['allowed_types'] = 'gif|jpg|png|JPG|JPEG';
-            $config['max_size'] = '2500'; // kb
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('b');
-            $hasil=$this->upload->data();
-            if ($hasil['file_name']==''){
-                $data = array('info'=>$this->input->post('a'),
-                              'aktif'=>$this->input->post('f'));
-            }else{
-                $data = array('info'=>$this->input->post('a'),
-                              'gambar'=>$hasil['file_name'],
-                              'aktif'=>$this->input->post('f'));
-            }
-
-            $where = array('id_sekilas' => $this->input->post('id'));
-            $this->model_app->update('sekilasinfo', $data, $where);
-            redirect($this->uri->segment(1).'/sekilasinfo');
-        }else{
-            $proses = $this->model_app->edit('sekilasinfo', array('id_sekilas' => $id))->row_array();
-            $data = array('rows' => $proses);
-            $this->template->load('administrator/template','administrator/mod_sekilasinfo/view_sekilasinfo_edit',$data);
-        }
-    }
-
-    function delete_sekilasinfo(){
-        cek_session_akses('sekilasinfo',$this->session->id_session);
-        $id = array('id_sekilas' => $this->uri->segment(3));
-        $this->model_app->delete('sekilasinfo',$id);
-        redirect($this->uri->segment(1).'/sekilasinfo');
-    }
-
-
-
-    // Controller Modul Jajak Pendapat
-
-    function jajakpendapat(){
-        cek_session_akses('jajakpendapat',$this->session->id_session);
-        if ($this->session->level=='admin'){
-            $data['record'] = $this->model_app->view_ordering('poling','id_poling','DESC');
-        }else{
-            $data['record'] = $this->model_app->view_where_ordering('poling',array('username'=>$this->session->username),'id_poling','DESC');
-        }
-        $this->template->load('administrator/template','administrator/mod_jajakpendapat/view_jajakpendapat',$data);
-    }
-
-    function tambah_jajakpendapat(){
-        cek_session_akses('jajakpendapat',$this->session->id_session);
-        if (isset($_POST['submit'])){
-            $data = array('pilihan'=>$this->input->post('a'),
-                          'status'=>$this->input->post('b'),
-                          'username'=>$this->session->username,
-                          'rating'=>'0',
-                          'aktif'=>$this->input->post('c'));
-            $this->model_app->insert('poling',$data);
-            redirect($this->uri->segment(1).'/jajakpendapat');
-        }else{
-            $this->template->load('administrator/template','administrator/mod_jajakpendapat/view_jajakpendapat_tambah');
-        }
-    }
-
-    function edit_jajakpendapat(){
-        cek_session_akses('jajakpendapat',$this->session->id_session);
-        $id = $this->uri->segment(3);
-        if (isset($_POST['submit'])){
-            $data = array('pilihan'=>$this->input->post('a'),
-                          'status'=>$this->input->post('b'),
-                          'aktif'=>$this->input->post('c'));
-            $where = array('id_poling' => $this->input->post('id'));
-            $this->model_app->update('poling', $data, $where);
-            redirect($this->uri->segment(1).'/jajakpendapat');
-        }else{
-            if ($this->session->level=='admin'){
-                 $proses = $this->model_app->edit('poling', array('id_poling' => $id))->row_array();
-            }else{
-                $proses = $this->model_app->edit('poling', array('id_poling' => $id, 'username' => $this->session->username))->row_array();
-            }
-            $data = array('rows' => $proses);
-            $this->template->load('administrator/template','administrator/mod_jajakpendapat/view_jajakpendapat_edit',$data);
-        }
-    }
-
-    function delete_jajakpendapat(){
-        cek_session_akses('jajakpendapat',$this->session->id_session);
-        if ($this->session->level=='admin'){
-            $id = array('id_poling' => $this->uri->segment(3));
-        }else{
-            $id = array('id_poling' => $this->uri->segment(3), 'username'=>$this->session->username);
-        }
-        $this->model_app->delete('poling',$id);
-        redirect($this->uri->segment(1).'/jajakpendapat');
-    }
-
-
-	// Controller Modul Chat
-
-	function chat(){
-		cek_session_akses('chat',$this->session->id_session);
-		$data['record'] = $this->model_app->view_ordering('mod_chat','id','DESC');
-		$this->template->load('administrator/template','administrator/mod_chat/view_chat',$data);
+	function ym(){
+		cek_session_akses('ym',$this->session->id_session);
+		$data['record'] = $this->model_app->view_ordering('mod_ym','id','DESC');
+		$this->template->load('administrator/template','administrator/mod_ym/view_ym',$data);
 	}
 
-	function tambah_chat(){
-		cek_session_akses('chat',$this->session->id_session);
+	function tambah_ym(){
+		cek_session_akses('ym',$this->session->id_session);
 		if (isset($_POST['submit'])){
 			$data = array('nama'=>$this->db->escape_str($this->input->post('a')),
                         'username'=>seo_title($this->input->post('b')),
-                        'chat_icon'=>$this->input->post('c'));
-            $this->model_app->insert('mod_chat',$data);
-			redirect($this->uri->segment(1).'/chat');
+                        'ym_icon'=>$this->input->post('c'));
+            $this->model_app->insert('mod_ym',$data);
+			redirect($this->uri->segment(1).'/ym');
 		}else{
-			$this->template->load('administrator/template','administrator/mod_chat/view_chat_tambah');
+			$this->template->load('administrator/template','administrator/mod_ym/view_ym_tambah');
 		}
 	}
 
-	function edit_chat(){
-		cek_session_akses('chat',$this->session->id_session);
+	function edit_ym(){
+		cek_session_akses('ym',$this->session->id_session);
 		$id = $this->uri->segment(3);
 		if (isset($_POST['submit'])){
 			$data = array('nama'=>$this->db->escape_str($this->input->post('a')),
                         'username'=>seo_title($this->input->post('b')),
-                        'chat_icon'=>$this->input->post('c'));
+                        'ym_icon'=>$this->input->post('c'));
             $where = array('id' => $this->input->post('id'));
-            $this->model_app->update('mod_chat', $data, $where);
-			redirect($this->uri->segment(1).'/chat');
+            $this->model_app->update('mod_ym', $data, $where);
+			redirect($this->uri->segment(1).'/ym');
 		}else{
-			$proses = $this->model_app->edit('mod_chat', array('id' => $id))->row_array();
+			$proses = $this->model_app->edit('mod_ym', array('id' => $id))->row_array();
             $data = array('rows' => $proses);
-			$this->template->load('administrator/template','administrator/mod_chat/view_chat_edit',$data);
+			$this->template->load('administrator/template','administrator/mod_ym/view_ym_edit',$data);
 		}
 	}
 
-	function delete_chat(){
-        cek_session_akses('chat',$this->session->id_session);
+	function delete_ym(){
+        cek_session_akses('ym',$this->session->id_session);
 		$id = array('id' => $this->uri->segment(3));
-        $this->model_app->delete('mod_chat',$id);
-		redirect($this->uri->segment(1).'/chat');
+        $this->model_app->delete('mod_ym',$id);
+		redirect($this->uri->segment(1).'/ym');
 	}
 
     // Controller Modul Alamat
@@ -703,7 +634,7 @@ class Administrator extends CI_Controller {
             $subject         = $this->input->post('c');
             $message         = $this->input->post('isi')." <br><hr><br> ".$this->input->post('d');
             
-            $this->email->from('muhamadfazaalmaliki@gmail.com', 'PHPMU.COM');
+            $this->email->from('robby.prihandaya@gmail.com', 'PHPMU.COM');
             $this->email->to($email);
             $this->email->cc('');
             $this->email->bcc('');
@@ -1068,15 +999,6 @@ class Administrator extends CI_Controller {
         }
     }
     
-    //function detail_konsumen(){
-    //    cek_session_akses('konsumen',$this->session->id_session);
-    //    $id = $this->uri->segment(3);
-    //    $record = $this->model_reseller->orders_report($id,'reseller');
-    //    $edit = $this->model_reseller->profile_konsumen($id)->row_array();
-    //    $data = array('rows' => $edit,'record'=>$record);
-    //    $this->template->load('administrator/template','administrator/additional/mod_konsumen/view_konsumen_detail',$data);
-    //}
-
     function detail_konsumen(){
         cek_session_akses('konsumen',$this->session->id_session);
         $id = $this->uri->segment(3);
@@ -1095,24 +1017,24 @@ class Administrator extends CI_Controller {
 
 
 
-    // Controller Modul Supplier
+    // Controller Modul Reseller
 
     function reseller(){
         cek_session_akses('reseller',$this->session->id_session);
-        $data['record'] = $this->model_app->view_ordering('rb_supplier','id_supplier','DESC');
+        $data['record'] = $this->model_app->view_ordering('rb_reseller','id_reseller','DESC');
         $this->template->load('administrator/template','administrator/additional/mod_reseller/view_reseller',$data);
     }
 
     function tambah_reseller(){
         cek_session_akses('reseller',$this->session->id_session);
         if (isset($_POST['submit'])){
-            $cek  = $this->model_app->view_where('rb_supplier',array('username'=>$this->input->post('a')))->num_rows();
+            $cek  = $this->model_app->view_where('rb_reseller',array('username'=>$this->input->post('a')))->num_rows();
             if ($cek >= 1){
                 $username = $this->input->post('a');
                 echo "<script>window.alert('Maaf, Username $username sudah dipakai oleh orang lain!');
                                   window.location=('index.php?view=login')</script>";
             }else{
-                $route = array('administrator','auth','contact','download','konfirmasi','main','members','page','produk','reseller');
+                $route = array('administrator','auth','contact','download','gallery','konfirmasi','main','members','page','produk','reseller','testimoni','video');
                 if (in_array($this->input->post('a'), $route)){
                     $username = $this->input->post('a');
                     echo "<script>window.alert('Maaf, Username $username sudah dipakai oleh orang lain!');
@@ -1127,8 +1049,7 @@ class Administrator extends CI_Controller {
                 if ($hasil['file_name']==''){
                     $data = array('username'=>$this->input->post('a'),
                                 'password'=>hash("sha512", md5($this->input->post('b'))),
-                                'nama_supplier'=>$this->input->post('c'),
-                                'jenis_kelamin'=>$this->input->post('d'),
+                                'nama_reseller'=>$this->input->post('c'),
                                 'alamat_lengkap'=>$this->input->post('e'),
                                 'no_telpon'=>$this->input->post('f'),
                                 'email'=>$this->input->post('g'),
@@ -1139,8 +1060,7 @@ class Administrator extends CI_Controller {
                 }else{
                     $data = array('username'=>$this->input->post('a'),
                                 'password'=>hash("sha512", md5($this->input->post('b'))),
-                                'nama_supplier'=>$this->input->post('c'),
-                                'jenis_kelamin'=>$this->input->post('d'),
+                                'nama_reseller'=>$this->input->post('c'),
                                 'alamat_lengkap'=>$this->input->post('e'),
                                 'no_telpon'=>$this->input->post('f'),
                                 'email'=>$this->input->post('g'),
@@ -1150,7 +1070,7 @@ class Administrator extends CI_Controller {
                                 'referral'=>$this->input->post('j'),
                                 'tanggal_daftar'=>date('Y-m-d'));
                 }
-                $this->model_app->insert('rb_supplier',$data);
+                $this->model_app->insert('rb_reseller',$data);
                 redirect('administrator/reseller');
                 }
             }
@@ -1172,7 +1092,7 @@ class Administrator extends CI_Controller {
             if ($hasil['file_name']==''){
                 if (trim($this->input->post('b')) != ''){
                     $data = array('password'=>hash("sha512", md5($this->input->post('b'))),
-                                'nama_supplier'=>$this->input->post('c'),
+                                'nama_reseller'=>$this->input->post('c'),
                                 'alamat_lengkap'=>$this->input->post('e'),
                                 'no_telpon'=>$this->input->post('f'),
                                 'email'=>$this->input->post('g'),
@@ -1180,8 +1100,7 @@ class Administrator extends CI_Controller {
                                 'keterangan'=>$this->input->post('i'),
                                 'referral'=>$this->input->post('j'));
                 }else{
-                   $data = array('nama_supplier'=>$this->input->post('c'),
-                                'jenis_kelamin'=>$this->input->post('d'),
+                   $data = array('nama_reseller'=>$this->input->post('c'),
                                 'alamat_lengkap'=>$this->input->post('e'),
                                 'no_telpon'=>$this->input->post('f'),
                                 'email'=>$this->input->post('g'),
@@ -1192,8 +1111,7 @@ class Administrator extends CI_Controller {
             }else{
                 if (trim($this->input->post('b')) != ''){
                     $data = array('password'=>hash("sha512", md5($this->input->post('b'))),
-                                'nama_supplier'=>$this->input->post('c'),
-                                'jenis_kelamin'=>$this->input->post('d'),
+                                'nama_reseller'=>$this->input->post('c'),
                                 'alamat_lengkap'=>$this->input->post('e'),
                                 'no_telpon'=>$this->input->post('f'),
                                 'email'=>$this->input->post('g'),
@@ -1202,8 +1120,7 @@ class Administrator extends CI_Controller {
                                 'foto'=>$hasil['file_name'],
                                 'referral'=>$this->input->post('j'));
                 }else{
-                   $data = array('nama_supplier'=>$this->input->post('c'),
-                                'jenis_kelamin'=>$this->input->post('d'),
+                   $data = array('nama_reseller'=>$this->input->post('c'),
                                 'alamat_lengkap'=>$this->input->post('e'),
                                 'no_telpon'=>$this->input->post('f'),
                                 'email'=>$this->input->post('g'),
@@ -1213,11 +1130,11 @@ class Administrator extends CI_Controller {
                                 'referral'=>$this->input->post('j'));
                 }
             }
-            $where = array('id_supplier' => $this->input->post('id'));
-            $this->model_app->update('rb_supplier', $data, $where);
+            $where = array('id_reseller' => $this->input->post('id'));
+            $this->model_app->update('rb_reseller', $data, $where);
             redirect('administrator/reseller');
         }else{
-            $edit = $this->model_app->edit('rb_supplier',array('id_supplier'=>$id))->row_array();
+            $edit = $this->model_app->edit('rb_reseller',array('id_reseller'=>$id))->row_array();
             $data = array('rows' => $edit);
             $this->template->load('administrator/template','administrator/additional/mod_reseller/view_reseller_edit',$data);
         }
@@ -1228,7 +1145,7 @@ class Administrator extends CI_Controller {
         $id = $this->uri->segment(3);
         $record = $this->model_reseller->reseller_pembelian($id,'admin');
         $penjualan = $this->model_reseller->penjualan_list_konsumen($id,'reseller');
-        $edit = $this->model_app->edit('rb_supplier',array('id_supplier'=>$id))->row_array();
+        $edit = $this->model_app->edit('rb_reseller',array('id_reseller'=>$id))->row_array();
         $reward = $this->model_app->view_ordering('rb_reward','id_reward','ASC');
 
         $data = array('rows' => $edit,'record'=>$record,'penjualan'=>$penjualan,'reward'=>$reward);
@@ -1237,8 +1154,8 @@ class Administrator extends CI_Controller {
 
     function delete_reseller(){
         cek_session_akses('reseller',$this->session->id_session);
-        $id = array('id_supplier' => $this->uri->segment(3));
-        $this->model_app->delete('rb_supplier',$id);
+        $id = array('id_reseller' => $this->uri->segment(3));
+        $this->model_app->delete('rb_reseller',$id);
         redirect('administrator/reseller');
     }
 
@@ -1255,10 +1172,13 @@ class Administrator extends CI_Controller {
         cek_session_akses('supplier',$this->session->id_session);
         if (isset($_POST['submit'])){
             $data = array('nama_supplier'=>$this->input->post('a'),
+                        'kontak_person'=>$this->input->post('b'),
                         'alamat_lengkap'=>$this->input->post('c'),
-                        'email'=>$this->input->post('e'),
+                        'no_hp'=>$this->input->post('d'),
+                        'alamat_email'=>$this->input->post('e'),
                         'kode_pos'=>$this->input->post('f'),
                         'no_telpon'=>$this->input->post('g'),
+                        'fax'=>$this->input->post('h'),
                         'keterangan'=>$this->input->post('i'));
             $this->model_app->insert('rb_supplier',$data);
             redirect('administrator/supplier');
@@ -1272,10 +1192,13 @@ class Administrator extends CI_Controller {
         $id = $this->uri->segment(3);
         if (isset($_POST['submit'])){
            $data = array('nama_supplier'=>$this->input->post('a'),
+                        'kontak_person'=>$this->input->post('b'),
                         'alamat_lengkap'=>$this->input->post('c'),
-                        'email'=>$this->input->post('e'),
+                        'no_hp'=>$this->input->post('d'),
+                        'alamat_email'=>$this->input->post('e'),
                         'kode_pos'=>$this->input->post('f'),
                         'no_telpon'=>$this->input->post('g'),
+                        'fax'=>$this->input->post('h'),
                         'keterangan'=>$this->input->post('i'));
             $where = array('id_supplier' => $this->input->post('id'));
             $this->model_app->update('rb_supplier', $data, $where);
@@ -1423,7 +1346,8 @@ class Administrator extends CI_Controller {
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'gambar'=>$fileName,
@@ -1436,7 +1360,8 @@ class Administrator extends CI_Controller {
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'keterangan'=>$this->input->post('ff'),
@@ -1477,7 +1402,8 @@ class Administrator extends CI_Controller {
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'gambar'=>$fileName,
@@ -1489,7 +1415,8 @@ class Administrator extends CI_Controller {
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'keterangan'=>$this->input->post('ff'),
@@ -1665,7 +1592,7 @@ class Administrator extends CI_Controller {
         }else{
             $data['rows'] = $this->model_reseller->view_join_rows('rb_pembelian','rb_supplier','id_supplier',array('id_pembelian'=>$this->session->idp),'id_pembelian','DESC')->row_array();
             $data['record'] = $this->model_app->view_join_where('rb_pembelian_detail','rb_produk','id_produk',array('id_pembelian'=>$this->session->idp),'id_pembelian_detail','DESC');
-            $data['barang'] = $this->model_app->view_where_ordering('rb_produk',array('id_supplier'=>'0'),'id_produk','ASC');
+            $data['barang'] = $this->model_app->view_where_ordering('rb_produk',array('id_reseller'=>'0'),'id_produk','ASC');
             $data['supplier'] = $this->model_app->view_ordering('rb_supplier','id_supplier','ASC');
             if ($this->uri->segment(3)!=''){
                 $data['row'] = $this->model_app->view_where('rb_pembelian_detail',array('id_pembelian_detail'=>$this->uri->segment(3)))->row_array();
@@ -1704,7 +1631,7 @@ class Administrator extends CI_Controller {
         }else{
             $data['rows'] = $this->model_reseller->view_join_rows('rb_pembelian','rb_supplier','id_supplier',array('id_pembelian'=>$this->uri->segment(3)),'id_pembelian','DESC')->row_array();
             $data['record'] = $this->model_app->view_join_where('rb_pembelian_detail','rb_produk','id_produk',array('id_pembelian'=>$this->uri->segment(3)),'id_pembelian_detail','DESC');
-            $data['barang'] = $this->model_app->view_where_ordering('rb_produk',array('id_supplier'=>'0'),'id_produk','ASC');
+            $data['barang'] = $this->model_app->view_where_ordering('rb_produk',array('id_reseller'=>'0'),'id_produk','ASC');
             $data['supplier'] = $this->model_app->view_ordering('rb_supplier','id_supplier','ASC');
             if ($this->uri->segment(4)!=''){
                 $data['row'] = $this->model_app->view_where('rb_pembelian_detail',array('id_pembelian_detail'=>$this->uri->segment(4)))->row_array();
@@ -1760,7 +1687,7 @@ class Administrator extends CI_Controller {
                 $data = array('kode_transaksi'=>$this->input->post('a'),
                               'id_pembeli'=>$this->input->post('b'),
                               'id_penjual'=>0,
-                              'status_pembeli'=>'supplier',
+                              'status_pembeli'=>'reseller',
                               'status_penjual'=>'admin',
                               'waktu_transaksi'=>date('Y-m-d H:i:s'),
                               'proses'=>'0');
@@ -1807,7 +1734,7 @@ class Administrator extends CI_Controller {
             $data['rows'] = $this->model_reseller->penjualan_detail($this->session->idp)->row_array();
             $data['record'] = $this->model_app->view_join_where('rb_penjualan_detail','rb_produk','id_produk',array('id_penjualan'=>$this->session->idp),'id_penjualan_detail','DESC');
             $data['barang'] = $this->model_app->view_ordering('rb_produk','id_produk','ASC');
-            $data['reseller'] = $this->model_app->view_ordering('rb_supplier','id_supplier','ASC');
+            $data['reseller'] = $this->model_app->view_ordering('rb_reseller','id_reseller','ASC');
             if ($this->uri->segment(3)!=''){
                 $data['row'] = $this->model_app->view_where('rb_penjualan_detail',array('id_penjualan_detail'=>$this->uri->segment(3)))->row_array();
             }
@@ -1858,7 +1785,7 @@ class Administrator extends CI_Controller {
             $data['rows'] = $this->model_reseller->penjualan_detail($this->uri->segment(3))->row_array();
             $data['record'] = $this->model_app->view_join_where('rb_penjualan_detail','rb_produk','id_produk',array('id_penjualan'=>$this->uri->segment(3)),'id_penjualan_detail','DESC');
             $data['barang'] = $this->model_app->view_ordering('rb_produk','id_produk','ASC');
-            $data['reseller'] = $this->model_app->view_ordering('rb_supplier','id_supplier','ASC');
+            $data['reseller'] = $this->model_app->view_ordering('rb_reseller','id_reseller','ASC');
             if ($this->uri->segment(4)!=''){
                 $data['row'] = $this->model_app->view_where('rb_penjualan_detail',array('id_penjualan_detail'=>$this->uri->segment(4)))->row_array();
             }
@@ -1874,14 +1801,14 @@ class Administrator extends CI_Controller {
 
             $order = $this->db->query("SELECT a.*, b.id_pembeli, b.kode_transaksi FROM rb_penjualan_detail a JOIN rb_penjualan b ON a.id_penjualan=b.id_penjualan where a.id_penjualan='".$this->uri->segment(3)."'");
             foreach ($order->result_array() as $row) {
-                $cek_produk = $this->db->query("SELECT * FROM rb_produk where id_produk='$row[id_produk]' AND id_supplier='$row[id_pembeli]'");
+                $cek_produk = $this->db->query("SELECT * FROM rb_produk where id_produk_perusahaan='$row[id_produk]' AND id_reseller='$row[id_pembeli]'");
                 if ($cek_produk->num_rows()>=1){
                     $pro = $cek_produk->row_array();
                     $kode_transaksi = "TRX-".date('YmdHis');
                     $data = array('kode_transaksi'=>$kode_transaksi,
                                   'id_pembeli'=>$row['id_pembeli'],
                                   'id_penjual'=>'1',
-                                  'status_pembeli'=>'supplier',
+                                  'status_pembeli'=>'reseller',
                                   'status_penjual'=>'admin',
                                   'service'=>$row['kode_transaksi'],
                                   'waktu_transaksi'=>date('Y-m-d H:i:s'),
@@ -1897,14 +1824,15 @@ class Administrator extends CI_Controller {
                     $this->model_app->insert('rb_penjualan_detail',$data);
                 }else{
                     $p = $this->db->query("SELECT * FROM rb_produk where id_produk='$row[id_produk]'")->row_array();
-                    $data = array('id_produk'=>$p['id_produk'],
+                    $data = array('id_produk_perusahaan'=>$p['id_produk'],
                                   'id_kategori_produk'=>$p['id_kategori_produk'],
                                   'id_kategori_produk_sub'=>$p['id_kategori_produk_sub'],
-                                  'id_supplier'=>$row['id_pembeli'],
+                                  'id_reseller'=>$row['id_pembeli'],
                                   'nama_produk'=>$p['nama_produk'],
                                   'produk_seo'=>$p['produk_seo'],
                                   'satuan'=>$p['satuan'],
-                                  'harga_suppliers'=>$p['harga_suppliers'],
+                                  'harga_beli'=>$p['harga_beli'],
+                                  'harga_reseller'=>$p['harga_reseller'],
                                   'harga_konsumen'=>$p['harga_konsumen'],
                                   'berat'=>$p['berat'],
                                   'gambar'=>$p['gambar'],
@@ -1918,7 +1846,7 @@ class Administrator extends CI_Controller {
                     $data = array('kode_transaksi'=>$kode_transaksi,
                                   'id_pembeli'=>$row['id_pembeli'],
                                   'id_penjual'=>'1',
-                                  'status_pembeli'=>'supplier',
+                                  'status_pembeli'=>'reseller',
                                   'status_penjual'=>'admin',
                                   'service'=>$row['kode_transaksi'],
                                   'waktu_transaksi'=>date('Y-m-d H:i:s'),
@@ -1983,14 +1911,14 @@ class Administrator extends CI_Controller {
 
     function keuangan(){
         cek_session_akses('keuangan',$this->session->id_session);
-        $data['record'] = $this->model_app->view_ordering('rb_supplier','id_supplier','DESC');
+        $data['record'] = $this->model_app->view_ordering('rb_reseller','id_reseller','DESC');
         $this->template->load('administrator/template','administrator/additional/mod_keuangan/view_keuangan',$data);
     }
 
     function bayar_bonus(){
         cek_session_akses('keuangan',$this->session->id_session);
         if (isset($_POST['submit'])){
-            $data = array('id_supplier'=>$this->input->post('idk'),
+            $data = array('id_reseller'=>$this->input->post('idk'),
                             'bonus_referral'=>$this->input->post('a'),
                             'waktu_pencairan'=>date('YmdHis'));
             $this->model_app->insert('rb_pencairan_bonus',$data);
@@ -1999,7 +1927,7 @@ class Administrator extends CI_Controller {
             $id = $this->uri->segment(3);
             $record = $this->model_reseller->reseller_pembelian($id,'admin');
             $penjualan = $this->model_reseller->penjualan_list_konsumen($id,'reseller');
-            $edit = $this->model_app->edit('rb_supplier',array('id_supplier'=>$id))->row_array();
+            $edit = $this->model_app->edit('rb_reseller',array('id_reseller'=>$id))->row_array();
             $reward = $this->model_app->view_ordering('rb_reward','id_reward','ASC');
 
             $data = array('rows' => $edit,'record'=>$record,'penjualan'=>$penjualan,'reward'=>$reward);
@@ -2009,7 +1937,7 @@ class Administrator extends CI_Controller {
 
     function bayar_reward(){
         cek_session_akses('keuangan',$this->session->id_session);
-        $data = array('id_supplier'=>$this->uri->segment(3),
+        $data = array('id_reseller'=>$this->uri->segment(3),
                         'id_reward'=>$this->uri->segment(4),
                         'reward_date'=>$this->uri->segment(5),
                         'waktu_pencairan'=>date('YmdHis'));
@@ -2026,13 +1954,13 @@ class Administrator extends CI_Controller {
 
     function history_reward(){
         cek_session_akses('keuangan',$this->session->id_session);
-        $data['record'] = $this->db->query("SELECT a.*, b.nama_supplier, c.posisi, c.reward FROM `rb_pencairan_reward` a JOIN rb_supplier b ON a.id_supplier=b.id_supplier JOIN rb_reward c ON a.id_reward=c.id_reward ORDER BY a.id_pencairan_reward DESC");
+        $data['record'] = $this->db->query("SELECT a.*, b.nama_reseller, c.posisi, c.reward FROM `rb_pencairan_reward` a JOIN rb_reseller b ON a.id_reseller=b.id_reseller JOIN rb_reward c ON a.id_reward=c.id_reward ORDER BY a.id_pencairan_reward DESC");
         $this->template->load('administrator/template','administrator/additional/mod_keuangan/view_history_reward',$data);
     }
 
     function history_referral(){
         cek_session_akses('keuangan',$this->session->id_session);
-        $data['record'] = $this->db->query("SELECT a.*, b.nama_supplier FROM `rb_pencairan_bonus` a JOIN rb_supplier b ON a.id_supplier=b.id_supplier ORDER BY a.id_pencairan_bonus DESC");
+        $data['record'] = $this->db->query("SELECT a.*, b.nama_reseller FROM `rb_pencairan_bonus` a JOIN rb_reseller b ON a.id_reseller=b.id_reseller ORDER BY a.id_pencairan_bonus DESC");
         $this->template->load('administrator/template','administrator/additional/mod_keuangan/view_history_referral',$data);
     }
 
@@ -2049,6 +1977,35 @@ class Administrator extends CI_Controller {
         $this->model_app->delete('rb_pencairan_bonus',$id);
         redirect('administrator/history_referral');
     }
+
+function testimoni(){
+    cek_session_akses('testimoni',$this->session->id_session);
+    $data['record'] = $this->db->query("SELECT a.*, b.nama_lengkap, b.username, b.id_konsumen FROM testimoni a JOIN rb_konsumen b ON a.id_konsumen=b.id_konsumen ORDER BY a.id_testimoni DESC");
+    $this->template->load('administrator/template','administrator/mod_testimoni/view_testimoni',$data);
+}
+
+function edit_testimoni(){
+    cek_session_akses('testimoni',$this->session->id_session);
+    $id = $this->uri->segment(3);
+    if (isset($_POST['submit'])){
+        $data = array('isi_testimoni'=>$this->input->post('b'),
+                            'aktif'=>$this->input->post('f'));
+            $where = array('id_testimoni' => $this->input->post('id'));
+            $this->model_app->update('testimoni', $data, $where);
+        redirect('administrator/testimoni');
+    }else{
+        $data['rows'] = $this->db->query("SELECT a.*, b.nama_lengkap, b.username, b.id_konsumen FROM testimoni a LEFT JOIN rb_konsumen b ON a.id_konsumen=b.id_konsumen where a.id_testimoni='$id'")->row_array();
+        $this->template->load('administrator/template','administrator/mod_testimoni/view_testimoni_edit',$data);
+    }
+}
+
+function delete_testimoni(){
+    cek_session_akses('testimoni',$this->session->id_session);
+    $id = array('id_testimoni' => $this->uri->segment(3));
+    $this->model_app->delete('testimoni',$id);
+    redirect('administrator/testimoni');
+}
+
 
 	function logout(){
 		$this->session->sess_destroy();

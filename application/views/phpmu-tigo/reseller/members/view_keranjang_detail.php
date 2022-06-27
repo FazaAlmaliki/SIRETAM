@@ -50,12 +50,12 @@
 </div>
 
 <div class="col-sm-4 colom44">
-  <?php $res = $this->db->query("SELECT a.*, b.nama_kota, c.nama_provinsi FROM rb_supplier a JOIN rb_kota b ON a.kota_id=b.kota_id 
+  <?php $res = $this->db->query("SELECT a.*, b.nama_kota, c.nama_provinsi FROM rb_reseller a JOIN rb_kota b ON a.kota_id=b.kota_id 
                 JOIN rb_provinsi c ON b.provinsi_id=c.provinsi_id
-                  where a.id_supplier='$rows[id_supplier]'")->row_array(); ?>
+                  where a.id_reseller='$rows[id_reseller]'")->row_array(); ?>
   <table class='table table-condensed'>
   <tbody>
-    <tr class='alert alert-info'><th scope='row' style='width:90px'>Pengirim</th> <td><?php echo $res['nama_supplier']?></td></tr>
+    <tr class='alert alert-info'><th scope='row' style='width:90px'>Pengirim</th> <td><?php echo $res['nama_reseller']?></td></tr>
     <tr class='alert alert-info'><th scope='row'>No Telpon</th> <td><?php echo $res['no_telpon']; ?></td></tr>
     <tr class='alert alert-info'><th scope='row'>Alamat</th> <td><?php echo $res['alamat_lengkap'].', '.$res['nama_kota'].', '.$res['nama_provinsi']; ?></td></tr>
   </tbody>

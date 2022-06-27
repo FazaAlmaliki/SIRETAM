@@ -21,7 +21,7 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>Admin SireTam</b> Login</a>
+        <a href="#"><b>SiReTam Admin</b> Login</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Silahkan Login Pada Form dibawah ini</p>
@@ -52,7 +52,7 @@
           </div>
         </form>
         <hr>
-        
+      
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

@@ -6,5 +6,5 @@ echo "<div class='wrapper'>
 			echo "<li><a href='$row[link]'>$row[nama_menu]</a></li>";
 		}
 	echo "</ul>
-	<p class='footer'>Copyright &copy;".date('Y').". All Rights reserved.<br/>Powered by <b style='color:salmon'><a href='#'>SireTam</a></b></p>
+	<p class='footer'>Copyright &copy;".date('Y').". All Rights reserved.<br/>Powered by <b style='color:salmon'><a href='#'>SiReTam</a></b></p>
 </div>";

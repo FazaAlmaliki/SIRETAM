@@ -11,12 +11,12 @@
           echo "<div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
-                    <input type='hidden'  value='$rows[id_supplier]' name='id'>";
+                    <input type='hidden'  value='$rows[id_reseller]' name='id'>";
                     if (trim($rows['foto'])==''){ $foto_user = 'blank.png'; }else{ $foto_user = $rows['foto']; }
                     echo "<tr bgcolor='#f5f5f5'><th rowspan='14' width='110px'><center><img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/$foto_user' class='img-circle img-thumbnail'></center></th></tr>
                     <tr><th width='130px' scope='row'>Username</th>       <td><input class='form-control' type='text' name='a' value='$rows[username]' disabled></td></tr>
                     <tr><th scope='row'>Password</th>                     <td><input class='form-control' type='password' name='b'></td></tr>
-                    <tr><th scope='row'>Nama Supplier</th>                <td><input class='form-control' type='text' name='c' value='$rows[nama_supplier]'></td></tr>
+                    <tr><th scope='row'>Nama Supplier</th>                <td><input class='form-control' type='text' name='c' value='$rows[nama_reseller]'></td></tr>
                     <tr><th scope='row'>Provinsi</th>                     <td><select class='form-control' name='state' id='state_reseller' required>
                                                                             <option value=''>- Pilih -</option>";
                                                                             $provinsi = $this->model_app->view_ordering('rb_provinsi','provinsi_id','ASC');
@@ -46,14 +46,14 @@
                     <tr><th scope='row'>Keterangan</th>                   <td><textarea class='form-control' name='i'>$rows[keterangan]</textarea></td></tr>
                     <tr><th scope='row'>Referral</th>                     <td><input class='form-control' type='text' name='j' value='$rows[referral]'></td></tr>
                     <tr><th scope='row'>Ganti Foto</th>                         <td><input type='file' class='form-control' name='gg'>";
-                                                                               if ($rows['foto'] != ''){ echo "<i style='color:red'>Foto Profile saat ini : </i><a target='_BLANK' href='".base_url()."asset/foto_user/$rows[foto]'>$rows[foto]</a>"; } echo "</td></tr>
+                                                                               if ($rows['foto'] != ''){ echo "<i style='color:red'>Foto Profil saat ini : </i><a target='_BLANK' href='".base_url()."asset/foto_user/$rows[foto]'>$rows[foto]</a>"; } echo "</td></tr>
                   </tbody>
                   </table>
                 </div>
               </div>
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Update</button>
-                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/home'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div>";

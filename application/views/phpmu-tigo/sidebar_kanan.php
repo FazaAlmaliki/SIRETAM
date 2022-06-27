@@ -3,7 +3,7 @@
 </div>
 
 <?php 
-$yahoo = $this->model_utama->view('mod_chat');
+$yahoo = $this->model_utama->view('mod_ym');
 if ($yahoo->num_rows() >= 1){
 echo "<div class='widget'>
 	<h3>Online Support (Chat)</h3>";

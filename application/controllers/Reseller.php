@@ -1,15 +1,25 @@
 <?php
+/*
+-- ---------------------------------------------------------------
+-- MARKETPLACE MULTI BUYER MULTI SELLER + SUPPORT RESELLER SYSTEM
+-- CREATED BY : ROBBY PRIHANDAYA
+-- COPYRIGHT  : Copyright (c) 2018 - 2019, PHPMU.COM. (https://phpmu.com/)
+-- LICENSE    : http://opensource.org/licenses/MIT  MIT License
+-- CREATED ON : 2019-03-26
+-- UPDATED ON : 2019-03-27
+-- ---------------------------------------------------------------
+*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Reseller extends CI_Controller {
 	function index(){
 		if (isset($_POST['submit'])){
 			$username = $this->input->post('a');
 			$password = hash("sha512", md5($this->input->post('b')));
-			$cek = $this->db->query("SELECT * FROM rb_supplier where username='".$this->db->escape_str($username)."' AND password='".$this->db->escape_str($password)."'");
+			$cek = $this->db->query("SELECT * FROM rb_reseller where username='".$this->db->escape_str($username)."' AND password='".$this->db->escape_str($password)."'");
 		    $row = $cek->row_array();
 		    $total = $cek->num_rows();
 			if ($total > 0){
-				$this->session->set_userdata(array('id_supplier'=>$row['id_supplier'],
+				$this->session->set_userdata(array('id_reseller'=>$row['id_reseller'],
 								   'username'=>$row['username'],
 								   'level'=>'reseller'));
 				redirect('reseller/home');
@@ -25,13 +35,13 @@ class Reseller extends CI_Controller {
 
 	function ref(){
 		if (isset($_POST['submit2'])){
-			$cek  = $this->model_app->view_where('rb_supplier',array('username'=>$this->input->post('a')))->num_rows();	
+			$cek  = $this->model_app->view_where('rb_reseller',array('username'=>$this->input->post('a')))->num_rows();	
 			if ($cek >= 1){
 				$username = $this->input->post('a');
 				echo "<script>window.alert('Maaf, Username $username sudah dipakai oleh orang lain!');
                                   window.location=('".base_url()."/".$this->input->post('i')."')</script>";
 			}else{
-				$route = array('administrator','auth','contact','download','konfirmasi','main','members','page','produk','reseller');
+				$route = array('administrator','auth','contact','download','gallery','konfirmasi','main','members','page','produk','reseller','testimoni','video');
 				if (in_array($this->input->post('a'), $route)){
 					$username = $this->input->post('a');
 					echo "<script>window.alert('Maaf, Username $username sudah dipakai oleh orang lain!');
@@ -39,25 +49,24 @@ class Reseller extends CI_Controller {
 				}else{
 				$data = array('username'=>$this->input->post('a'),
 		        			  'password'=>hash("sha512", md5($this->input->post('b'))),
-		        			  'nama_supplier'=>$this->input->post('c'),
-		        			  'jenis_kelamin'=>$this->input->post('d'),
+		        			  'nama_reseller'=>$this->input->post('c'),
 		        			  'alamat_lengkap'=>$this->input->post('e'),
 		        			  'no_telpon'=>$this->input->post('f'),
 							  'email'=>$this->input->post('g'),
 							  'kode_pos'=>$this->input->post('h'),
 							  'referral'=>$this->input->post('i'),
 							  'tanggal_daftar'=>date('Y-m-d H:i:s'));
-				$this->model_app->insert('rb_supplier',$data);
+				$this->model_app->insert('rb_reseller',$data);
 				$id = $this->db->insert_id();
-				$this->session->set_userdata(array('id_supplier'=>$id, 'level'=>'reseller'));
+				$this->session->set_userdata(array('id_reseller'=>$id, 'level'=>'reseller'));
 				$identitas = $this->model_app->view_where('identitas',array('id_identitas'=>'1'))->row_array();
 
-				$ref = $this->model_app->view_where('rb_supplier',array('username'=>$this->input->post('i')))->row_array();
+				$ref = $this->model_app->view_where('rb_reseller',array('username'=>$this->input->post('i')))->row_array();
 				$email_tujuan = $ref['email'];
 				$tglaktif = date("d-m-Y H:i:s");
-				$subject      = 'Pendaftaran Sebagai ResellerSupplier Berhasil...';
+				$subject      = 'Pendaftaran Sebagai Reseller Berhasil...';
 
-				$message      = "<html><body>Selamat, Pada Hari ini tanggal $tglaktif<br> Bpk/Ibk <b>".$this->input->post('c')."</b> Sukses Mendafatar Sebagai reseller dengan referral <b>".$ref['nama_supplier']."</b>...";
+				$message      = "<html><body>Selamat, Pada Hari ini tanggal $tglaktif<br> Bpk/Ibk <b>".$this->input->post('c')."</b> Sukses Mendafatar Sebagai reseller dengan referral <b>".$ref['nama_reseller']."</b>...";
 				$message      .= "<table style='width:100%; margin-left:25px'>
 		   				<tr><td style='background:#337ab7; color:#fff; pading:20px' cellpadding=6 colspan='2'><b>Berikut Informasi akun : </b></td></tr>
 						<tr><td><b>Nama Supplier</b></td>			<td> : ".$this->input->post('c')."</td></tr>
@@ -100,7 +109,7 @@ class Reseller extends CI_Controller {
 
 	function edit_reseller(){
 		cek_session_reseller();
-		$id = $this->session->id_supplier;
+		$id = $this->session->id_reseller;
 		if (isset($_POST['submit'])){
 			$config['upload_path'] = 'asset/foto_user/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -111,7 +120,7 @@ class Reseller extends CI_Controller {
             if ($hasil['file_name']==''){
 				if (trim($this->input->post('b')) != ''){
 		            $data = array('password'=>hash("sha512", md5($this->input->post('b'))),
-		                        'nama_supplier'=>$this->input->post('c'),
+		                        'nama_reseller'=>$this->input->post('c'),
 		                        'alamat_lengkap'=>$this->input->post('e'),
 		                        'no_telpon'=>$this->input->post('f'),
 		                        'email'=>$this->input->post('g'),
@@ -120,7 +129,7 @@ class Reseller extends CI_Controller {
 		                        'referral'=>$this->input->post('j'),
 		                        'kota_id'=>$this->input->post('kota'));
 		        }else{
-		           $data = array('nama_supplier'=>$this->input->post('c'),
+		           $data = array('nama_reseller'=>$this->input->post('c'),
 		                        'alamat_lengkap'=>$this->input->post('e'),
 		                        'no_telpon'=>$this->input->post('f'),
 		                        'email'=>$this->input->post('g'),
@@ -132,7 +141,7 @@ class Reseller extends CI_Controller {
 		    }else{
 				if (trim($this->input->post('b')) != ''){
 		            $data = array('password'=>hash("sha512", md5($this->input->post('b'))),
-		                        'nama_supplier'=>$this->input->post('c'),
+		                        'nama_reseller'=>$this->input->post('c'),
 		                        'alamat_lengkap'=>$this->input->post('e'),
 		                        'no_telpon'=>$this->input->post('f'),
 		                        'email'=>$this->input->post('g'),
@@ -142,7 +151,7 @@ class Reseller extends CI_Controller {
 		                        'referral'=>$this->input->post('j'),
 		                        'kota_id'=>$this->input->post('kota'));
 		        }else{
-		           $data = array('nama_supplier'=>$this->input->post('c'),
+		           $data = array('nama_reseller'=>$this->input->post('c'),
 		                        'alamat_lengkap'=>$this->input->post('e'),
 		                        'no_telpon'=>$this->input->post('f'),
 		                        'email'=>$this->input->post('g'),
@@ -153,11 +162,11 @@ class Reseller extends CI_Controller {
 		                        'kota_id'=>$this->input->post('kota'));
 		        }
 		    }
-			$where = array('id_supplier' => $this->input->post('id'));
-			$this->model_app->update('rb_supplier', $data, $where);
+			$where = array('id_reseller' => $this->input->post('id'));
+			$this->model_app->update('rb_reseller', $data, $where);
 			redirect($this->uri->segment(1).'/detail_reseller');
 		}else{
-			$edit = $this->model_app->edit('rb_supplier',array('id_supplier'=>$id))->row_array();
+			$edit = $this->model_app->edit('rb_reseller',array('id_reseller'=>$id))->row_array();
 			$data = array('rows' => $edit);
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_reseller/view_reseller_edit',$data);
 		}
@@ -165,8 +174,8 @@ class Reseller extends CI_Controller {
 
 	function detail_reseller(){
 		cek_session_reseller();
-		$id = $this->session->id_supplier;
-		$edit = $this->model_app->edit('rb_supplier',array('id_supplier'=>$id))->row_array();
+		$id = $this->session->id_reseller;
+		$edit = $this->model_app->edit('rb_reseller',array('id_reseller'=>$id))->row_array();
 		$data = array('rows' => $edit);
 		$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_reseller/view_reseller_detail',$data);
 	}
@@ -181,19 +190,19 @@ class Reseller extends CI_Controller {
 			for ($i=1; $i<=$jml; $i++){
 				$a  = $_POST['a'][$i];
 				$b  = $_POST['b'][$i];
-				$cek = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$a,'id_supplier'=>$this->session->id_supplier))->num_rows();
+				$cek = $this->model_app->edit('rb_produk_diskon',array('id_produk'=>$a,'id_reseller'=>$this->session->id_reseller))->num_rows();
 				if ($cek >= 1){
 					if ($b > 0){
 						$data = array('diskon'=>$b);
-						$where = array('id_produk' => $a,'id_supplier' => $this->session->id_supplier);
+						$where = array('id_produk' => $a,'id_reseller' => $this->session->id_reseller);
 						$this->model_app->update('rb_produk_diskon', $data, $where);
 					}else{
-						$this->model_app->delete('rb_produk_diskon',array('id_produk'=>$a,'id_supplier'=>$this->session->id_supplier));
+						$this->model_app->delete('rb_produk_diskon',array('id_produk'=>$a,'id_reseller'=>$this->session->id_reseller));
 					}
 				}else{
 					if ($b > 0){
 						$data = array('id_produk'=>$a,
-			                          'id_supplier'=>$this->session->id_supplier,
+			                          'id_reseller'=>$this->session->id_reseller,
 			                          'diskon'=>$b);
 						$this->model_app->insert('rb_produk_diskon',$data);
 					}
@@ -201,7 +210,7 @@ class Reseller extends CI_Controller {
 			}
 			redirect($this->uri->segment(1).'/produk');
 		}else{
-			$data['record'] = $this->model_app->view_where_ordering('rb_produk',array('id_supplier'=>$this->session->id_supplier),'id_produk','DESC');
+			$data['record'] = $this->model_app->view_where_ordering('rb_produk',array('id_reseller'=>$this->session->id_reseller),'id_produk','DESC');
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_produk/view_produk',$data);
 		}
 	}
@@ -228,11 +237,12 @@ class Reseller extends CI_Controller {
             if (trim($fileName)!=''){
                 $data = array('id_kategori_produk'=>$this->input->post('a'),
                 			  'id_kategori_produk_sub'=>$this->input->post('aa'),
-                			  'id_supplier'=>$this->session->id_supplier,
+                			  'id_reseller'=>$this->session->id_reseller,
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'gambar'=>$fileName,
@@ -242,11 +252,12 @@ class Reseller extends CI_Controller {
             }else{
                 $data = array('id_kategori_produk'=>$this->input->post('a'),
                 			  'id_kategori_produk_sub'=>$this->input->post('aa'),
-                			  'id_supplier'=>$this->session->id_supplier,
+                			  'id_reseller'=>$this->session->id_reseller,
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'keterangan'=>$this->input->post('ff'),
@@ -256,14 +267,14 @@ class Reseller extends CI_Controller {
             $this->model_app->insert('rb_produk',$data);
             $id_produk = $this->db->insert_id();
             if ($this->input->post('diskon') > 0){
-            	$cek = $this->db->query("SELECT * FROM rb_produk_diskon where id_produk='".$id_produk."' AND id_supplier='".$this->session->id_supplier."'");
+            	$cek = $this->db->query("SELECT * FROM rb_produk_diskon where id_produk='".$id_produk."' AND id_reseller='".$this->session->id_reseller."'");
 				if ($cek->num_rows()>=1){
 					$data = array('diskon'=>$this->input->post('diskon'));
-					$where = array('id_produk' => $id_produk,'id_supplier' => $this->session->id_supplier);
+					$where = array('id_produk' => $id_produk,'id_reseller' => $this->session->id_reseller);
 					$this->model_app->update('rb_produk_diskon', $data, $where);
 				}else{
 					$data = array('id_produk'=>$id_produk,
-			                      'id_supplier'=>$this->session->id_supplier,
+			                      'id_reseller'=>$this->session->id_reseller,
 			                      'diskon'=>$this->input->post('diskon'));
 					$this->model_app->insert('rb_produk_diskon',$data);
 				}
@@ -273,9 +284,9 @@ class Reseller extends CI_Controller {
 			if ($this->input->post('stok') != ''){
 				$kode_transaksi = "TRX-".date('YmdHis');
 				$data = array('kode_transaksi'=>$kode_transaksi,
-			        		  'id_pembeli'=>$this->session->id_supplier,
+			        		  'id_pembeli'=>$this->session->id_reseller,
 			        		  'id_penjual'=>'1',
-			        		  'status_pembeli'=>'supplier',
+			        		  'status_pembeli'=>'reseller',
 			        		  'status_penjual'=>'admin',
 			        		  'service'=>'Stok Otomatis (Pribadi)',
 			        		  'waktu_transaksi'=>date('Y-m-d H:i:s'),
@@ -324,7 +335,8 @@ class Reseller extends CI_Controller {
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'gambar'=>$fileName,
@@ -336,25 +348,26 @@ class Reseller extends CI_Controller {
                               'nama_produk'=>$this->input->post('b'),
                               'produk_seo'=>seo_title($this->input->post('b')),
                               'satuan'=>$this->input->post('c'),
-                              'harga_suppliers'=>$this->input->post('e'),
+                              'harga_beli'=>$this->input->post('d'),
+                              'harga_reseller'=>$this->input->post('e'),
                               'harga_konsumen'=>$this->input->post('f'),
                               'berat'=>$this->input->post('berat'),
                               'keterangan'=>$this->input->post('ff'),
                               'username'=>$this->session->username);
             }
 
-            $where = array('id_produk' => $this->input->post('id'),'id_supplier'=>$this->session->id_supplier);
+            $where = array('id_produk' => $this->input->post('id'),'id_reseller'=>$this->session->id_reseller);
             $this->model_app->update('rb_produk', $data, $where);
 
             if ($this->input->post('diskon') >= 0){
-            	$cek = $this->db->query("SELECT * FROM rb_produk_diskon where id_produk='".$this->input->post('id')."' AND id_supplier='".$this->session->id_supplier."'");
+            	$cek = $this->db->query("SELECT * FROM rb_produk_diskon where id_produk='".$this->input->post('id')."' AND id_reseller='".$this->session->id_reseller."'");
 				if ($cek->num_rows()>=1){
 					$data = array('diskon'=>$this->input->post('diskon'));
-					$where = array('id_produk' => $this->input->post('id'),'id_supplier' => $this->session->id_supplier);
+					$where = array('id_produk' => $this->input->post('id'),'id_reseller' => $this->session->id_reseller);
 					$this->model_app->update('rb_produk_diskon', $data, $where);
 				}else{
 					$data = array('id_produk'=>$this->input->post('id'),
-			                      'id_supplier'=>$this->session->id_supplier,
+			                      'id_reseller'=>$this->session->id_reseller,
 			                      'diskon'=>$this->input->post('diskon'));
 					$this->model_app->insert('rb_produk_diskon',$data);
 				}
@@ -363,9 +376,9 @@ class Reseller extends CI_Controller {
 			if ($this->input->post('stok') != ''){
 				$kode_transaksi = "TRX-".date('YmdHis');
 				$data = array('kode_transaksi'=>$kode_transaksi,
-			        		  'id_pembeli'=>$this->session->id_supplier,
+			        		  'id_pembeli'=>$this->session->id_reseller,
 			        		  'id_penjual'=>'1',
-			        		  'status_pembeli'=>'supplier',
+			        		  'status_pembeli'=>'reseller',
 			        		  'status_penjual'=>'admin',
 			        		  'service'=>'Stok Otomatis (Pribadi)',
 			        		  'waktu_transaksi'=>date('Y-m-d H:i:s'),
@@ -384,7 +397,7 @@ class Reseller extends CI_Controller {
             redirect('reseller/produk');
         }else{
             $data['record'] = $this->model_app->view_ordering('rb_kategori_produk','id_kategori_produk','DESC');
-            $data['rows'] = $this->model_app->edit('rb_produk',array('id_produk'=>$id,'id_supplier'=>$this->session->id_supplier))->row_array();
+            $data['rows'] = $this->model_app->edit('rb_produk',array('id_produk'=>$id,'id_reseller'=>$this->session->id_reseller))->row_array();
             $this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_produk/view_produk_edit',$data);
         }
     }
@@ -411,18 +424,18 @@ class Reseller extends CI_Controller {
 
 	function rekening(){
 		cek_session_reseller();
-		$data['record'] = $this->model_app->view_where('rb_rekening_supplier',array('id_supplier'=>$this->session->id_supplier));
+		$data['record'] = $this->model_app->view_where('rb_rekening_reseller',array('id_reseller'=>$this->session->id_reseller));
 		$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_rekening/view_rekening',$data);
 	}
 
 	function tambah_rekening(){
 		cek_session_reseller();
 		if (isset($_POST['submit'])){
-			$data = array('id_supplier'=>$this->session->id_supplier,
+			$data = array('id_reseller'=>$this->session->id_reseller,
 			              'nama_bank'=>$this->input->post('a'),
 			              'no_rekening'=>$this->input->post('b'),
 			              'pemilik_rekening'=>$this->input->post('c'));
-						$this->model_app->insert('rb_rekening_supplier',$data);
+						$this->model_app->insert('rb_rekening_reseller',$data);
 			redirect($this->uri->segment(1).'/rekening');
 		}else{
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_rekening/view_rekening_tambah');
@@ -433,23 +446,23 @@ class Reseller extends CI_Controller {
 		cek_session_reseller();
 		$id = $this->uri->segment(3);
 		if (isset($_POST['submit'])){
-			$data = array('id_supplier'=>$this->session->id_supplier,
+			$data = array('id_reseller'=>$this->session->id_reseller,
 			              'nama_bank'=>$this->input->post('a'),
 			              'no_rekening'=>$this->input->post('b'),
 			              'pemilik_rekening'=>$this->input->post('c'));
-			$where = array('id_rekening_supplier' => $this->input->post('id'),'id_supplier' => $this->session->id_supplier);
-			$this->model_app->update('rb_rekening_supplier', $data, $where);
+			$where = array('id_rekening_reseller' => $this->input->post('id'),'id_reseller' => $this->session->id_reseller);
+			$this->model_app->update('rb_rekening_reseller', $data, $where);
 			redirect($this->uri->segment(1).'/rekening');
 		}else{
-			$data['rows'] = $this->model_app->edit('rb_rekening_supplier',array('id_rekening_supplier'=>$id))->row_array();
+			$data['rows'] = $this->model_app->edit('rb_rekening_reseller',array('id_rekening_reseller'=>$id))->row_array();
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_rekening/view_rekening_edit',$data);
 		}
 	}
 
 	function delete_rekening(){
 		cek_session_reseller();
-		$id = array('id_rekening_supplier' => $this->uri->segment(3));
-		$this->model_app->delete('rb_rekening_supplier',$id);
+		$id = array('id_rekening_reseller' => $this->uri->segment(3));
+		$this->model_app->delete('rb_rekening_reseller',$id);
 		redirect($this->uri->segment(1).'/rekening');
 	}
 
@@ -460,7 +473,7 @@ class Reseller extends CI_Controller {
 	function pembelian(){
 		cek_session_reseller();
 		$this->session->unset_userdata('idp');
-		$data['record'] = $this->model_reseller->reseller_pembelian($this->session->id_supplier,'admin');
+		$data['record'] = $this->model_reseller->reseller_pembelian($this->session->id_reseller,'admin');
 		$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_pembelian/view_pembelian',$data);
 	}
 
@@ -477,9 +490,9 @@ class Reseller extends CI_Controller {
 			if ($this->session->idp == ''){
 				$kode_transaksi = "TRX-".date('YmdHis');
 				$data = array('kode_transaksi'=>$kode_transaksi,
-			        		  'id_pembeli'=>$this->session->id_supplier,
+			        		  'id_pembeli'=>$this->session->id_reseller,
 			        		  'id_penjual'=>'1',
-			        		  'status_pembeli'=>'supplier',
+			        		  'status_pembeli'=>'reseller',
 			        		  'status_penjual'=>'admin',
 			        		  'waktu_transaksi'=>date('Y-m-d H:i:s'),
 			        		  'proses'=>'0');
@@ -507,8 +520,8 @@ class Reseller extends CI_Controller {
 		}else{
 			$data['rows'] = $this->model_reseller->penjualan_detail($this->session->idp)->row_array();
 			$data['record'] = $this->model_app->view_join_where('rb_penjualan_detail','rb_produk','id_produk',array('id_penjualan'=>$this->session->idp),'id_penjualan_detail','DESC');
-			$data['barang'] = $this->model_app->view_where_ordering('rb_produk',array('id_supplier'=>'0'),'id_produk','ASC');
-			$data['reseller'] = $this->model_app->view_ordering('rb_supplier','id_supplier','ASC');
+			$data['barang'] = $this->model_app->view_where_ordering('rb_produk',array('id_reseller'=>'0'),'id_produk','ASC');
+			$data['reseller'] = $this->model_app->view_ordering('rb_reseller','id_reseller','ASC');
 			if ($this->uri->segment(3)!=''){
 				$data['row'] = $this->model_app->view_where('rb_penjualan_detail',array('id_penjualan_detail'=>$this->uri->segment(3)))->row_array();
 			}
@@ -574,20 +587,20 @@ class Reseller extends CI_Controller {
 	function keterangan(){
 		cek_session_reseller();
 		if (isset($_POST['submit'])){
-			$cek = $this->model_app->view_where('rb_keterangan',array('id_supplier'=>$this->session->id_supplier))->num_rows();
+			$cek = $this->model_app->view_where('rb_keterangan',array('id_reseller'=>$this->session->id_reseller))->num_rows();
 			if ($cek>=1){
 				$data1 = array('keterangan'=>$this->input->post('a'));
-				$where = array('id_keterangan' => $this->input->post('id'),'id_supplier'=>$this->session->id_supplier);
+				$where = array('id_keterangan' => $this->input->post('id'),'id_reseller'=>$this->session->id_reseller);
 				$this->model_app->update('rb_keterangan', $data1, $where);
 			}else{
-				$data = array('id_supplier'=>$this->session->id_supplier,
+				$data = array('id_reseller'=>$this->session->id_reseller,
 							   'keterangan'=>$this->input->post('a'),
 							   'tanggal_posting'=>date('Y-m-d H:i:s'));
 				$this->model_app->insert('rb_keterangan',$data);
 			}
 			redirect($this->uri->segment(1).'/keterangan');
 		}else{
-			$data['record'] = $this->model_app->edit('rb_keterangan',array('id_supplier'=>$this->session->id_supplier))->row_array();
+			$data['record'] = $this->model_app->edit('rb_keterangan',array('id_reseller'=>$this->session->id_reseller))->row_array();
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_keterangan/view_keterangan',$data);
 		}
 	}
@@ -595,7 +608,7 @@ class Reseller extends CI_Controller {
 	function penjualan(){
 		cek_session_reseller();
 		$this->session->unset_userdata('idp');
-		$id = $this->session->id_supplier;
+		$id = $this->session->id_reseller;
 		$data['record'] = $this->model_reseller->penjualan_list_konsumen($id,'reseller');
 		$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_penjualan/view_penjualan',$data);
 	}
@@ -613,9 +626,9 @@ class Reseller extends CI_Controller {
 			if ($this->session->idp == ''){
 				$data = array('kode_transaksi'=>$this->input->post('a'),
 			        		  'id_pembeli'=>$this->input->post('b'),
-			        		  'id_penjual'=>$this->session->id_supplier,
+			        		  'id_penjual'=>$this->session->id_reseller,
 			        		  'status_pembeli'=>'konsumen',
-			        		  'status_penjual'=>'supplier',
+			        		  'status_penjual'=>'reseller',
 			        		  'waktu_transaksi'=>date('Y-m-d H:i:s'),
 			        		  'proses'=>'0');
 				$this->model_app->insert('rb_penjualan',$data);
@@ -630,8 +643,8 @@ class Reseller extends CI_Controller {
 				redirect($this->uri->segment(1).'/tambah_penjualan');
 
 		}elseif(isset($_POST['submit'])){
-			$jual = $this->model_reseller->jual_reseller($this->session->id_supplier, $this->input->post('aa'))->row_array();
-            $beli = $this->model_reseller->beli_reseller($this->session->id_supplier, $this->input->post('aa'))->row_array();
+			$jual = $this->model_reseller->jual_reseller($this->session->id_reseller, $this->input->post('aa'))->row_array();
+            $beli = $this->model_reseller->beli_reseller($this->session->id_reseller, $this->input->post('aa'))->row_array();
             $stok = $beli['beli']-$jual['jual'];
             if ($this->input->post('dd') > $stok){
             	echo "<script>window.alert('Maaf, Stok Tidak Mencukupi!');
@@ -679,8 +692,8 @@ class Reseller extends CI_Controller {
 
 		}elseif(isset($_POST['submit'])){
 			$cekk = $this->db->query("SELECT * FROM rb_penjualan_detail where id_penjualan='".$this->input->post('idp')."' AND id_produk='".$this->input->post('aa')."'")->row_array();
-			$jual = $this->model_reseller->jual_reseller($this->session->id_supplier, $this->input->post('aa'))->row_array();
-            $beli = $this->model_reseller->beli_reseller($this->session->id_supplier, $this->input->post('aa'))->row_array();
+			$jual = $this->model_reseller->jual_reseller($this->session->id_reseller, $this->input->post('aa'))->row_array();
+            $beli = $this->model_reseller->beli_reseller($this->session->id_reseller, $this->input->post('aa'))->row_array();
             $stok = $beli['beli']-$jual['jual']+$cekk['jumlah'];
             if ($this->input->post('dd') > $stok){
             	echo "<script>window.alert('Maaf, Stok $stok Tidak Mencukupi!');
@@ -764,7 +777,7 @@ class Reseller extends CI_Controller {
 
 	function pembayaran_konsumen(){
 		cek_session_reseller();
-		$data['record'] = $this->db->query("SELECT a.*, b.*, c.kode_transaksi, c.proses FROM `rb_konfirmasi_pembayaran_konsumen` a JOIN rb_rekening_supplier b ON a.id_rekening=b.id_rekening_supplier JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where b.id_supplier='".$this->session->id_supplier."'");
+		$data['record'] = $this->db->query("SELECT a.*, b.*, c.kode_transaksi, c.proses FROM `rb_konfirmasi_pembayaran_konsumen` a JOIN rb_rekening_reseller b ON a.id_rekening=b.id_rekening_reseller JOIN rb_penjualan c ON a.id_penjualan=c.id_penjualan where b.id_reseller='".$this->session->id_reseller."'");
 		$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_konsumen/view_konsumen_pembayaran',$data);
 	}
 
@@ -776,10 +789,10 @@ class Reseller extends CI_Controller {
 
 	function keuangan(){
 		cek_session_reseller();
-		$id = $this->session->id_supplier;
+		$id = $this->session->id_reseller;
 		$record = $this->model_reseller->reseller_pembelian($id,'admin');
 		$penjualan = $this->model_reseller->penjualan_list_konsumen($id,'reseller');
-		$edit = $this->model_app->edit('rb_supplier',array('id_supplier'=>$id))->row_array();
+		$edit = $this->model_app->edit('rb_reseller',array('id_reseller'=>$id))->row_array();
 		$reward = $this->model_app->view_ordering('rb_reward','id_reward','ASC');
 
 		$data = array('rows' => $edit,'record'=>$record,'penjualan'=>$penjualan,'reward'=>$reward);
@@ -790,17 +803,17 @@ class Reseller extends CI_Controller {
 
 	function alamat_cod(){
 		cek_session_reseller();
-		$data['record'] = $this->model_app->view_where('rb_supplier_cod',array('id_supplier'=>$this->session->id_supplier));
+		$data['record'] = $this->model_app->view_where('rb_reseller_cod',array('id_reseller'=>$this->session->id_reseller));
 		$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_alamat_cod/view',$data);
 	}
 
 	function tambah_cod(){
 		cek_session_reseller();
 		if (isset($_POST['submit'])){
-			$data = array('id_supplier'=>$this->session->id_supplier,
+			$data = array('id_reseller'=>$this->session->id_reseller,
 			              'nama_alamat'=>$this->input->post('a'),
 			              'biaya_cod'=>$this->input->post('b'));
-						$this->model_app->insert('rb_supplier_cod',$data);
+						$this->model_app->insert('rb_reseller_cod',$data);
 			redirect($this->uri->segment(1).'/alamat_cod');
 		}else{
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_alamat_cod/tambah');
@@ -811,14 +824,14 @@ class Reseller extends CI_Controller {
 		cek_session_reseller();
 		$id = $this->uri->segment(3);
 		if (isset($_POST['submit'])){
-			$data = array('id_supplier'=>$this->session->id_supplier,
+			$data = array('id_reseller'=>$this->session->id_reseller,
 			              'nama_alamat'=>$this->input->post('a'),
 			              'biaya_cod'=>$this->input->post('b'));
-			$where = array('id_cod' => $this->input->post('id'),'id_supplier' => $this->session->id_supplier);
-			$this->model_app->update('rb_supplier_cod', $data, $where);
+			$where = array('id_cod' => $this->input->post('id'),'id_reseller' => $this->session->id_reseller);
+			$this->model_app->update('rb_reseller_cod', $data, $where);
 			redirect($this->uri->segment(1).'/alamat_cod');
 		}else{
-			$data['rows'] = $this->model_app->edit('rb_supplier_cod',array('id_cod'=>$id))->row_array();
+			$data['rows'] = $this->model_app->edit('rb_reseller_cod',array('id_cod'=>$id))->row_array();
 			$this->template->load($this->uri->segment(1).'/template',$this->uri->segment(1).'/mod_alamat_cod/edit',$data);
 		}
 	}
@@ -826,7 +839,7 @@ class Reseller extends CI_Controller {
 	function delete_cod(){
 		cek_session_reseller();
 		$id = array('id_cod' => $this->uri->segment(3));
-		$this->model_app->delete('rb_supplier_cod',$id);
+		$this->model_app->delete('rb_reseller_cod',$id);
 		redirect($this->uri->segment(1).'/alamat_cod');
 	}
 

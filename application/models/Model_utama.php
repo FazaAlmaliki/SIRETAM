@@ -71,9 +71,6 @@ class Model_utama extends CI_model{
         return $this->db->update($table, $data, $where); 
     }
 
-    public function polling_sum(){
-        return $this->db->query("SELECT SUM(rating) as jml_vote FROM poling WHERE aktif='Y'"); 
-    }
 
     function kunjungan(){
         $ip      = $_SERVER['REMOTE_ADDR'];
