@@ -3,7 +3,7 @@
                 if ($this->uri->segment(3)=='success'){
                   echo "<div class='alert alert-success'><b>SUCCESS</b> - Terima kasih telah Melakukan Konfirmasi Pembayaran!</div>";
                 }elseif($this->uri->segment(3)=='orders'){
-                  echo "<div class='alert alert-success'><b>SUCCESS</b> - Orderan anda sukses terkirim, silahkan melakukan pembayaran ke rekening reseller pesanan anda dan selanjutnya lakukan konfirmasi pembayaran!</div>";
+                  echo "<div class='alert alert-success'><b>SUCCESS</b> - Orderan anda sukses terkirim, silahkan melakukan pembayaran ke rekening supplier pesanan anda dan selanjutnya lakukan konfirmasi pembayaran!</div>";
                 }
               ?>
               <table id='example2' style='overflow-x:scroll; width:96%' class="table table-striped table-condensed">
@@ -13,10 +13,10 @@
                     <th>Kode Transaksi</th>
                     <th>Nama Lapak</th>
                     <th>Subtotal</th>
-                    <th>Ongkir</th>
+                    <th>Biaya Pengiriman</th>
                     <th>Status</th>
-                    <th>Total + Ongkir</th>
-                    <th></th>
+                    <th>Total + Biaya Pengiriman</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>

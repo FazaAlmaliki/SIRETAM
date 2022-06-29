@@ -7,7 +7,7 @@
     <div class='box-body'>
       <table class='table table-condensed table-bordered'>
         <tbody>
-          <tr bgcolor='#f5f5f5'><th rowspan='14' width='110px'><center><?php echo "<img style='border:1px solid #cecece; height:85px; width:85px' src='".base_url()."asset/foto_user/users.gif' class='img-circle img-thumbnail'>"; ?></center></th></tr>
+          <tr><th></th></tr>
           <tr><th width='130px' scope='row'>Nama Distributor</th> <td><?php echo $rows['nama_supplier']; ?></td></tr>
           <tr><th scope='row'>Kontak Person</th> <td><?php echo $rows['kontak_person']; ?></td></tr>
           <tr><th scope='row'>Alamat Lengkap</th> <td><?php echo $rows['alamat_lengkap']; ?></td></tr>

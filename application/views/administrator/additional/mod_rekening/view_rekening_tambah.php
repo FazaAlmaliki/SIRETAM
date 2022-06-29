@@ -20,7 +20,7 @@
               </div>
               <div class='box-footer'>
                     <button type='submit' name='submit' class='btn btn-info'>Tambahkan</button>
-                    <a href='index.php'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
+                    <a href='".base_url().$this->uri->segment(1)."/rekening'><button type='button' class='btn btn-default pull-right'>Batal</button></a>
                     
                   </div>
             </div>";

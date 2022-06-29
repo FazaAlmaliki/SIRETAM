@@ -66,6 +66,5 @@
     <tr><th scope='row'>Keterangan</th> <td><?php echo $rows['keterangan']?></td></tr>
   </tbody>
   </table>
-  <img style='width:100%' src='<?php echo base_url(); ?>asset/foto_pasangiklan/ekpedisi2.jpg'>
   <hr>
 </div>

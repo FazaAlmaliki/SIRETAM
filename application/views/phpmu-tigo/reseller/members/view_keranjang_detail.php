@@ -40,11 +40,10 @@
                   <td style='color:Red' colspan='3'><b>Subtotal </b> <small><i class='pull-right'>(".terbilang($total['total']+$detail['ongkir'])." Rupiah)</i></small></td>
                   <td style='color:Red'><b>Rp ".rupiah($total['total']+$detail['ongkir'])."</b></td>
                 </tr>
-
-                
                 <tr><td align=center colspan='4'><b>$proses</b></td></tr>
-
         </tbody>
+        
+        <a href='".base_url().$this->uri->segment(1)."/orders_report/orders'><button type='button' class='btn btn-default pull-right'>Kembali</button></a><br>
       </table>";
 ?>
 </div>

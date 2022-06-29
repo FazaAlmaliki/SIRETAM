@@ -1,11 +1,5 @@
 <?php
 
-/**
- * RajaOngkir CodeIgniter Library
- * Digunakan untuk mengkonsumsi API RajaOngkir dengan mudah
- * 
- * @author Damar Riyadi <damar@tahutek.net>
- */
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'RajaOngkir/Endpoints.php';
 

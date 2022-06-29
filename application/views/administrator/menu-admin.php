@@ -89,7 +89,7 @@
               </li>
 
               <li class="treeview">
-                <a href="#"><i class="fa fa-circle-o"></i> Report <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <a href="#"><i class="fa fa-circle-o"></i> Laporan <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                 <ul class="treeview-menu">
                   <?php 
                     $cek=$this->model_app->umenu_akses("keuangan",$this->session->id_session);
@@ -155,6 +155,24 @@
               ?>
               </ul>
             </li>
+            
+            
+            <li class="treeview">
+              <a href="#"><i class="glyphicon glyphicon-blackboard"></i> <span>Modul Interaksi</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+              <?php
+                $cek=$this->model_app->umenu_akses("download",$this->session->id_session);
+                if($cek==1 OR $this->session->level=='admin'){
+                  echo "<li><a href='".base_url().$this->uri->segment(1)."/download'><i class='fa fa-circle-o'></i> Download Area</a></li>";
+                }
+
+                $cek=$this->model_app->umenu_akses("alamat",$this->session->id_session);
+                if($cek==1 OR $this->session->level=='admin'){
+                  echo "<li><a href='".base_url().$this->uri->segment(1)."/alamat'><i class='fa fa-circle-o'></i> Alamat Kontak</a></li>";
+                }
+              ?>
+              </ul>
+            </li>
 
             <li class="treeview">
               <a href="#"><i class="fa fa-users"></i> <span>Modul Lainnya</span><i class="fa fa-angle-left pull-right"></i></a>
@@ -174,6 +192,7 @@
             </li>
             
             <li><a href="<?php echo base_url().$this->uri->segment(1); ?>/edit_manajemenuser/<?php echo $this->session->username; ?>"><i class="fa fa-edit"></i> <span>Edit Profil</span></a></li>
+            <li><a href="<?php echo base_url().$this->uri->segment(1); ?>/rekomendasi"><i class="fa fa-thumbs-up"></i> <span>Rekomendasi Anda</span></a></li>
             <li><a href="<?php echo base_url().$this->uri->segment(1); ?>/logout"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
           </ul>
         </section>

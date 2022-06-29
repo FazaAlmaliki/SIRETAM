@@ -79,7 +79,10 @@ echo "<div class='col-md-12'>
             echo "<tr><td style='font-weight:bold'>Jumlah Beli/Sewa</td> <td><input type='number' value='1' name='qty'></td></tr>
             </table><br>
 
-        <center><button type='submit' class='btn btn-success btn-block btn-lg'>Beli / Sewa Sekarang</a></center>";
+        <center><div class='row'>
+        <div class='col-md-5'><button type='submit' class='btn btn-success btn-block btn-lg'>Beli Sekarang</button></div>
+        <div class='col-md-5'><button type='submit' class='btn btn-primary btn-block btn-lg'>Sewa Sekarang</button></div>
+        </div></center>";
 
         echo "
         </div>

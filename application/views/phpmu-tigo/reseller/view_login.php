@@ -1,4 +1,4 @@
-  <p class='sidebar-title text-danger produk-title'> Login Users</p> 
+  <p class='sidebar-title text-danger produk-title'> Login Pengguna</p> 
 
             <div class='alert alert-info'>Masukkan username dan password pada form berikut untuk login,...</div>
             <br>

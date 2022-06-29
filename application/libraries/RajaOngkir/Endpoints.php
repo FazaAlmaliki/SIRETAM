@@ -1,10 +1,5 @@
 <?php
 
-/**
- * RajaOngkir Endpoints
- * 
- * @author Damar Riyadi <damar@tahutek.net>
- */
 require_once 'Restclient.php';
 
 class Endpoints {

@@ -15,7 +15,7 @@
                         <th>Kurir</th>
                         <th>Status</th>
                         <th>Total + Ongkir</th>
-                        <th></th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

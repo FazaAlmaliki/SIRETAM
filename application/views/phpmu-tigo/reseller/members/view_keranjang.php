@@ -60,10 +60,10 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
 <input type="hidden" name="berat" value="<?php echo $total['total_berat']; ?>"/>
 <input type="hidden" name="diskonnilai" id="diskonnilai" value="<?php echo $diskon_total; ?>"/>
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="">Pilih Perusahaan Pengirim</label>
+    <label class="col-sm-2 control-label" for="">Pilih Jasa Pengiriman </label>
     <div class="col-md-10">
         <?php       
-        $kurir=array('PT. ','pos','tiki');
+        $kurir=array('Sagalogistics ','MHD Express');
         foreach($kurir as $rkurir){
             ?>          
                 <label class="radio-inline">
@@ -72,7 +72,7 @@ echo "<form action='".base_url()."members/selesai_belanja' method='POST'>";
             <?php
         }
         ?>
-        <label class="radio-inline"><input type="radio" name="kurir" class="kurir" value="cod"/> COD (Cash on delivery)</label>
+        <label class="radio-inline"><input type="radio" name="kurir" class="kurir" value="cod"/> Penerimaan Langsung</label>
     </div>
 </div>
 <div id="kuririnfo" style="display: none;">

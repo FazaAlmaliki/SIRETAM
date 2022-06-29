@@ -15,8 +15,8 @@
                         <th>Waktu Transaksi</th>
                         <th>Status</th>
                         <th>Total Tagihan</th>
+                        <th>Service</th>
                         <th>Proses</th>
-                        <th></th>
                       </tr>
                     </thead>
                     <tbody>

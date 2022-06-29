@@ -27,7 +27,7 @@
                       if ($row['id_reseller']=='0'){
                         $jual = $this->model_reseller->jual($row['id_produk'])->row_array();
                         $beli = $this->model_reseller->beli($row['id_produk'])->row_array();
-                        $produk = "<i style='color:blue'>(Perusahaan)</i>"; 
+                        $produk = "<i style='color:blue'>(Distributor)</i>"; 
                       }else{ 
                         $jual = $this->model_reseller->jual_reseller($row['id_reseller'],$row['id_produk'])->row_array();
                         $beli = $this->model_reseller->beli_reseller($row['id_reseller'],$row['id_produk'])->row_array();

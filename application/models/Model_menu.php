@@ -1,14 +1,4 @@
 <?php 
-/*
--- ---------------------------------------------------------------
--- MARKETPLACE MULTI BUYER MULTI SELLER + SUPPORT RESELLER SYSTEM
--- CREATED BY : ROBBY PRIHANDAYA
--- COPYRIGHT  : Copyright (c) 2018 - 2019, PHPMU.COM. (https://phpmu.com/)
--- LICENSE    : http://opensource.org/licenses/MIT  MIT License
--- CREATED ON : 2019-03-26
--- UPDATED ON : 2019-03-27
--- ---------------------------------------------------------------
-*/
 class Model_menu extends CI_model{
 	function top_menu(){
 		return $this->db->query("SELECT * FROM menu where position='Top' ORDER BY urutan ASC");

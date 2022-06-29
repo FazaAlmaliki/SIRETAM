@@ -21,8 +21,6 @@
                     <tr><th scope='row'>Fax</th>                    <td><input class='form-control' type='number' name='h' value='$rows[fax]'></td></tr>
                     <tr><th scope='row'>Keterangan</th>                   <td><textarea class='form-control' name='i'>$rows[keterangan]</textarea></td></tr>
                     
-                    <tr><th scope='row'>Ganti Foto</th>                         <td><input type='file' class='form-control' name='gg'>";
-                                                                               if ($rows['foto'] != ''){ echo "<i style='color:red'>Foto Profil saat ini : </i><a target='_BLANK' href='".base_url()."asset/foto_user/$rows[foto]'>$rows[foto]</a>"; } echo "</td></tr>
                   </tbody>
                   </table>
                 </div>

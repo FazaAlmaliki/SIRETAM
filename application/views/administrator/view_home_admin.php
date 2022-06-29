@@ -27,7 +27,7 @@
 <section class="col-lg-7 connectedSortable">
   <div class='box'>
     <div class='box-header'>
-      <h3 class='box-title'>Application Buttons</h3>
+      <h3 class='box-title'>Tombol Menu</h3>
     </div>
     <div class='box-body'>
       <p>Silahkan klik menu pilihan yang berada di sebelah kiri untuk mengelola konten website anda 
@@ -38,7 +38,7 @@
       <a href="<?php echo base_url().$this->uri->segment(1); ?>/logowebsite" class='btn btn-app'><i class='fa fa-circle-thin'></i> Logo</a>
       <a href="<?php echo base_url().$this->uri->segment(1); ?>/templatewebsite" class='btn btn-app'><i class='fa fa-file'></i> Template</a>
       <a href="<?php echo base_url().$this->uri->segment(1); ?>/background" class='btn btn-app'><i class='fa fa-circle'></i> Background</a>
-      <a href="<?php echo base_url().$this->uri->segment(1); ?>/ym" class='btn btn-app'><i class='fa fa-yahoo'></i> YM</a>
+      <a href="<?php echo base_url().$this->uri->segment(1); ?>/ym" class='btn btn-app'><i class='fa fa-comment'></i> Chat</a>
       <a href="<?php echo base_url().$this->uri->segment(1); ?>/download" class='btn btn-app'><i class='fa fa-download'></i> Download</a>
       <a href="<?php echo base_url().$this->uri->segment(1); ?>/alamat" class='btn btn-app'><i class='fa fa-bed'></i> Alamat</a>
       <a href="<?php echo base_url().$this->uri->segment(1); ?>/pesanmasuk" class='btn btn-app'><span class='badge bg-yellow'><?php echo $jmlpesan; ?></span><i class='fa fa-envelope'></i> Pesan</a>

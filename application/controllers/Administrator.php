@@ -615,60 +615,6 @@ class Administrator extends CI_Controller {
         }
     }
 
-
-	// Controller Modul Pesan Masuk
-
-	function pesanmasuk(){
-		cek_session_akses('pesanmasuk',$this->session->id_session);
-		$data['record'] = $this->model_app->view_ordering('hubungi','id_hubungi','DESC');
-		$this->template->load('administrator/template','administrator/mod_pesanmasuk/view_pesanmasuk',$data);
-	}
-
-	function detail_pesanmasuk(){
-		cek_session_akses('pesanmasuk',$this->session->id_session);
-		$id = $this->uri->segment(3);
-		$this->db->query("UPDATE hubungi SET dibaca='Y' where id_hubungi='$id'");
-		if (isset($_POST['submit'])){
-			$nama           = $this->input->post('a');
-            $email           = $this->input->post('b');
-            $subject         = $this->input->post('c');
-            $message         = $this->input->post('isi')." <br><hr><br> ".$this->input->post('d');
-            
-            $this->email->from('robby.prihandaya@gmail.com', 'PHPMU.COM');
-            $this->email->to($email);
-            $this->email->cc('');
-            $this->email->bcc('');
-
-            $this->email->subject($subject);
-            $this->email->message($message);
-            $this->email->set_mailtype("html");
-            $this->email->send();
-            
-            $config['protocol'] = 'sendmail';
-            $config['mailpath'] = '/usr/sbin/sendmail';
-            $config['charset'] = 'utf-8';
-            $config['wordwrap'] = TRUE;
-            $config['mailtype'] = 'html';
-            $this->email->initialize($config);
-
-			$proses = $this->model_app->edit('hubungi', array('id_hubungi' => $id))->row_array();
-            $data = array('rows' => $proses);
-			$this->template->load('administrator/template','administrator/mod_pesanmasuk/view_pesanmasuk_detail',$data);
-		}else{
-			$proses = $this->model_app->edit('hubungi', array('id_hubungi' => $id))->row_array();
-            $data = array('rows' => $proses);
-			$this->template->load('administrator/template','administrator/mod_pesanmasuk/view_pesanmasuk_detail',$data);
-		}
-	}
-
-	function delete_pesanmasuk(){
-        cek_session_akses('pesanmasuk',$this->session->id_session);
-		$id = array('id_hubungi' => $this->uri->segment(3));
-        $this->model_app->delete('hubungi',$id);
-		redirect($this->uri->segment(1).'/pesanmasuk');
-	}
-
-
 	// Controller Modul User
 
 	function manajemenuser(){
